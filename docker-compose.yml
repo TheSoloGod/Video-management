@@ -3,8 +3,33 @@ version: '3'
 services:
   web:
     build: docker/web
+    container_name: video-web
     ports:
-      - 8080:80
+      - 80:80
     volumes:
       - .:/var/www/video-managent
+    links:
+      - db
     command: sh /entry-point.sh
+
+  db:
+    image: mysql:5.7
+    container_name: video-db
+    volumes:
+      - ./data/mysql:/var/lib/mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=1
+    ports:
+      - 3406:3306
+
+  phpmyadmin:
+    container_name: phpmyadmin
+    depends_on:
+      - db
+    image: phpmyadmin/phpmyadmin
+    restart: always
+    ports:
+      - '8080:80'
+    environment:
+      PMA_HOST: db
+      MYSQL_ROOT_PASSWORD: 1
