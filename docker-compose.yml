@@ -15,6 +15,7 @@ services:
   db:
     image: mysql:5.7
     container_name: video-db
+    hostname: video-db
     volumes:
       - ./data/mysql:/var/lib/mysql
     environment:
