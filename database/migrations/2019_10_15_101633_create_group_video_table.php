@@ -14,7 +14,10 @@ class CreateGroupVideoTable extends Migration
     public function up()
     {
         Schema::create('group_video', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->unsignedInteger('group_id');
+            $table->unsignedBigInteger('video_id');
+            $table->foreign('group_id')->references('id')->on('groups');
+            $table->foreign('video_id')->references('id')->on('videos');
             $table->timestamps();
         });
     }
