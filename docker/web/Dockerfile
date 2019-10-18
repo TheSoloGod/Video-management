@@ -10,13 +10,16 @@ RUN apt-get install -y \
     git \
     curl \
     sudo \
-    openssl
+    openssl \
+    cron \
+    nano
 
 RUN docker-php-ext-install \
     zip \
     mbstring \
     pdo \
     pdo_mysql
+#    sodium
 
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
@@ -29,8 +32,10 @@ RUN chmod 777 ./entry-point.sh
 #RUN chmod -R 777 video-management
 
 WORKDIR /var/www/video-management
-RUN composer require guzzlehttp/guzzle:~6.0
-RUN composer require predis/predis
+RUN composer require guzzlehttp/guzzle:~6.0 \
+ composer require predis/predis \
+ composer require phpoffice/phpspreadsheet \
+ composer require maatwebsite/excel
 
 
 
