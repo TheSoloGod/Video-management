@@ -5,15 +5,15 @@ RUN a2enmod rewrite headers
 #RUN mv "$PHP_INI_DIR/php.ini-development" "$PHP_INI_DIR/php.ini"
 
 RUN apt-get install -y \
-zlib1g-dev \
-        zip \
+    zlib1g-dev \
+    zip \
     git \
     curl \
-    sudo
+    sudo \
+    openssl
 
 RUN docker-php-ext-install \
-zip \
-
+    zip \
     mbstring \
     pdo \
     pdo_mysql

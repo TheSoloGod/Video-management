@@ -15,7 +15,18 @@
                     @endif
 
                     You are logged in!
+                        <div>
+                            @if (session('success'))
+                                <label class="alert alert-success" role="alert">
+                                    {{ session('success') }}
+                                </label>
+                            @endif
+                        </div>
+                        <div>
+                            <a href="{{route('invite')}}">intvite</a>
+                        </div>
                 </div>
+
             </div>
         </div>
     </div>

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Jobs\SendInviteEmail;
 
 class HomeController extends Controller
 {
@@ -24,5 +25,11 @@ class HomeController extends Controller
     public function index()
     {
         return view('home');
+    }
+
+    public function invite()
+    {
+        $this->dispatch(new SendInviteEmail());
+        return redirect()->back()->with('success', 'OK');
     }
 }
