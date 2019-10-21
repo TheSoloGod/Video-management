@@ -5,6 +5,10 @@ namespace App;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use App\Group;
+use App\Video;
+use App\GroupUser;
+use App\UserVideo;
 
 class User extends Authenticatable implements MustVerifyEmail
 {
@@ -16,7 +20,7 @@ class User extends Authenticatable implements MustVerifyEmail
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password', 'address', 'phone'
     ];
 
     /**
@@ -36,4 +40,24 @@ class User extends Authenticatable implements MustVerifyEmail
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function group()
+    {
+        return $this->belongsToMany(Group::class);
+    }
+
+    public function video()
+    {
+        return $this->belongsToMany(Video::class);
+    }
+
+    public function group_user()
+    {
+        return $this->hasMany(GroupUser::class);
+    }
+
+    public function user_video()
+    {
+        return $this->hasMany(UserVideo::class);
+    }
 }
