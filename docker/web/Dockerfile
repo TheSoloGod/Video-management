@@ -32,10 +32,10 @@ RUN chmod 777 ./entry-point.sh
 #RUN chmod -R 777 video-management
 
 WORKDIR /var/www/video-management
-RUN composer require guzzlehttp/guzzle:~6.0 \
- composer require predis/predis \
- composer require phpoffice/phpspreadsheet \
- composer require maatwebsite/excel
+#RUN composer require guzzlehttp/guzzle:~6.0 \
+#RUN composer require predis/predis
+# composer require phpoffice/phpspreadsheet \
+# composer require maatwebsite/excel
 
 
 

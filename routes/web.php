@@ -13,10 +13,11 @@
 
 Route::get('/', function () {
     return view('welcome');
-})->middleware('verified');
+});
 
-Auth::routes(['verify' => true]);
+Auth::routes(['verify' => true]); //test verify email
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('/invite', 'HomeController@invite')->name('invite');
+Route::get('/invite', 'HomeController@invite')->name('invite'); //test send mail background jobs redis
+

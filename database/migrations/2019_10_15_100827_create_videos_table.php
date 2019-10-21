@@ -22,7 +22,7 @@ class CreateVideosTable extends Migration
             $table->bigInteger('views')->default(0);
             $table->tinyInteger('is_display')->default(0);
             $table->tinyInteger('is_in_group')->default(0);
-            $table->dateTime('is_delete')->nullable();
+            $table->dateTime('delete_at')->nullable();
             $table->timestamps();
         });
     }
