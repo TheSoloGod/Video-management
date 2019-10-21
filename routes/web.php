@@ -21,3 +21,5 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/invite', 'HomeController@invite')->name('invite'); //test send mail background jobs redis
 
+Route::get('/admin/login', 'AdminController@getLogin');
+Route::post('/admin/login', 'AdminController@postLogin');
