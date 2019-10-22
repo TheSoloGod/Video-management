@@ -21,7 +21,8 @@ class UserController extends Controller
      */
     public function index()
     {
-        //
+        $users = $this->userService->paginate(5);
+        return  view('admin.user.list', compact('users'));
     }
 
     /**
@@ -53,7 +54,8 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        //
+        $user = $this->userService->getById($id);
+        return view('admin.user.detail', compact('user'));
     }
 
     /**
@@ -64,7 +66,8 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        //
+        $user = $this->userService->getById($id);
+        return view('admin.user.edit', compact('user'));
     }
 
     /**
@@ -76,7 +79,8 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->userService->update($request, $id);
+        return redirect()->route('users.show', compact('id'))->with('status', 'Update user information success');
     }
 
     /**
@@ -87,6 +91,7 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $this->userService->delete($id);
+        return redirect()->route('users.index')->with('status', 'Delete user success');
     }
 }

@@ -18,7 +18,7 @@ class AdminController extends Controller
 
     public function getLogin()
     {
-        return view('login');//return ra trang login để đăng nhập
+        return view('admin.auth.login');//return ra trang login để đăng nhập
     }
 
     public function postLogin(Request $request)
@@ -36,12 +36,17 @@ class AdminController extends Controller
 
         if (Auth::guard('admin')->attempt($arr)) {
 
-            dd('đăng nhập thành công');
+            return redirect()->route('admin.over-view');
 
         } else {
 
             dd('tài khoản và mật khẩu chưa chính xác');
 
         }
+    }
+
+    public function overView()
+    {
+        return view('admin.over-view');
     }
 }

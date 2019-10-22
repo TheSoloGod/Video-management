@@ -18,6 +18,7 @@ class VideosTableSeeder extends Seeder
         $video->type = 'public';
         $video->status = 'success';
         $video->views = '10';
+        $video->image = 'image1';
         $video->is_display = '1';
         $video->is_in_group = '1';
         $video->save();
@@ -28,6 +29,7 @@ class VideosTableSeeder extends Seeder
         $video->type = 'public';
         $video->status = 'success';
         $video->views = '20';
+        $video->image = 'image2';
         $video->is_display = '1';
         $video->is_in_group = '1';
         $video->save();
@@ -38,6 +40,7 @@ class VideosTableSeeder extends Seeder
         $video->type = 'public';
         $video->status = 'success';
         $video->views = '30';
+        $video->image = 'image3';
         $video->is_display = '1';
         $video->is_in_group = '1';
         $video->save();
@@ -48,6 +51,7 @@ class VideosTableSeeder extends Seeder
         $video->type = 'member';
         $video->status = 'success';
         $video->views = '10';
+        $video->image = 'image4';
         $video->is_display = '1';
         $video->is_in_group = '1';
         $video->save();
@@ -58,6 +62,7 @@ class VideosTableSeeder extends Seeder
         $video->type = 'member';
         $video->status = 'success';
         $video->views = '15';
+        $video->image = 'image5';
         $video->is_display = '1';
         $video->is_in_group = '1';
         $video->save();
