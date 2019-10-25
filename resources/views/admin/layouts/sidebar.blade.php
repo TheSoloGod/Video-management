@@ -4,7 +4,7 @@
     <div class="card card-body mt-3">
         <div style="">
             <div style="">
-                <img src="{{ asset('storage/avatar/avatar-default.png') }}" class="h-50 w-50 border rounded-circle">
+                <img src="{{ asset('storage/avatar/avatar-default.jpg') }}" class="h-50 w-50 border border-dark rounded-circle">
             </div>
             <div>
                 <p>{{ Auth::guard('admin')->user()->name }}</p>

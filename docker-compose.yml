@@ -5,9 +5,9 @@ services:
     build: docker/web
     container_name: video-webservice
     ports:
-      - 2094:80
+      - 80:80
     volumes:
-      - .:/var/www/video-management
+      - .:/var/www/html/video-management
     links:
       - db
     command: sh /entry-point.sh
@@ -21,7 +21,7 @@ services:
     environment:
       - MYSQL_ROOT_PASSWORD=1
     ports:
-      - 3406:3306
+      - 3306:3306
 
   phpmyadmin:
     container_name: php-myadmin
@@ -30,7 +30,7 @@ services:
     image: phpmyadmin/phpmyadmin
     restart: always
     ports:
-      - '2395:80'
+      - '8080:80'
     environment:
       PMA_HOST: db
       MYSQL_ROOT_PASSWORD: 1

@@ -33,3 +33,9 @@ Route::group(['prefix' => 'admin'], function (){
     Route::resource('videos', 'VideoController');
 });
 
+//test upload
+Route::get('/upload', function () {
+    return view('testupload');
+});
+
+Route::post('/upload', 'UploadController@store')->name('post.file');
