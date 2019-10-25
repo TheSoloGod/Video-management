@@ -10,7 +10,7 @@
                 <p>{{ Auth::guard('admin')->user()->name }}</p>
             </div>
             <div>
-                <a class="btn btn-light w-100 mb-2" >Videos</a>
+                <a class="btn btn-light w-100 mb-2" href="{{ route('videos.index') }}">Videos</a>
             </div>
             <div>
                 <a class="btn btn-light w-100 mb-2" href="{{ route('users.index') }}">Users</a>

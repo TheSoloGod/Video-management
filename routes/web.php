@@ -30,5 +30,6 @@ Route::group(['prefix' => 'admin'], function (){
     Route::post('/login', 'AdminController@postLogin')->name('admin.login');
     Route::get('overview', 'AdminController@overView')->name('admin.over-view');
     Route::resource('users', 'UserController');
+    Route::resource('videos', 'VideoController');
 });
 

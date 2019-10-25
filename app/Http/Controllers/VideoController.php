@@ -22,7 +22,8 @@ class VideoController extends Controller
      */
     public function index()
     {
-        //
+        $videos = $this->videoService->paginate(3);
+        return view('admin.video.list', compact('videos'));
     }
 
     /**
@@ -54,7 +55,8 @@ class VideoController extends Controller
      */
     public function show($id)
     {
-        //
+        $video = $this->videoService->getById($id);
+        return view('admin.video.detail', compact('video'));
     }
 
     /**
@@ -65,7 +67,8 @@ class VideoController extends Controller
      */
     public function edit($id)
     {
-        //
+        $video = $this->videoService->getById($id);
+        return view('admin.video.edit', compact('video'));
     }
 
     /**
@@ -77,7 +80,8 @@ class VideoController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->videoService->update($request, $id);
+        return redirect()->route('videos.show', compact('id'))->with('status', 'Update video information success');
     }
 
     /**
@@ -88,6 +92,7 @@ class VideoController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $this->videoService->delete($id);
+        return redirect()->route('videos.index')->with('status', 'Delete video success');
     }
 }
