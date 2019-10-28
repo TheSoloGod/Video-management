@@ -41,11 +41,3 @@ Route::get('/upload', function () {
 });
 Route::post('/upload', 'UploadController@store')->name('post.file');
 
-Route::get('/test', function (){
-    $name = 'mojave-night.jpg';
-    $dir = '/';
-    $recursive = false;
-    $contents = collect(Storage::cloud()->listContents($dir, $recursive));
-    $videoPath = $contents->where('filename', '=', $name)->first()['path'];
-    dd($videoPath);
-})->name('test');

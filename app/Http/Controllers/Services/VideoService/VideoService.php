@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Services\VideoService;
 
 
 use App\Http\Controllers\Repositories\VideoRepository\VideoRepositoryInterface;
-use App\Jobs\SetPathFile;
+use App\Jobs\SetPathVideo;
 use App\Jobs\UploadFile;
 use Illuminate\Support\Facades\Storage;
 
@@ -42,7 +42,7 @@ class VideoService implements VideoServiceInterface
         if($request->hasFile('image')){
             $image = $request->file('image');
             $imageName = $image->getClientOriginalName();
-            $fileExtension = $image->getClientOriginalExtension();
+            $imageExtension = $image->getClientOriginalExtension();
             $image->move('storage/preview', $imageName);
             $data['image'] = $imageName;
         }else{
@@ -50,17 +50,20 @@ class VideoService implements VideoServiceInterface
         }
 
         if($request->hasFile('video')){
-            $videoName = $request->video->getClientOriginalName();
-            $request->video->storeAs('/', $videoName, 'public');
+            $video = $request->video;
+            $videoFullName = $video->getClientOriginalName();
+            $videoExtension = $video->getClientOriginalExtension();
+            $videoName = str_replace('.' . $videoExtension, '', $videoFullName);
+            $request->video->storeAs('/', $videoFullName, 'public');
             $data['name'] = $videoName;
 
-//            if($this->checkExistVideo($videoName)){
-//                echo 'da ton tai video';
-//            }else {
-                UploadFile::dispatch($videoName);
-//            }
+            if($this->checkExistVideo($videoName)){
+                dd('da ton tai video');
+            }else {
+                UploadFile::dispatch($videoFullName);
+            }
         }else{
-            echo 'chua chon video upload';
+            dd('chua chon video upload');
         }
 
         $data['status'] = 'uploading';
@@ -74,7 +77,7 @@ class VideoService implements VideoServiceInterface
         if($request->hasFile('image')){
             $image = $request->file('image');
             $imageName = $image->getClientOriginalName();
-            $fileExtension = $image->getClientOriginalExtension();
+            $imageExtension = $image->getClientOriginalExtension();
             $image->move('storage/preview', $imageName);
             $data['image'] = $imageName;
         }else{
@@ -91,7 +94,7 @@ class VideoService implements VideoServiceInterface
 
     public function setPath($video)
     {
-        SetPathFile::dispatch($video->name, $video->id);
+        SetPathVideo::dispatch($video->name, $video->id);
     }
 
     public function checkExistVideo($name)
@@ -107,12 +110,4 @@ class VideoService implements VideoServiceInterface
         }
     }
 
-    public function test($name)
-    {
-        $dir = '/';
-        $recursive = false;
-        $contents = collect(Storage::cloud()->listContents($dir, $recursive));
-        $videoPath = $contents->where('filename', '=', $name)->first();
-        dd($videoPath);
-    }
 }

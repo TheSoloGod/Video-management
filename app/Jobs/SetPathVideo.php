@@ -10,7 +10,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Support\Facades\Storage;
 
-class SetPathFile implements ShouldQueue
+class SetPathVideo implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
@@ -38,7 +38,10 @@ class SetPathFile implements ShouldQueue
         $dir = '/';
         $recursive = false;
         $contents = collect(Storage::cloud()->listContents($dir, $recursive));
-        $videoPath = $contents->where('filename', '=', $this->name)->first()['path'];
+        $videoPath = null;
+        while (!$videoPath){
+            $videoPath = $contents->where('filename', '=', $this->name)->first()['path'];
+        }
         $video = Video::findOrFail($this->id);
         $video->path = $videoPath;
         $video->save();

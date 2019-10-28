@@ -26,7 +26,9 @@
                                 {{ session('status') }}
                             </div>
                         @endif
-                        <a href="{{ route('test') }}">test</a>
+{{--                        <video width="320" height="240" controls>--}}
+{{--                            <source src="https://docs.google.com/uc?id=1kacnjiNqBrIWp7HKVCWai2nOLGA6uBBE" type="video/mp4">--}}
+{{--                        </video>--}}
                     </div>
                     <div class="card-body">
                         <table class="table table-striped">
