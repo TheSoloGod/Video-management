@@ -11,6 +11,8 @@
 |
 */
 
+use Illuminate\Support\Facades\Storage;
+
 Route::get('/', function () {
     return view('welcome');
 })->middleware('verified');
@@ -37,5 +39,13 @@ Route::group(['prefix' => 'admin'], function (){
 Route::get('/upload', function () {
     return view('testupload');
 });
-
 Route::post('/upload', 'UploadController@store')->name('post.file');
+
+Route::get('/test', function (){
+    $name = 'mojave-night.jpg';
+    $dir = '/';
+    $recursive = false;
+    $contents = collect(Storage::cloud()->listContents($dir, $recursive));
+    $videoPath = $contents->where('filename', '=', $name)->first()['path'];
+    dd($videoPath);
+})->name('test');

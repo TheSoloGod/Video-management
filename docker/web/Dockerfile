@@ -39,7 +39,7 @@ RUN a2enmod proxy ssl proxy_http proxy_ajp
 WORKDIR /
 COPY ./entry-point.sh /
 COPY ./000-default.conf /etc/apache2/sites-available/
-#COPY php.ini-development $PHP_INI_DIR/php.ini
+COPY php.ini-development $PHP_INI_DIR/php.ini
 RUN chmod 777 ./entry-point.sh
 
 WORKDIR /var/www/html/video-management

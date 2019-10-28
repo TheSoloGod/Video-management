@@ -12,7 +12,18 @@ use App\UserVideo;
 
 class Video extends Model
 {
-    public $fillable = ['title', 'description', 'type', 'status', 'views', 'is_display', 'is_in_group', 'delete_at'];
+    public $fillable = [
+        'title',
+        'description',
+        'type',
+        'status',
+        'image',
+        'views',
+        'is_display',
+        'delete_at',
+        'name',
+        'path',
+    ];
 
     public function category()
     {

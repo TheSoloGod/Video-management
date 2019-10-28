@@ -26,6 +26,7 @@
                                 {{ session('status') }}
                             </div>
                         @endif
+                        <a href="{{ route('test') }}">test</a>
                     </div>
                     <div class="card-body">
                         <table class="table table-striped">
@@ -97,7 +98,7 @@
                         </table>
                         <div>
                             <span>
-                                <a class="btn btn-outline-primary" href="">Add video</a>
+                                <a class="btn btn-outline-primary" href="{{ route('videos.create') }}">Add video</a>
                             </span>
                             <span class="float-right">
                                 {{ $videos->appends(request()->query()) }}

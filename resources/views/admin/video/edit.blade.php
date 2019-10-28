@@ -27,7 +27,7 @@
                         @endif
                     </div>
                     <div class="card-body">
-                        <form method="post" action="{{ route('videos.update', $video->id) }}">
+                        <form method="post" action="{{ route('videos.update', $video->id) }}" enctype="multipart/form-data">
                             @csrf
                             @method('PUT')
                             <div class="row">
@@ -62,13 +62,13 @@
                                                             <select class="form-control" name="is_display">
                                                                 <option value="{{ $video->is_display }}" selected disabled hidden>
                                                                     @if($video->is_display)
-                                                                        On
+                                                                        Show
                                                                     @else
-                                                                        Off
+                                                                        Hide
                                                                     @endif
                                                                 </option>
-                                                                <option value="1">On</option>
-                                                                <option value="0">Off</option>
+                                                                <option value="1">Show</option>
+                                                                <option value="0">Hide</option>
                                                             </select>
                                                         </span>
                                                     </td>

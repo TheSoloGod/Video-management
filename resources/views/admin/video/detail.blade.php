@@ -97,7 +97,13 @@
                                         </tr>
                                         <tr>
                                             <td>Type:</td>
-                                            <td>{{ $video->type }}</td>
+                                            <td>
+                                                @if($video->type)
+                                                    Member
+                                                @else
+                                                    Public
+                                                @endif
+                                            </td>
                                         </tr>
                                         <tr>
                                             <td>Status:</td>
