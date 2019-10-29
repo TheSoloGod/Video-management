@@ -38,11 +38,11 @@ class UserService implements UserServiceInterface
         $user = $this->userRepository->getById($id);
         $data = $request->all();
         if($request->hasFile('image')){
-            $file = $request->file('image');
-            $fileName = $file->getClientOriginalName();
-            $fileExtension = $file->getClientOriginalExtension();
-            $file->move('storage/avatar', $fileName);
-            $data['image'] = $fileName;
+            $image = $request->file('image');
+            $imageName = $image->getClientOriginalName();
+            $imageExtension = $image->getClientOriginalExtension();
+            $image->move('storage/avatar', $imageName);
+            $data['image'] = $imageName;
         } else {
             $data['image'] = $user->image;
         }

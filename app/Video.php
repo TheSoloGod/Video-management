@@ -40,17 +40,17 @@ class Video extends Model
         return $this->belongsToMany(Group::class);
     }
 
-    public function category_video()
+    public function categoryVideo()
     {
         return $this->hasMany(CategoryVideo::class);
     }
 
-    public function group_video()
+    public function groupVideo()
     {
         return $this->hasMany(GroupUser::class);
     }
 
-    public function user_video()
+    public function userVideo()
     {
         return $this->hasMany(UserVideo::class);
     }

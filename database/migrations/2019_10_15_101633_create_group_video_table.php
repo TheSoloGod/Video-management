@@ -18,6 +18,7 @@ class CreateGroupVideoTable extends Migration
             $table->unsignedBigInteger('video_id');
             $table->foreign('group_id')->references('id')->on('groups');
             $table->foreign('video_id')->references('id')->on('videos');
+            $table->primary(array('group_id', 'video_id'));
             $table->timestamps();
         });
     }

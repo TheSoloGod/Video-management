@@ -21,7 +21,8 @@ class GroupController extends Controller
      */
     public function index()
     {
-        //
+        $groups = $this->groupService->paginate(8);
+        return view('admin.group.list', compact('groups'));
     }
 
     /**
@@ -31,7 +32,7 @@ class GroupController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.group.create');
     }
 
     /**
@@ -42,7 +43,9 @@ class GroupController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $newGroup = $this->groupService->store($request);
+        $id = $newGroup->id;
+        return redirect()->route('groups.show', compact('id'));
     }
 
     /**
@@ -53,7 +56,8 @@ class GroupController extends Controller
      */
     public function show($id)
     {
-        //
+        $group = $this->groupService->getById($id);
+        return view('admin.group.detail', compact('group'));
     }
 
     /**
@@ -64,7 +68,8 @@ class GroupController extends Controller
      */
     public function edit($id)
     {
-        //
+        $group = $this->groupService->getById($id);
+        return view('admin.group.edit', compact('group'));
     }
 
     /**
@@ -76,7 +81,8 @@ class GroupController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->groupService->update($request, $id);
+        return redirect()->route('groups.show', compact('id'))->with('status', 'Update group information success');
     }
 
     /**
@@ -87,6 +93,7 @@ class GroupController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $this->groupService->delete($id);
+        return redirect()->route('groups.index')->with('status', 'Delete group success');
     }
 }

@@ -34,18 +34,19 @@
                                         <div class="mb-3">
                                             <img src="{{ asset('storage/preview/' . $video->image) }}" class="border rounded" style="width: 250px; height: 150px">
                                         </div>
-                                        <div>
-                                            <span>
+                                        <div class="mb-3">
+                                            <span class="border border-primary">
                                                 views
                                             </span>
-                                            <span >
+                                            <span class="border border-primary">
                                                 favorites
                                             </span>
                                         </div>
                                         <div>
-                                            <textarea>comments</textarea>
+                                            <textarea class="form-control mb-3">comments</textarea>
                                         </div>
 
+                                        @if(!$video->delete_at)
                                         <div>
                                             <!-- function edit $ delete -->
                                             <span><a href="{{ route('videos.edit', $video->id) }}" class="btn btn-outline-primary">Edit</a></span>
@@ -79,7 +80,9 @@
                                                 </div>
                                             </span>
                                         </div>
-
+                                        @else
+                                            <div class="border border-danger">Delete at: {{ $video->delete_at }}</div>
+                                        @endif
                                     </div>
                                 </div>
                             </div>

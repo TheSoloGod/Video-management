@@ -18,6 +18,7 @@ class CreateCategoryVideoTable extends Migration
             $table->unsignedBigInteger('video_id');
             $table->foreign('category_id')->references('id')->on('categories');
             $table->foreign('video_id')->references('id')->on('videos');
+            $table->primary(array('category_id', 'video_id'));
             $table->timestamps();
         });
     }

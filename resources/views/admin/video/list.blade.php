@@ -54,46 +54,63 @@
                                     <td>
                                         <a href="{{ route('videos.show', $value->id) }}">{{ $value->title }}</a>
                                     </td>
-                                    <td>{{ $value->type }}</td>
+                                    <td>
+                                        @if($value->type)
+                                            Member
+                                        @else
+                                            Public
+                                        @endif
+                                    </td>
                                     <td>{{ $value->status }}</td>
-                                    <td>{{ $value->is_display }}</td>
+                                    <td>
+                                        @if($value->is_display)
+                                            Show
+                                        @else
+                                            Hide
+                                        @endif
+                                    </td>
                                     <td>{{ $value->delete_at }}</td>
 
-                                    <!-- button edit -->
-                                    <td>
-                                        <a class="btn btn-outline-primary" href="{{ route('users.edit', $value->id) }}">Edit</a>
-                                    </td>
+                                    @if(!$value->delete_at)
+                                        <!-- button edit -->
+                                        <td>
+                                            <a class="btn btn-outline-primary" href="{{ route('videos.edit', $value->id) }}">Edit</a>
+                                        </td>
 
-                                    <!-- button delete -->
-                                    <td>
-                                        <!-- Button trigger modal -->
-                                        <button type="button" class="btn btn-outline-danger" data-toggle="modal" data-target="#deleteModal{{ $value->id }}">Delete</button>
+                                        <!-- button delete -->
+                                        <td>
+                                            <!-- Button trigger modal -->
+                                            <button type="button" class="btn btn-outline-danger" data-toggle="modal" data-target="#deleteModal{{ $value->id }}">Delete</button>
 
-                                        <!-- Modal -->
-                                        <div class="modal fade" id="deleteModal{{ $value->id }}" tabindex="-1" role="dialog" aria-labelledby="deleteModal" aria-hidden="true">
-                                            <div class="modal-dialog" role="document">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <h5 class="modal-title" id="exampleModalLabel">Delete {{ $value->title }}</h5>
-                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                            <span aria-hidden="true">&times;</span>
-                                                        </button>
-                                                    </div>
-                                                    <div class="modal-body">
-                                                        Are you sure to delete this user?
-                                                    </div>
-                                                    <div class="modal-footer">
-                                                        <form method="post" action="{{ route('users.destroy', $value->id )}}">
-                                                            @csrf
-                                                            @method('DELETE')
-                                                            <button class="btn btn-light" role="button">Delete</button>
-                                                        </form>
-                                                        <a class="btn btn-secondary" data-dismiss="modal">Close</a>
+                                            <!-- Modal -->
+                                            <div class="modal fade" id="deleteModal{{ $value->id }}" tabindex="-1" role="dialog" aria-labelledby="deleteModal" aria-hidden="true">
+                                                <div class="modal-dialog" role="document">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title" id="exampleModalLabel">Delete {{ $value->title }}</h5>
+                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                <span aria-hidden="true">&times;</span>
+                                                            </button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            Are you sure to delete this user?
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <form method="post" action="{{ route('videos.destroy', $value->id )}}">
+                                                                @csrf
+                                                                @method('DELETE')
+                                                                <button class="btn btn-light" role="button">Delete</button>
+                                                            </form>
+                                                            <a class="btn btn-secondary" data-dismiss="modal">Close</a>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                    </td>
+                                        </td>
+                                    @else
+                                        <td></td>
+                                        <td></td>
+                                    @endif
                                 </tr>
                             @endforeach
                             </tbody>

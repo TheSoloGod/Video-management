@@ -51,12 +51,12 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->belongsToMany(Video::class);
     }
 
-    public function group_user()
+    public function groupUser()
     {
         return $this->hasMany(GroupUser::class);
     }
 
-    public function user_video()
+    public function userVideo()
     {
         return $this->hasMany(UserVideo::class);
     }

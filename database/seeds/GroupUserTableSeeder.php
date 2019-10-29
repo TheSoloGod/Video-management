@@ -38,12 +38,12 @@ class GroupUserTableSeeder extends Seeder
         $groupUser->save();
 
         $groupUser = new GroupUser();
-        $groupUser->group_id = '1';
+        $groupUser->group_id = '2';
         $groupUser->user_id = '3';
         $groupUser->save();
 
         $groupUser = new GroupUser();
-        $groupUser->group_id = '1';
+        $groupUser->group_id = '3';
         $groupUser->user_id = '3';
         $groupUser->save();
     }

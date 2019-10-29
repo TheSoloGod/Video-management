@@ -14,11 +14,11 @@ class CreateUserVideoTable extends Migration
     public function up()
     {
         Schema::create('user_video', function (Blueprint $table) {
-            $table->bigIncrements('id');
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('video_id');
             $table->foreign('user_id')->references('id')->on('users');
             $table->foreign('video_id')->references('id')->on('videos');
+            $table->primary(array('user_id', 'video_id'));
             $table->timestamps();
         });
     }

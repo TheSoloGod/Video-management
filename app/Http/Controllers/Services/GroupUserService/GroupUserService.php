@@ -14,4 +14,15 @@ class GroupUserService implements GroupUserServiceInterface
     {
         $this->groupUserRepository = $groupUserRepository;
     }
+
+    public function getAllMember($groupId, $number)
+    {
+        $members = $this->groupUserRepository->getAllMember($groupId, $number);
+        return $members;
+    }
+
+    public function removeMember($groupId, $userId)
+    {
+        $this->groupUserRepository->removeMember($groupId, $userId);
+    }
 }

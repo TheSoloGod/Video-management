@@ -10,7 +10,7 @@ use App\GroupUser;
 
 class Group extends Model
 {
-    protected $fillable = ['name'];
+    protected $fillable = ['name', 'image'];
 
     public function user()
     {
@@ -22,12 +22,12 @@ class Group extends Model
         return $this->belongsToMany(Video::class);
     }
 
-    public function group_video()
+    public function groupVideo()
     {
         return $this->hasMany(GroupVideo::class);
     }
 
-    public function group_user()
+    public function groupUser()
     {
         return $this->hasMany(GroupUser::class);
     }

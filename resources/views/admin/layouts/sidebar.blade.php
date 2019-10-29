@@ -1,13 +1,13 @@
 <!-- Sidebar -->
 
-<div>
+<div class="sticky-top">
     <div class="card card-body mt-3">
         <div style="">
-            <div style="">
-                <img src="{{ asset('storage/avatar/avatar-default.jpg') }}" class="h-50 w-50 border border-dark rounded-circle">
+            <div class="text-center mb-3">
+                <img src="{{ asset('storage/avatar/avatar-default.jpg') }}" class="h-75 w-75 border rounded-circle">
             </div>
-            <div>
-                <p>{{ Auth::guard('admin')->user()->name }}</p>
+            <div class="text-center mb-3">
+                <h5><strong>{{ Auth::guard('admin')->user()->name }}</strong></h5>
             </div>
             <div>
                 <a class="btn btn-light w-100 mb-2" href="{{ route('videos.index') }}">Videos</a>
@@ -15,8 +15,8 @@
             <div>
                 <a class="btn btn-light w-100 mb-2" href="{{ route('users.index') }}">Users</a>
             </div>
-            <div class="btn btn-light w-100 mb-2">
-                Groups
+            <div>
+                <a class="btn btn-light w-100 mb-2" href="{{ route('groups.index') }}">Groups</a>
             </div>
             <div class="btn btn-light w-100 mb-2">
                 Categories

@@ -20,6 +20,12 @@
                 <div class="card mt-3">
                     <div class="card-header">
                         Upload new video
+                        @if (Session::has('error'))
+                            <div class="col-12 alert alert-warning alert-block">
+                                <button type="button" class="close" data-dismiss="alert">×</button>
+                                <strong>{{ Session::get('error') }}</strong>
+                            </div>
+                        @endif
                     </div>
                     <div class="card-body">
                         <form method="post" action="{{ route('videos.store') }}" enctype="multipart/form-data">

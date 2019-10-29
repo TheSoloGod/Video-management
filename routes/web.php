@@ -11,8 +11,6 @@
 |
 */
 
-use Illuminate\Support\Facades\Storage;
-
 Route::get('/', function () {
     return view('welcome');
 })->middleware('verified');
@@ -31,9 +29,17 @@ Route::group(['prefix' => 'admin'], function (){
     Route::get('/login', 'AdminController@getLogin');
     Route::post('/login', 'AdminController@postLogin')->name('admin.login');
     Route::get('overview', 'AdminController@overView')->name('admin.over-view');
-    Route::resource('users', 'UserController');
+    Route::resource('users', 'UserController')->except([
+        'create', 'store',
+    ]);
     Route::resource('videos', 'VideoController');
+    Route::resource('groups', 'GroupController');
+    //route group member
+    Route::get('/group/{group_id}/members', 'GroupMemberController@index')->name('group.member.index');
+    Route::get('/group/{group_id}/member/{user_id}', 'GroupMemberController@remove')->name('group.member.remove');
 });
+
+
 
 //test upload
 Route::get('/upload', function () {

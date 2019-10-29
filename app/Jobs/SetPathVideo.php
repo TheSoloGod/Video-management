@@ -2,6 +2,7 @@
 
 namespace App\Jobs;
 
+use App\Http\Controllers\Services\VideoService\VideoServiceInterface;
 use App\Video;
 use Illuminate\Bus\Queueable;
 use Illuminate\Queue\SerializesModels;
@@ -14,18 +15,19 @@ class SetPathVideo implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
-    protected $name;
     protected $id;
+    protected $name;
+    protected $videoService;
 
     /**
      * Create a new job instance.
      *
      * @return void
      */
-    public function __construct($name, $id)
+    public function __construct($id, $name)
     {
-        $this->name = $name;
         $this->id = $id;
+        $this->name = $name;
     }
 
     /**
@@ -33,8 +35,9 @@ class SetPathVideo implements ShouldQueue
      *
      * @return void
      */
-    public function handle()
+    public function handle(VideoServiceInterface $videoService)
     {
+        $this->videoService = $videoService;
         $dir = '/';
         $recursive = false;
         $contents = collect(Storage::cloud()->listContents($dir, $recursive));
@@ -42,8 +45,6 @@ class SetPathVideo implements ShouldQueue
         while (!$videoPath){
             $videoPath = $contents->where('filename', '=', $this->name)->first()['path'];
         }
-        $video = Video::findOrFail($this->id);
-        $video->path = $videoPath;
-        $video->save();
+        $this->videoService->setVideoPath($this->id, $videoPath);
     }
 }

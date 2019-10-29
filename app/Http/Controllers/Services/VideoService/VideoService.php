@@ -7,6 +7,7 @@ namespace App\Http\Controllers\Services\VideoService;
 use App\Http\Controllers\Repositories\VideoRepository\VideoRepositoryInterface;
 use App\Jobs\SetPathVideo;
 use App\Jobs\UploadFile;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
 
 class VideoService implements VideoServiceInterface
@@ -58,22 +59,25 @@ class VideoService implements VideoServiceInterface
             $data['name'] = $videoName;
 
             if($this->checkExistVideo($videoName)){
-                dd('da ton tai video');
+                Session::flash('error', 'Video exist!');
+                return false;
             }else {
-                UploadFile::dispatch($videoFullName);
+                $data['status'] = $this->videoRepository->uploadStatus[0];
+                $newVideo = $this->videoRepository->create($data);
+                UploadFile::dispatch($newVideo->id, $videoFullName);
+                SetPathVideo::dispatch($newVideo->id, $newVideo->name);
+                return $newVideo;
             }
         }else{
-            dd('chua chon video upload');
+            Session::flash('error', 'Choose video to upload');
+            return false;
         }
-
-        $data['status'] = 'uploading';
-
-         return $this->videoRepository->create($data);
     }
 
     public function update($request, $id){
         $video = $this->videoRepository->getById($id);
         $data = $request->all();
+
         if($request->hasFile('image')){
             $image = $request->file('image');
             $imageName = $image->getClientOriginalName();
@@ -87,14 +91,9 @@ class VideoService implements VideoServiceInterface
         $this->videoRepository->update($data, $video);
     }
 
-    public function delete($id){
-        $video = $this->videoRepository->getById($id);
-        $this->videoRepository->delete($video);
-    }
-
-    public function setPath($video)
+    public function softDelete($id)
     {
-        SetPathVideo::dispatch($video->name, $video->id);
+        $this->videoRepository->softDelete($id);
     }
 
     public function checkExistVideo($name)
@@ -108,6 +107,16 @@ class VideoService implements VideoServiceInterface
         } else {
             return false;
         }
+    }
+
+    public function setUploadStatus($id, $statusIndex)
+    {
+        $this->videoRepository->setUploadStatus($id, $statusIndex);
+    }
+
+    public function setVideoPath($id, $path)
+    {
+        $this->videoRepository->setVideoPath($id, $path);
     }
 
 }

@@ -45,8 +45,12 @@ class VideoController extends Controller
     public function store(Request $request)
     {
         $video = $this->videoService->store($request);
-        $this->videoService->setPath($video);
-        return redirect()->route('videos.index')->with('status', 'uploading');
+        if($video){
+            $id = $video->id;
+            return redirect()->route('videos.show', compact('id'))->with('status', 'Uploading video');
+        }else{
+            return redirect()->back();
+        }
     }
 
     /**

@@ -56,7 +56,7 @@
                                                     </tr>
                                                     <tr>
                                                         <td colspan="2" class="text-center">
-                                                            <button type="submit" class="btn btn-secondary">Update</button>
+                                                            <button type="submit" class="btn btn-primary">Update</button>
                                                         </td>
                                                     </tr>
                                                 </div>
