@@ -83,7 +83,7 @@
                         </table>
                         <div>
                             <span>
-                                <a class="btn btn-outline-primary" href="">Add member</a>
+                                <a class="btn btn-outline-primary" href="{{ route('group.member.add', $groupId) }}">Add member</a>
                             </span>
                             <span class="float-right">
                                 {{ $members->appends(request()->query()) }}

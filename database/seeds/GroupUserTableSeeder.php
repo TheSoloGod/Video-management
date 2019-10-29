@@ -15,36 +15,43 @@ class GroupUserTableSeeder extends Seeder
         $groupUser = new GroupUser();
         $groupUser->group_id = '1';
         $groupUser->user_id = '1';
+        $groupUser->status = 'join';
         $groupUser->save();
 
         $groupUser = new GroupUser();
         $groupUser->group_id = '2';
         $groupUser->user_id = '1';
+        $groupUser->status = 'join';
         $groupUser->save();
 
         $groupUser = new GroupUser();
         $groupUser->group_id = '2';
         $groupUser->user_id = '2';
+        $groupUser->status = 'join';
         $groupUser->save();
 
         $groupUser = new GroupUser();
         $groupUser->group_id = '3';
         $groupUser->user_id = '2';
+        $groupUser->status = 'join';
         $groupUser->save();
 
         $groupUser = new GroupUser();
         $groupUser->group_id = '1';
         $groupUser->user_id = '3';
+        $groupUser->status = 'join';
         $groupUser->save();
 
         $groupUser = new GroupUser();
         $groupUser->group_id = '2';
         $groupUser->user_id = '3';
+        $groupUser->status = 'join';
         $groupUser->save();
 
         $groupUser = new GroupUser();
         $groupUser->group_id = '3';
         $groupUser->user_id = '3';
+        $groupUser->status = 'join';
         $groupUser->save();
     }
 }

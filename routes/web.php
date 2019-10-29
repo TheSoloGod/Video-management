@@ -15,31 +15,31 @@ Route::get('/', function () {
     return view('welcome');
 })->middleware('verified');
 
-Auth::routes(['verify' => true]); //test verify email
+//verify email
+Auth::routes(['verify' => true]);
 
 Route::get('/home', 'HomeController@index')->name('home');
-
-Route::get('/invite', 'HomeController@invite')->name('invite'); //test send mail background jobs redis
-
-//test multiple login
-
 
 //route admin
 Route::group(['prefix' => 'admin'], function (){
     Route::get('/login', 'AdminController@getLogin');
     Route::post('/login', 'AdminController@postLogin')->name('admin.login');
     Route::get('overview', 'AdminController@overView')->name('admin.over-view');
-    Route::resource('users', 'UserController')->except([
-        'create', 'store',
-    ]);
+    Route::resource('users', 'UserController')->except(['create', 'store']);
     Route::resource('videos', 'VideoController');
     Route::resource('groups', 'GroupController');
-    //route group member
-    Route::get('/group/{group_id}/members', 'GroupMemberController@index')->name('group.member.index');
-    Route::get('/group/{group_id}/member/{user_id}', 'GroupMemberController@remove')->name('group.member.remove');
 });
 
+//route group member management
+Route::group(['prefix' => 'admin/group/{group_id}'], function (){
+    Route::get('/members', 'GroupMemberController@index')->name('group.member.index');
+    Route::get('/member/{user_id}', 'GroupMemberController@removeMember')->name('group.member.remove');
+    Route::get('/add-member', 'GroupMemberController@addMember')->name('group.member.add');
+    Route::get('/add-invitation/{user_id}', 'GroupMemberController@addUserToInvitationList')->name('group.member.add-invitation');
+//    Route::get('/invite', 'GroupController@invite')->name('group.member.invite');
+});
 
+//route group video management
 
 //test upload
 Route::get('/upload', function () {
@@ -47,3 +47,7 @@ Route::get('/upload', function () {
 });
 Route::post('/upload', 'UploadController@store')->name('post.file');
 
+//test multiple login
+
+//test send mail background jobs redis
+Route::get('/invite', 'HomeController@invite')->name('invite');
