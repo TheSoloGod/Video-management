@@ -10,7 +10,7 @@ class GroupUser extends Model
 {
     protected $table = 'group_user';
 
-    protected $fillable = ['group_id', 'user_id'];
+    protected $fillable = ['group_id', 'user_id', 'verify_at', 'token'];
 
     public function group()
     {

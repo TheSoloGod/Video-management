@@ -14,14 +14,20 @@ class SendInviteEmail implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
+    protected $userEmail;
+    protected $groupId;
+    protected $token;
+
     /**
      * Create a new job instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($userEmail, $groupId, $token)
     {
-        //
+        $this->userEmail = $userEmail;
+        $this->groupId = $groupId;
+        $this->token = $token;
     }
 
     /**
@@ -31,7 +37,7 @@ class SendInviteEmail implements ShouldQueue
      */
     public function handle()
     {
-        $email = new EmailInvite();
-        Mail::to('testlaravel20@gmail.com')->send($email);
+        $email = new EmailInvite($this->groupId, $this->token);
+        Mail::to($this->userEmail)->send($email);
     }
 }

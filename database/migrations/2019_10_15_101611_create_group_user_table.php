@@ -16,7 +16,8 @@ class CreateGroupUserTable extends Migration
         Schema::create('group_user', function (Blueprint $table) {
             $table->unsignedBigInteger('user_id');
             $table->unsignedInteger('group_id');
-            $table->string('status')->default('invited');
+            $table->timestamp('verify_at')->nullable();
+            $table->string('token')->nullable();
             $table->foreign('user_id')->references('id')->on('users');
             $table->foreign('group_id')->references('id')->on('groups');
             $table->primary(array('user_id', 'group_id'));

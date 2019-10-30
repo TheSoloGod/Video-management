@@ -70,7 +70,7 @@
                                             <span><a href="{{ route('users.edit', $user->id) }}" class="btn btn-outline-primary">Edit</a></span>
                                             <span>
                                                 <!-- Button trigger modal -->
-                                                <button type="button" class="btn btn-outline-danger" data-toggle="modal" data-target="#deleteModal{{ $user->id }}">Delete</button>
+                                                <a class="btn btn-outline-danger" data-toggle="modal" data-target="#deleteModal{{ $user->id }}">Delete</a>
                                             </span>
 
                                             <!-- Modal -->

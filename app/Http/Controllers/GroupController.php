@@ -3,15 +3,19 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Services\GroupService\GroupServiceInterface;
+use App\Http\Controllers\Services\GroupUserService\GroupUserServiceInterface;
 use Illuminate\Http\Request;
 
 class GroupController extends Controller
 {
     protected $groupService;
+    protected $groupUserService;
 
-    public function __construct(GroupServiceInterface $groupService)
+    public function __construct(GroupServiceInterface $groupService,
+                                GroupUserServiceInterface $groupUserService)
     {
         $this->groupService = $groupService;
+        $this->groupUserService = $groupUserService;
     }
 
     /**
@@ -56,6 +60,7 @@ class GroupController extends Controller
      */
     public function show($id)
     {
+        $this->groupUserService->clearGroupMemberSession();
         $group = $this->groupService->getById($id);
         return view('admin.group.detail', compact('group'));
     }

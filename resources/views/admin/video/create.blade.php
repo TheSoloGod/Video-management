@@ -21,7 +21,7 @@
                     <div class="card-header">
                         Upload new video
                         @if (Session::has('error'))
-                            <div class="col-12 alert alert-warning alert-block">
+                            <div class="alert alert-warning alert-block">
                                 <button type="button" class="close" data-dismiss="alert">×</button>
                                 <strong>{{ Session::get('error') }}</strong>
                             </div>

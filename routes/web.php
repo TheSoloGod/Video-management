@@ -32,11 +32,13 @@ Route::group(['prefix' => 'admin'], function (){
 
 //route group member management
 Route::group(['prefix' => 'admin/group/{group_id}'], function (){
-    Route::get('/members', 'GroupMemberController@index')->name('group.member.index');
-    Route::get('/member/{user_id}', 'GroupMemberController@removeMember')->name('group.member.remove');
-    Route::get('/add-member', 'GroupMemberController@addMember')->name('group.member.add');
-    Route::get('/add-invitation/{user_id}', 'GroupMemberController@addUserToInvitationList')->name('group.member.add-invitation');
-//    Route::get('/invite', 'GroupController@invite')->name('group.member.invite');
+    Route::get('/members', 'GroupUserController@index')->name('group.member.index');
+    Route::get('/member/{user_id}', 'GroupUserController@removeMember')->name('group.member.remove');
+    Route::get('/add-member', 'GroupUserController@addMember')->name('group.member.add');
+    Route::get('/show-invitation', 'GroupUserController@showInvitationList')->name('group.member.show-invitation');
+    Route::get('/add-invitation/{user_id}', 'GroupUserController@addUserToInvitationList')->name('group.member.add-invitation');
+    Route::get('/remove-invitation/{user_id}', 'GroupUserController@removeUserFromInvitationList')->name('group.member.remove-invitation');
+    Route::get('/invite', 'GroupUserController@inviteUser')->name('group.member.invite');
 });
 
 //route group video management
@@ -49,5 +51,9 @@ Route::post('/upload', 'UploadController@store')->name('post.file');
 
 //test multiple login
 
-//test send mail background jobs redis
-Route::get('/invite', 'HomeController@invite')->name('invite');
+//test send mail background jobs database
+//Route::get('/invite', 'HomeController@invite')->name('invite');
+
+Route::get('test', function (){
+   dd(session()->get('invitationList'));
+})->name('test');

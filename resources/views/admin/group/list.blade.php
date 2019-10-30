@@ -46,7 +46,7 @@
                                             </span>
                                             <span class="float-right">
                                                 <!-- Button trigger modal -->
-                                                <button type="button" class="btn btn-outline-danger" data-toggle="modal" data-target="#deleteModal{{ $value->id }}">Delete</button>
+                                                <a class="btn btn-outline-danger" data-toggle="modal" data-target="#deleteModal{{ $value->id }}">Delete</a>
                                             </span>
 
                                             <!-- Modal -->

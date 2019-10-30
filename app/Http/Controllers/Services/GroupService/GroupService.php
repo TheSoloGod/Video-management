@@ -4,6 +4,7 @@
 namespace App\Http\Controllers\Services\GroupService;
 
 use App\Http\Controllers\Repositories\GroupRepository\GroupRepositoryInterface;
+use Illuminate\Support\Facades\Session;
 
 class GroupService implements GroupServiceInterface
 {
@@ -72,5 +73,4 @@ class GroupService implements GroupServiceInterface
         $user = $this->groupRepository->getById($id);
         $this->groupRepository->delete($user);
     }
-
 }

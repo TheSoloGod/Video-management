@@ -60,7 +60,7 @@
                                             <span><a href="{{ route('groups.edit', $group->id) }}" class="btn btn-outline-primary">Edit</a></span>
                                             <span>
                                                 <!-- Button trigger modal -->
-                                                <button type="button" class="btn btn-outline-danger" data-toggle="modal" data-target="#deleteModal{{ $group->id }}">Delete</button>
+                                                <a class="btn btn-outline-danger" data-toggle="modal" data-target="#deleteModal{{ $group->id }}">Delete</a>
                                             </span>
 
                                             <!-- Modal -->

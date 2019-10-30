@@ -55,4 +55,10 @@ class UserService implements UserServiceInterface
         $user = $this->userRepository->getById($id);
         $this->userRepository->delete($user);
     }
+
+    public function getUserNotInGroup($groupId, $number)
+    {
+        $users = $this->userRepository->getUserNotInGroup($groupId, $number);
+        return $users;
+    }
 }

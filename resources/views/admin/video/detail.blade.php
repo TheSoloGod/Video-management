@@ -52,7 +52,7 @@
                                             <span><a href="{{ route('videos.edit', $video->id) }}" class="btn btn-outline-primary">Edit</a></span>
                                             <span>
                                                 <!-- Button trigger modal -->
-                                                <button type="button" class="btn btn-outline-danger" data-toggle="modal" data-target="#deleteModal{{ $video->id }}">Delete</button>
+                                                <a class="btn btn-outline-danger" data-toggle="modal" data-target="#deleteModal{{ $video->id }}">Delete</a>
                                             </span>
 
                                             <!-- Modal -->

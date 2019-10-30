@@ -9,6 +9,8 @@
 </head>
 <body>
     <h2>This is your invitation</h2>
+    <p>Wellcome to group {{ $groupID }}</p>
+    <p>This is your token: {{ $token }}</p>
 
 </body>
 </html>

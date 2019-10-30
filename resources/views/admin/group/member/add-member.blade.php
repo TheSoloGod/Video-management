@@ -52,33 +52,74 @@
                                     <td>{{ $value->email }}</td>
                                     <td>{{ $value->phone }}</td>
                                     <td>{{ $value->address }}</td>
-                                    <td>
-                                        <a class="btn btn-outline-info" href="">Add to invitation list</a>
-                                    </td>
+                                    @if(Session::has('invitationList'))
+                                        @if(array_key_exists($value->id, Session::get('invitationList')->users))
+                                            <td>
+                                                <div class="btn btn-secondary">Add to invitation list</div>
+                                            </td>
+                                        @else
+                                            <td>
+                                                <a class="btn btn-outline-danger" href="{{ route('group.member.add-invitation', [$groupId, $value->id]) }}">Add to invitation list</a>
+                                            </td>
+                                        @endif
+                                    @else
+                                        <td>
+                                            <a class="btn btn-outline-danger" href="{{ route('group.member.add-invitation', [$groupId, $value->id]) }}">Add to invitation list</a>
+                                        </td>
+                                    @endif
                                 </tr>
                             @endforeach
                             </tbody>
                         </table>
                         <div>
+
                             <span>
+                                <a class="btn btn-outline-primary" href="{{ route('group.member.show-invitation', $groupId) }}">Show invitaiton list</a>
+
                                 <!-- Button trigger modal -->
-                                <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#deleteModal{{ $value->id }}">Show invitaiton list</button>
+{{--                                <a class="btn btn-outline-primary" data-toggle="modal" data-target="#deleteModal{{ $value->id }}">Show invitaiton list</a>--}}
 
                                 <!-- Modal -->
                                 <div class="modal fade" id="deleteModal{{ $value->id }}" tabindex="-1" role="dialog" aria-labelledby="deleteModal" aria-hidden="true">
-                                        <div class="modal-dialog" role="document">
+                                        <div class="modal-dialog modal-lg" role="document">
                                             <div class="modal-content">
                                                 <div class="modal-header">
-                                                    <h5 class="modal-title" id="exampleModalLabel">Invite {{ $value->name }}</h5>
+                                                    <h5 class="modal-title" id="exampleModalLabel">Invitation list of group {{ $groupId }}</h5>
                                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                         <span aria-hidden="true">&times;</span>
                                                     </button>
                                                 </div>
                                                 <div class="modal-body">
-                                                    Are you sure to invite this user to join group?
+                                                    <form>
+                                                        <table class="table table-striped">
+                                                            <thead>
+                                                                <tr class="text-center">
+                                                                    <td>Id</td>
+                                                                    <td>Name</td>
+                                                                    <td>Email</td>
+                                                                    <td>Function</td>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                @if(Session::has('invitationList'))
+                                                                    @foreach(Session::get('invitationList')->users as $key => $user)
+                                                                        <tr class="text-center">
+                                                                            <td>{{ ++$key }}</td>
+                                                                            <td>{{ $user->name }}</td>
+                                                                            <td>{{ $user->email }}</td>
+                                                                            <td>
+                                                                                <a class="btn btn-outline-danger" href="">Remove</a>
+                                                                            </td>
+                                                                        </tr>
+                                                                    @endforeach
+                                                                @endif
+                                                            </tbody>
+                                                        </table>
+                                                    </form>
+
                                                 </div>
                                                 <div class="modal-footer">
-                                                    <a class="btn btn-primary" role="button" href="">Invite</a>
+                                                    <a class="btn btn-primary" role="button" href="">Send invite email</a>
                                                     <a class="btn btn-secondary" data-dismiss="modal">Close</a>
                                                 </div>
                                             </div>
