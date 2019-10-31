@@ -49,4 +49,12 @@ class GroupUserRepository extends EloquentRepository implements GroupUserReposit
                     ->where('user_id', $userId)
                     ->update(['verify_at' => $verify_at]);
     }
+
+    public function getInvitedUser($groupId, $number)
+    {
+        $users = $this->model->where('group_id', $groupId)
+                             ->whereNull('verify_at')
+                             ->paginate($number);
+        return $users;
+    }
 }

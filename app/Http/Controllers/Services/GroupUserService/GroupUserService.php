@@ -113,4 +113,11 @@ class GroupUserService implements GroupUserServiceInterface
             return false;
         }
     }
+
+    public function getInvitedUser($groupId)
+    {
+        $number = 5;
+        $users = $this->groupUserRepository->getInvitedUser($groupId, $number);
+        return $users;
+    }
 }

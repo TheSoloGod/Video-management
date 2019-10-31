@@ -29,7 +29,7 @@
                     <div class="card-body">
                         <table class="table table-striped">
                             <thead>
-                            <tr>
+                            <tr class="text-center">
                                 <th scope="col">#</th>
                                 <th scope="col">Image</th>
                                 <th scope="col">Name</th>
@@ -41,7 +41,7 @@
                             </thead>
                             <tbody>
                             @foreach($members as $key => $value)
-                                <tr>
+                                <tr class="text-center">
                                     <th scope="row">{{ ++$key }}</th>
                                     <td>
                                         <img src="{{ asset("storage/avatar/" . $value->user->image ) }}"
@@ -56,7 +56,12 @@
                                     <td>
                                         <!-- Button trigger modal -->
                                         <button type="button" class="btn btn-outline-danger" data-toggle="modal"
-                                                data-target="#deleteModal{{ $value->user->id }}">Remove
+                                                data-target="#deleteModal{{ $value->user->id }}">
+                                            @if(!$invited)
+                                                Remove
+                                            @else
+                                                Cancel invitation
+                                            @endif
                                         </button>
 
                                         <!-- Modal -->
@@ -88,14 +93,26 @@
                             @endforeach
                             </tbody>
                         </table>
-                        <div>
-                            <span>
-                                <a class="btn btn-outline-primary" href="{{ route('group.member.add', $groupId) }}">Add member</a>
-                            </span>
-                            <span class="float-right">
-                                {{ $members->appends(request()->query()) }}
-                            </span>
-                        </div>
+                        @if(!$invited)
+                            <div>
+                                <span>
+                                    <a class="btn btn-outline-primary" href="{{ route('group.member.add', $groupId) }}">Add member</a>
+                                </span>
+                                <span>
+                                    <a class="btn btn-outline-secondary"
+                                       href="{{ route('group.member.invited', $groupId) }}">Invited list</a>
+                                </span>
+                                <span class="float-right">
+                                    {{ $members->appends(request()->query()) }}
+                                </span>
+                            </div>
+                        @else
+                            <div>
+                                <span>
+                                    <a class="btn btn-outline-primary" href="{{ route('group.member.all', $groupId) }}">Show all members</a>
+                                </span>
+                            </div>
+                        @endif
                     </div>
                 </div>
             </div>

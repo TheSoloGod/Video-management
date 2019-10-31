@@ -34,6 +34,7 @@ Route::group(['prefix' => 'admin'], function () {
 //route group member management
 Route::group(['prefix' => 'admin/group/{group_id}'], function () {
     Route::get('/members', 'GroupUserController@showAllMember')->name('group.member.all');
+    Route::get('/member/invited', 'GroupUserController@showInvitedUser')->name('group.member.invited');
     Route::get('/member/{user_id}', 'GroupUserController@removeMember')->name('group.member.remove');
     Route::get('/add-member', 'GroupUserController@addMember')->name('group.member.add');
     Route::get('/show-invitation', 'GroupUserController@showInvitationList')->name('group.member.show-invitation');

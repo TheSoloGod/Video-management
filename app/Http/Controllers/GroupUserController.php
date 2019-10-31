@@ -16,8 +16,9 @@ class GroupUserController extends Controller
 
     public function showAllMember($groupId)
     {
+        $invited = false;
         $members = $this->groupUserService->getAllMember($groupId);
-        return view('admin.group..member.member-management', compact('members', 'groupId'));
+        return view('admin.group..member.member-management', compact('members', 'groupId', 'invited'));
     }
 
     public function removeMember($groupId, $userId)
@@ -67,5 +68,12 @@ class GroupUserController extends Controller
         } else {
             dd(' dieu huong den trang loi token');
         }
+    }
+
+    public function showInvitedUser($groupId)
+    {
+        $invited = true;
+        $members = $this->groupUserService->getInvitedUser($groupId);
+        return view('admin.group.member.member-management', compact('members', 'groupId', 'invited'));
     }
 }
