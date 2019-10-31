@@ -5,17 +5,21 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Services\GroupService\GroupServiceInterface;
 use App\Http\Controllers\Services\GroupUserService\GroupUserServiceInterface;
 use Illuminate\Http\Request;
+use App\Services\SessionService;
 
 class GroupController extends Controller
 {
     protected $groupService;
     protected $groupUserService;
+    protected $sessionService;
 
     public function __construct(GroupServiceInterface $groupService,
-                                GroupUserServiceInterface $groupUserService)
+                                GroupUserServiceInterface $groupUserService,
+                                SessionService $sessionService)
     {
         $this->groupService = $groupService;
         $this->groupUserService = $groupUserService;
+        $this->sessionService = $sessionService;
     }
 
     /**
@@ -42,7 +46,7 @@ class GroupController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -55,12 +59,12 @@ class GroupController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
     {
-        $this->groupUserService->clearGroupMemberSession();
+        $this->sessionService->forgetSession('invitationList');
         $group = $this->groupService->getById($id);
         return view('admin.group.detail', compact('group'));
     }
@@ -68,7 +72,7 @@ class GroupController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -80,8 +84,8 @@ class GroupController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param \Illuminate\Http\Request $request
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -93,7 +97,7 @@ class GroupController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)

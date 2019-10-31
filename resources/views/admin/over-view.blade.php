@@ -2,7 +2,7 @@
 
 @section('title')
     Over view
-    @endsection
+@endsection
 
 @section('content')
     <div class="container">

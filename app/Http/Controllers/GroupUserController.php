@@ -7,28 +7,28 @@ use Illuminate\Http\Request;
 
 class GroupUserController extends Controller
 {
-    protected $groupMemberService;
+    protected $groupUserService;
 
     public function __construct(GroupUserServiceInterface $groupUserService)
     {
-        $this->groupMemberService = $groupUserService;
+        $this->groupUserService = $groupUserService;
     }
 
     public function index($groupId)
     {
-        $members = $this->groupMemberService->getAllMember($groupId, 5);
+        $members = $this->groupUserService->getAllMember($groupId, 5);
         return view('admin.group..member.member-management', compact('members', 'groupId'));
     }
 
     public function removeMember($groupId, $userId)
     {
-        $this->groupMemberService->removeMember($groupId, $userId);
+        $this->groupUserService->removeMember($groupId, $userId);
         return redirect()->back()->with('status', 'Remove member sucess');
     }
 
     public function addMember($groupId)
     {
-        $users = $this->groupMemberService->getUserNotInGroup($groupId, 5);
+        $users = $this->groupUserService->getUserNotInGroup($groupId, 5);
         return view('admin.group.member.add-member', compact('groupId', 'users'));
     }
 
@@ -39,28 +39,33 @@ class GroupUserController extends Controller
 
     public function addUserToInvitationList($groupId, $userId)
     {
-        $this->groupMemberService->addUserToInvitationList($groupId, $userId);
+        $this->groupUserService->addUserToInvitationList($groupId, $userId);
         return redirect()->back();
     }
 
     public function removeUserFromInvitationList($groupId, $userId)
     {
-        $hasInvitationList = $this->groupMemberService->removeUserFromInvitationList($groupId, $userId);
-        if($hasInvitationList){
+        $hasInvitationList = $this->groupUserService->removeUserFromInvitationList($groupId, $userId);
+        if ($hasInvitationList) {
             return redirect()->back();
-        }else{
+        } else {
             return redirect()->route('group.member.add', compact('groupId'));
         }
     }
 
-    public function inviteUser($groupId)
+    public function inviteUser($groupId, $userId)
     {
-        $this->groupMemberService->inviteUser($groupId);
+        $this->groupUserService->inviteUser($groupId, $userId);
         return redirect()->back()->with('status', 'OK');
     }
 
-    public function invite($groupId)
+    public function verifyInvitationEmail($groupId, $userId, $token)
     {
-        $this->groupMemberService->inviteUser($groupId);
+        $verifyResult = $this->groupUserService->verifyInvitationEmail($groupId, $userId, $token);
+        if ($verifyResult) {
+            dd('dieu huong den trang loi token');
+        } else {
+            dd(' dieu huong den trang front end group');
+        }
     }
 }

@@ -32,7 +32,8 @@
                                 <div>
                                     <div class="text-center">
                                         <div class="mb-3">
-                                            <img src="{{ asset('storage/preview/' . $video->image) }}" class="border rounded" style="width: 250px; height: 150px">
+                                            <img src="{{ asset('storage/preview/' . $video->image) }}"
+                                                 class="border rounded" style="width: 250px; height: 150px">
                                         </div>
                                         <div class="mb-3">
                                             <span class="border border-primary">
@@ -47,39 +48,47 @@
                                         </div>
 
                                         @if(!$video->delete_at)
-                                        <div>
-                                            <!-- function edit $ delete -->
-                                            <span><a href="{{ route('videos.edit', $video->id) }}" class="btn btn-outline-primary">Edit</a></span>
-                                            <span>
+                                            <div>
+                                                <!-- function edit $ delete -->
+                                                <span><a href="{{ route('videos.edit', $video->id) }}"
+                                                         class="btn btn-outline-primary">Edit</a></span>
+                                                <span>
                                                 <!-- Button trigger modal -->
-                                                <a class="btn btn-outline-danger" data-toggle="modal" data-target="#deleteModal{{ $video->id }}">Delete</a>
+                                                <a class="btn btn-outline-danger" data-toggle="modal"
+                                                   data-target="#deleteModal{{ $video->id }}">Delete</a>
                                             </span>
 
-                                            <!-- Modal -->
-                                            <div class="modal fade" id="deleteModal{{ $video->id }}" tabindex="-1" role="dialog" aria-labelledby="deleteModal" aria-hidden="true">
-                                                <div class="modal-dialog" role="document">
-                                                    <div class="modal-content">
-                                                        <div class="modal-header">
-                                                            <h5 class="modal-title" id="exampleModalLabel">Delete {{ $video->title }}</h5>
-                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                                <span aria-hidden="true">&times;</span>
-                                                            </button>
-                                                        </div>
-                                                        <div class="modal-body">
-                                                            Are you sure to delete this video?
-                                                        </div>
-                                                        <div class="modal-footer">
-                                                            <form method="post" action="{{ route('videos.destroy', $video->id )}}">
-                                                                @csrf
-                                                                @method('DELETE')
-                                                                <button class="btn btn-light" role="button">Delete</button>
-                                                            </form>
-                                                            <a class="btn btn-secondary" data-dismiss="modal">Close</a>
+                                                <!-- Modal -->
+                                                <div class="modal fade" id="deleteModal{{ $video->id }}" tabindex="-1"
+                                                     role="dialog" aria-labelledby="deleteModal" aria-hidden="true">
+                                                    <div class="modal-dialog" role="document">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h5 class="modal-title" id="exampleModalLabel">
+                                                                    Delete {{ $video->title }}</h5>
+                                                                <button type="button" class="close" data-dismiss="modal"
+                                                                        aria-label="Close">
+                                                                    <span aria-hidden="true">&times;</span>
+                                                                </button>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                Are you sure to delete this video?
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <form method="post"
+                                                                      action="{{ route('videos.destroy', $video->id )}}">
+                                                                    @csrf
+                                                                    @method('DELETE')
+                                                                    <button class="btn btn-light" role="button">Delete
+                                                                    </button>
+                                                                </form>
+                                                                <a class="btn btn-secondary"
+                                                                   data-dismiss="modal">Close</a>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
                                         @else
                                             <div class="border border-danger">Delete at: {{ $video->delete_at }}</div>
                                         @endif

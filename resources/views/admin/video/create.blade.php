@@ -34,7 +34,8 @@
                                 <div class="col-md-6">
                                     <div class="">
                                         <div class="text-center">
-                                            <img src="{{ asset('storage/preview/preview-default.jpg') }}" class="mb-3" style="width: 250px; height: 150px">
+                                            <img src="{{ asset('storage/preview/preview-default.jpg') }}" class="mb-3"
+                                                 style="width: 250px; height: 150px">
                                         </div>
                                         <div class="card card-body">
                                             <table class="table">

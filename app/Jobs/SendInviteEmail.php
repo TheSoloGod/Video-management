@@ -16,17 +16,22 @@ class SendInviteEmail implements ShouldQueue
 
     protected $userEmail;
     protected $groupId;
+    protected $userId;
     protected $token;
 
     /**
      * Create a new job instance.
      *
-     * @return void
+     * @param $userEmail
+     * @param $groupId
+     * @param $userId
+     * @param $token
      */
-    public function __construct($userEmail, $groupId, $token)
+    public function __construct($userEmail, $groupId, $userId, $token)
     {
         $this->userEmail = $userEmail;
         $this->groupId = $groupId;
+        $this->userId = $userId;
         $this->token = $token;
     }
 
@@ -37,7 +42,7 @@ class SendInviteEmail implements ShouldQueue
      */
     public function handle()
     {
-        $email = new EmailInvite($this->groupId, $this->token);
-        Mail::to($this->userEmail)->send($email);
+        $inviteEmail = new EmailInvite($this->groupId, $this->userId, $this->token);
+        Mail::to($this->userEmail)->send($inviteEmail);
     }
 }

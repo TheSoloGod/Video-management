@@ -26,9 +26,9 @@
                                 {{ session('status') }}
                             </div>
                         @endif
-{{--                        <video width="320" height="240" controls>--}}
-{{--                            <source src="https://docs.google.com/uc?id=1kacnjiNqBrIWp7HKVCWai2nOLGA6uBBE" type="video/mp4">--}}
-{{--                        </video>--}}
+                        {{--                        <video width="320" height="240" controls>--}}
+                        {{--                            <source src="https://docs.google.com/uc?id=1kacnjiNqBrIWp7HKVCWai2nOLGA6uBBE" type="video/mp4">--}}
+                        {{--                        </video>--}}
                     </div>
                     <div class="card-body">
                         <table class="table table-striped">
@@ -49,7 +49,8 @@
                                 <tr class="text-center">
                                     <th scope="row">{{ ++$key }}</th>
                                     <td>
-                                        <img src="{{ asset("storage/preview/" . $value->image ) }}" class="border rounded" style="width: 50px; height: 30px">
+                                        <img src="{{ asset("storage/preview/" . $value->image ) }}"
+                                             class="border rounded" style="width: 50px; height: 30px">
                                     </td>
                                     <td>
                                         <a href="{{ route('videos.show', $value->id) }}">{{ $value->title }}</a>
@@ -71,25 +72,30 @@
                                     </td>
                                     <td>{{ $value->delete_at }}</td>
 
-                                    @if(!$value->delete_at)
-                                        <!-- button edit -->
+                                @if(!$value->delete_at)
+                                    <!-- button edit -->
                                         <td>
-                                            <a class="btn btn-outline-primary" href="{{ route('videos.edit', $value->id) }}">Edit</a>
+                                            <a class="btn btn-outline-primary"
+                                               href="{{ route('videos.edit', $value->id) }}">Edit</a>
                                         </td>
 
                                         <!-- button delete -->
                                         <td>
                                             <!-- Button trigger modal -->
-                                            <a class="btn btn-outline-danger" data-toggle="modal" data-target="#deleteModal{{ $value->id }}">Delete</a>
+                                            <a class="btn btn-outline-danger" data-toggle="modal"
+                                               data-target="#deleteModal{{ $value->id }}">Delete</a>
                                         </td>
 
                                         <!-- Modal -->
-                                        <div class="modal fade" id="deleteModal{{ $value->id }}" tabindex="-1" role="dialog" aria-labelledby="deleteModal" aria-hidden="true">
+                                        <div class="modal fade" id="deleteModal{{ $value->id }}" tabindex="-1"
+                                             role="dialog" aria-labelledby="deleteModal" aria-hidden="true">
                                             <div class="modal-dialog" role="document">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
-                                                        <h5 class="modal-title" id="exampleModalLabel">Delete {{ $value->title }}</h5>
-                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                        <h5 class="modal-title" id="exampleModalLabel">
+                                                            Delete {{ $value->title }}</h5>
+                                                        <button type="button" class="close" data-dismiss="modal"
+                                                                aria-label="Close">
                                                             <span aria-hidden="true">&times;</span>
                                                         </button>
                                                     </div>
@@ -97,7 +103,8 @@
                                                         Are you sure to delete this user?
                                                     </div>
                                                     <div class="modal-footer">
-                                                        <form method="post" action="{{ route('videos.destroy', $value->id )}}">
+                                                        <form method="post"
+                                                              action="{{ route('videos.destroy', $value->id )}}">
                                                             @csrf
                                                             @method('DELETE')
                                                             <button class="btn btn-light" role="button">Delete</button>

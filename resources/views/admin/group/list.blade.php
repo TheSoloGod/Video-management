@@ -37,25 +37,31 @@
                                         </div>
                                         <div class="card-body text-center">
                                             <a href="{{ route('groups.show', $value->id) }}">
-                                                <img class="" style="width: 150px; height: 150px" src="{{ asset('storage/group/' . $value->image) }}" >
+                                                <img class="" style="width: 150px; height: 150px"
+                                                     src="{{ asset('storage/group/' . $value->image) }}">
                                             </a>
                                         </div>
                                         <div class="card-footer">
                                             <span class="float-left">
-                                                <a class="btn btn-outline-primary" href="{{ route('groups.edit', $value->id) }}">Edit</a>
+                                                <a class="btn btn-outline-primary"
+                                                   href="{{ route('groups.edit', $value->id) }}">Edit</a>
                                             </span>
                                             <span class="float-right">
                                                 <!-- Button trigger modal -->
-                                                <a class="btn btn-outline-danger" data-toggle="modal" data-target="#deleteModal{{ $value->id }}">Delete</a>
+                                                <a class="btn btn-outline-danger" data-toggle="modal"
+                                                   data-target="#deleteModal{{ $value->id }}">Delete</a>
                                             </span>
 
                                             <!-- Modal -->
-                                            <div class="modal fade" id="deleteModal{{ $value->id }}" tabindex="-1" role="dialog" aria-labelledby="deleteModal" aria-hidden="true">
+                                            <div class="modal fade" id="deleteModal{{ $value->id }}" tabindex="-1"
+                                                 role="dialog" aria-labelledby="deleteModal" aria-hidden="true">
                                                 <div class="modal-dialog" role="document">
                                                     <div class="modal-content">
                                                         <div class="modal-header">
-                                                            <h5 class="modal-title" id="exampleModalLabel">Delete {{ $value->name }}</h5>
-                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                            <h5 class="modal-title" id="exampleModalLabel">
+                                                                Delete {{ $value->name }}</h5>
+                                                            <button type="button" class="close" data-dismiss="modal"
+                                                                    aria-label="Close">
                                                                 <span aria-hidden="true">&times;</span>
                                                             </button>
                                                         </div>
@@ -63,10 +69,12 @@
                                                             Are you sure to delete this group?
                                                         </div>
                                                         <div class="modal-footer">
-                                                            <form method="post" action="{{ route('groups.destroy', $value->id )}}">
+                                                            <form method="post"
+                                                                  action="{{ route('groups.destroy', $value->id )}}">
                                                                 @csrf
                                                                 @method('DELETE')
-                                                                <button class="btn btn-light" role="button">Delete</button>
+                                                                <button class="btn btn-light" role="button">Delete
+                                                                </button>
                                                             </form>
                                                             <a class="btn btn-secondary" data-dismiss="modal">Close</a>
                                                         </div>
@@ -81,7 +89,8 @@
 
                         <div>
                             <span class="float-left">
-                                <a class="btn btn-outline-primary" href="{{ route('groups.create') }}">Create new group</a>
+                                <a class="btn btn-outline-primary"
+                                   href="{{ route('groups.create') }}">Create new group</a>
                             </span>
                             <span class="float-right">
                                 {{ $groups->appends(request()->query()) }}

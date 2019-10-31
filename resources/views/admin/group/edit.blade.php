@@ -27,7 +27,8 @@
                         @endif
                     </div>
                     <div class="card-body">
-                        <form method="post" action="{{ route('groups.update', $group->id) }}" enctype="multipart/form-data">
+                        <form method="post" action="{{ route('groups.update', $group->id) }}"
+                              enctype="multipart/form-data">
                             @csrf
                             @method('PUT')
                             <div class="row">
@@ -37,12 +38,15 @@
                                             <tr>
                                                 <td>Name:</td>
                                                 <td>
-                                                    <input type="text" name="name" class="form-control" value="{{ $group->name }}">
+                                                    <input type="text" name="name" class="form-control"
+                                                           value="{{ $group->name }}">
                                                 </td>
                                             </tr>
                                             <tr>
                                                 <td colspan="2">
-                                                    <button class="btn btn-primary" style="margin-top: 150px" type="submit">Update</button>
+                                                    <button class="btn btn-primary" style="margin-top: 150px"
+                                                            type="submit">Update
+                                                    </button>
                                                 </td>
                                             </tr>
                                         </table>
@@ -50,14 +54,17 @@
                                 </div>
                                 <div class="col-md-5">
                                     <div class="text-center">
-                                        <img class="border rounded-circle" style="width: 250px; height: 250px" src="{{ asset('storage/group/' . $group->image) }}">
+                                        <img class="border rounded-circle" style="width: 250px; height: 250px"
+                                             src="{{ asset('storage/group/' . $group->image) }}">
                                         <div class="input-group mb-3 mt-3">
                                             <div class="input-group-prepend">
                                                 <span class="input-group-text">Upload</span>
                                             </div>
                                             <div class="custom-file">
-                                                <input type="file" name="image" class="custom-file-input" id="inputGroupFile01">
-                                                <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
+                                                <input type="file" name="image" class="custom-file-input"
+                                                       id="inputGroupFile01">
+                                                <label class="custom-file-label" for="inputGroupFile01">Choose
+                                                    file</label>
                                             </div>
                                         </div>
                                     </div>

@@ -36,12 +36,15 @@
                                             <tr>
                                                 <td>Name:</td>
                                                 <td>
-                                                    <input type="text" name="name" class="form-control" placeholder="Input group name">
+                                                    <input type="text" name="name" class="form-control"
+                                                           placeholder="Input group name">
                                                 </td>
                                             </tr>
                                             <tr>
                                                 <td colspan="2">
-                                                    <button class="btn btn-primary" style="margin-top: 150px" type="submit">Create</button>
+                                                    <button class="btn btn-primary" style="margin-top: 150px"
+                                                            type="submit">Create
+                                                    </button>
                                                 </td>
                                             </tr>
                                         </table>
@@ -49,14 +52,17 @@
                                 </div>
                                 <div class="col-md-5">
                                     <div class="text-center">
-                                        <img class="border rounded-circle" style="width: 250px; height: 250px" src="{{ asset('storage/group/group-default.jpg') }}">
+                                        <img class="border rounded-circle" style="width: 250px; height: 250px"
+                                             src="{{ asset('storage/group/group-default.jpg') }}">
                                         <div class="input-group mb-3 mt-3">
                                             <div class="input-group-prepend">
                                                 <span class="input-group-text">Upload</span>
                                             </div>
                                             <div class="custom-file">
-                                                <input type="file" name="image" class="custom-file-input" id="inputGroupFile01">
-                                                <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
+                                                <input type="file" name="image" class="custom-file-input"
+                                                       id="inputGroupFile01">
+                                                <label class="custom-file-label" for="inputGroupFile01">Choose
+                                                    file</label>
                                             </div>
                                         </div>
                                     </div>

@@ -27,7 +27,8 @@
                         @endif
                     </div>
                     <div class="card-body">
-                        <form method="post" action="{{ route('videos.update', $video->id) }}" enctype="multipart/form-data">
+                        <form method="post" action="{{ route('videos.update', $video->id) }}"
+                              enctype="multipart/form-data">
                             @csrf
                             @method('PUT')
                             <div class="row">
@@ -38,13 +39,15 @@
                                                 <tr>
                                                     <td>Title:</td>
                                                     <td colspan="2">
-                                                        <input class="form-control" type="text" name="title" value="{{ $video->title }}">
+                                                        <input class="form-control" type="text" name="title"
+                                                               value="{{ $video->title }}">
                                                     </td>
                                                 </tr>
                                                 <tr>
                                                     <td>Description:</td>
                                                     <td colspan="2">
-                                                        <input class="form-control" type="text" name="description" value="{{ $video->description }}">
+                                                        <input class="form-control" type="text" name="description"
+                                                               value="{{ $video->description }}">
                                                     </td>
                                                 </tr>
                                                 <tr>
@@ -60,7 +63,8 @@
                                                         <span>Display:</span>
                                                         <span>
                                                             <select class="form-control" name="is_display">
-                                                                <option value="{{ $video->is_display }}" selected disabled hidden>
+                                                                <option value="{{ $video->is_display }}" selected
+                                                                        disabled hidden>
                                                                     @if($video->is_display)
                                                                         Show
                                                                     @else
@@ -76,7 +80,8 @@
                                                         <span>Type:</span>
                                                         <span>
                                                             <select class="form-control" name="type">
-                                                                <option value="{{ $video->type }}" selected disabled hidden>
+                                                                <option value="{{ $video->type }}" selected disabled
+                                                                        hidden>
                                                                     @if($video->type)
                                                                         Member
                                                                     @else
@@ -99,14 +104,17 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="text-center">
-                                        <img src="{{ asset('storage/preview/' . $video->image) }}" style="width: 250px; height: 150px">
+                                        <img src="{{ asset('storage/preview/' . $video->image) }}"
+                                             style="width: 250px; height: 150px">
                                         <div class="input-group mb-3 mt-3">
                                             <div class="input-group-prepend">
                                                 <span class="input-group-text">Upload</span>
                                             </div>
                                             <div class="custom-file">
-                                                <input type="file" name="image" class="custom-file-input" id="inputGroupFile01">
-                                                <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
+                                                <input type="file" name="image" class="custom-file-input"
+                                                       id="inputGroupFile01">
+                                                <label class="custom-file-label" for="inputGroupFile01">Choose
+                                                    file</label>
                                             </div>
                                         </div>
                                     </div>

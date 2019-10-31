@@ -37,13 +37,13 @@ class GroupService implements GroupServiceInterface
     {
         $data = $request->all();
 
-        if($request->hasFile('image')){
+        if ($request->hasFile('image')) {
             $image = $request->file('image');
             $imageName = $image->getClientOriginalName();
             $imageExtension = $image->getClientOriginalExtension();
             $image->move('storage/group', $imageName);
             $data['image'] = $imageName;
-        }else{
+        } else {
             $data['image'] = 'group-default.jpg';
         }
 
@@ -55,7 +55,7 @@ class GroupService implements GroupServiceInterface
     {
         $group = $this->groupRepository->getById($id);
         $data = $request->all();
-        if($request->hasFile('image')){
+        if ($request->hasFile('image')) {
             $image = $request->file('image');
             $imageName = $image->getClientOriginalName();
             $imageExtension = $image->getClientOriginalExtension();

@@ -8,9 +8,9 @@
     <title>Document</title>
 </head>
 <body>
-    <h2>This is your invitation</h2>
-    <p>Wellcome to group {{ $groupID }}</p>
-    <p>This is your token: {{ $token }}</p>
+<h2>This is your invitation</h2>
+<p>This is your link to group:</p>
+http://video.local/group/invite/verify/{{ $groupId }}/{{ $userId }}/{{ $token }}
 
 </body>
 </html>

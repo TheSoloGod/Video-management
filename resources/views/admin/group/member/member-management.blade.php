@@ -44,7 +44,8 @@
                                 <tr>
                                     <th scope="row">{{ ++$key }}</th>
                                     <td>
-                                        <img src="{{ asset("storage/avatar/" . $value->user->image ) }}" class="border rounded-circle" style="width: 30px; height: 30px">
+                                        <img src="{{ asset("storage/avatar/" . $value->user->image ) }}"
+                                             class="border rounded-circle" style="width: 30px; height: 30px">
                                     </td>
                                     <td>
                                         <a href="{{ route('users.show', $value->user_id) }}">{{ $value->user->name }}</a>
@@ -54,15 +55,20 @@
                                     <td>{{ $value->user->address }}</td>
                                     <td>
                                         <!-- Button trigger modal -->
-                                        <button type="button" class="btn btn-outline-danger" data-toggle="modal" data-target="#deleteModal{{ $value->user->id }}">Remove</button>
+                                        <button type="button" class="btn btn-outline-danger" data-toggle="modal"
+                                                data-target="#deleteModal{{ $value->user->id }}">Remove
+                                        </button>
 
                                         <!-- Modal -->
-                                        <div class="modal fade" id="deleteModal{{ $value->user->id }}" tabindex="-1" role="dialog" aria-labelledby="deleteModal" aria-hidden="true">
+                                        <div class="modal fade" id="deleteModal{{ $value->user->id }}" tabindex="-1"
+                                             role="dialog" aria-labelledby="deleteModal" aria-hidden="true">
                                             <div class="modal-dialog" role="document">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
-                                                        <h5 class="modal-title" id="exampleModalLabel">Remove {{ $value->user->name }}</h5>
-                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                        <h5 class="modal-title" id="exampleModalLabel">
+                                                            Remove {{ $value->user->name }}</h5>
+                                                        <button type="button" class="close" data-dismiss="modal"
+                                                                aria-label="Close">
                                                             <span aria-hidden="true">&times;</span>
                                                         </button>
                                                     </div>
@@ -70,7 +76,8 @@
                                                         Are you sure to remove this member from group?
                                                     </div>
                                                     <div class="modal-footer">
-                                                        <a class="btn btn-light" role="button" href="{{ route('group.member.remove', [$value->group->id, $value->user->id]) }}">Remove</a>
+                                                        <a class="btn btn-light" role="button"
+                                                           href="{{ route('group.member.remove', [$value->group->id, $value->user->id]) }}">Remove</a>
                                                         <a class="btn btn-secondary" data-dismiss="modal">Close</a>
                                                     </div>
                                                 </div>

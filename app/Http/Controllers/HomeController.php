@@ -26,11 +26,4 @@ class HomeController extends Controller
     {
         return view('home');
     }
-
-    public function invite()
-    {
-        $userEmail = 'laraveltest20@gmail.com';
-        $this->dispatch(new SendInviteEmail($userEmail));
-        return redirect()->back()->with('success', 'OK');
-    }
 }

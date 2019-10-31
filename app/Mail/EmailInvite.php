@@ -11,18 +11,21 @@ class EmailInvite extends Mailable
 {
     use Queueable, SerializesModels;
 
-    protected $groupId;
-    protected $token;
+    public $groupId;
+    public $userId;
+    public $token;
 
     /**
      * Create a new message instance.
      *
      * @param $groupId
+     * @param $userId
      * @param $token
      */
-    public function __construct($groupId, $token)
+    public function __construct($groupId, $userId, $token)
     {
         $this->groupId = $groupId;
+        $this->userId = $userId;
         $this->token = $token;
     }
 
@@ -33,8 +36,11 @@ class EmailInvite extends Mailable
      */
     public function build()
     {
-        $groupId = $this->groupId;
-        $token = $this->token;
-        return $this->view('mail.invite', compact('groupId', 'token'));
+        return $this->view('mail.invite');
+//                    ->with([
+//                        'groupId' => $this->groupId,
+//                        'userId' => $this->userId,
+//                        'token' => $this->token,
+//                    ]);
     }
 }

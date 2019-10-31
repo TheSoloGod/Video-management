@@ -2,7 +2,7 @@
 
 @section('title')
     User edit form
-    @endsection
+@endsection
 
 @section('content')
     <div class="container">
@@ -34,29 +34,34 @@
                                                     <tr>
                                                         <td>Name:</td>
                                                         <td>
-                                                            <input class="form-control" type="text" name="name" value="{{ $user->name }}">
+                                                            <input class="form-control" type="text" name="name"
+                                                                   value="{{ $user->name }}">
                                                         </td>
                                                     </tr>
                                                     <tr>
                                                         <td>Email:</td>
                                                         <td>
-                                                            <input class="form-control" value="{{ $user->email }}" disabled>
+                                                            <input class="form-control" value="{{ $user->email }}"
+                                                                   disabled>
                                                         </td>
                                                     </tr>
                                                     <tr>
                                                         <td>Phone:</td>
                                                         <td>
-                                                            <input class="form-control" type="text" name="phone" value="{{ $user->phone }}">
+                                                            <input class="form-control" type="text" name="phone"
+                                                                   value="{{ $user->phone }}">
                                                         </td>
                                                     </tr>
                                                     <tr>
                                                         <td>Address:</td>
                                                         <td>
-                                                            <input class="form-control" type="text" name="address" value="{{ $user->address }}"></td>
+                                                            <input class="form-control" type="text" name="address"
+                                                                   value="{{ $user->address }}"></td>
                                                     </tr>
                                                     <tr>
                                                         <td colspan="2" class="text-center">
-                                                            <button type="submit" class="btn btn-primary">Update</button>
+                                                            <button type="submit" class="btn btn-primary">Update
+                                                            </button>
                                                         </td>
                                                     </tr>
                                                 </div>
@@ -68,14 +73,17 @@
                                     <div>
                                         <div class="text-center">
                                             <div class="mb-3">
-                                                <img src="{{ asset('storage/avatar/' . $user->image) }}" class="border rounded-circle" style="width: 150px; height: 150px">
+                                                <img src="{{ asset('storage/avatar/' . $user->image) }}"
+                                                     class="border rounded-circle" style="width: 150px; height: 150px">
                                                 <div class="input-group mb-3 mt-3">
                                                     <div class="input-group-prepend">
                                                         <span class="input-group-text">Upload</span>
                                                     </div>
                                                     <div class="custom-file">
-                                                        <input type="file" name="image" class="custom-file-input" id="inputGroupFile01">
-                                                        <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
+                                                        <input type="file" name="image" class="custom-file-input"
+                                                               id="inputGroupFile01">
+                                                        <label class="custom-file-label" for="inputGroupFile01">Choose
+                                                            file</label>
                                                     </div>
                                                 </div>
                                             </div>

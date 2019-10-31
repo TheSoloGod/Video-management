@@ -79,21 +79,29 @@ class GroupUserService implements GroupUserServiceInterface
         }
     }
 
-    public function inviteUser($groupId)
+    public function inviteUser($groupId, $userId)
     {
 //        $arrayUserToInvite = Session::get('invitationList')->users;
-
 //        foreach ($arrayUserToInvite as $key => $value){
             $token = Str::random(10);
-            $this->dispatch(new SendInviteEmail('testlaravel20@gmail.com', $groupId, $token));
-//        }
+            $this->dispatch(new SendInviteEmail('testlaravel20@gmail.com', $groupId, $userId, $token));
 
+            $data = [];
+            $data['user_id'] = $userId;
+            $data['group_id'] = $groupId;
+            $data['token'] = $token;
+            $this->groupUserRepository->create($data);
+//        }
     }
 
-    public function clearGroupMemberSession()
+    public function verifyInvitationEmail($groupId, $userId, $token)
     {
-        if(Session::has('invitationList')){
-            Session::forget('invitationList');
+        $tokenDB = $this->groupUserRepository->getToken($groupId, $userId)->token;
+        if ($tokenDB == $token){
+            $this->groupUserRepository->verifyMember($groupId, $userId);
+            return true;
+        }else{
+            return false;
         }
     }
 }

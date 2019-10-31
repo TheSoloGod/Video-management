@@ -39,31 +39,35 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach(Session::get('invitationList')->users as $key => $user)
-                                            <tr class="text-center">
-                                                <th>{{ ++$key }}</th>
-                                                <td>{{ $user->name }}</td>
-                                                <td>{{ $user->email }}</td>
-                                                <td>
-                                                    <a class="btn btn-outline-danger" href="{{ route('group.member.remove-invitation', [$groupId ,$user->id]) }}">Remove</a>
-                                                </td>
-                                            </tr>
-                                        @endforeach
+                                    @foreach(Session::get('invitationList')->users as $key => $user)
+                                        <tr class="text-center">
+                                            <th>{{ ++$key }}</th>
+                                            <td>{{ $user->name }}</td>
+                                            <td>{{ $user->email }}</td>
+                                            <td>
+                                                <a class="btn btn-outline-danger"
+                                                   href="{{ route('group.member.remove-invitation', [$groupId ,$user->id]) }}">Remove</a>
+                                            </td>
+                                        </tr>
+                                    @endforeach
                                     </tbody>
                                 </table>
                             </form>
                             <div>
                                 <span>
                                     <!-- Button trigger modal -->
-                                    <a class="btn btn-outline-primary" data-toggle="modal" data-target="#deleteModal{{ $user->id }}">Invite all user in list</a>
+                                    <a class="btn btn-outline-primary" data-toggle="modal"
+                                       data-target="#deleteModal{{ $groupId }}">Invite all user in list</a>
 
                                     <!-- Modal -->
-                                    <div class="modal fade" id="deleteModal{{ $user->id }}" tabindex="-1" role="dialog" aria-labelledby="deleteModal" aria-hidden="true">
+                                    <div class="modal fade" id="deleteModal{{ $groupId }}" tabindex="-1" role="dialog"
+                                         aria-labelledby="deleteModal" aria-hidden="true">
                                             <div class="modal-dialog" role="document">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
                                                         <h5 class="modal-title" id="exampleModalLabel">Invitation list of group {{ $groupId }}</h5>
-                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                        <button type="button" class="close" data-dismiss="modal"
+                                                                aria-label="Close">
                                                             <span aria-hidden="true">&times;</span>
                                                         </button>
                                                     </div>
@@ -71,16 +75,17 @@
                                                         Are you sure to send invitation email to all user in list?
                                                     </div>
                                                     <div class="modal-footer">
-                                                        <a class="btn btn-primary" role="button" href="{{ route('group.member.invite', $groupId) }}">Send invitation email</a>
+                                                        <a class="btn btn-primary" role="button"
+                                                           href="{{ route('group.member.invite', [$groupId, '6']) }}">Send invitation email</a>
                                                         <a class="btn btn-secondary" data-dismiss="modal">Close</a>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                 </span>
-    {{--                            <span class="float-right">--}}
-    {{--                                {{ $users->appends(request()->query()) }}--}}
-    {{--                            </span>--}}
+                                {{--                            <span class="float-right">--}}
+                                {{--                                {{ $users->appends(request()->query()) }}--}}
+                                {{--                            </span>--}}
                             </div>
                         @else
                             <div class="text-center">

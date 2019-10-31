@@ -44,7 +44,8 @@
                                 <tr class="text-center">
                                     <th scope="row">{{ ++$key }}</th>
                                     <td>
-                                        <img src="{{ asset("storage/avatar/" . $value->image ) }}" class="border rounded-circle" style="width: 30px; height: 30px">
+                                        <img src="{{ asset("storage/avatar/" . $value->image ) }}"
+                                             class="border rounded-circle" style="width: 30px; height: 30px">
                                     </td>
                                     <td>
                                         <a href="{{ route('users.show', $value->id) }}">{{ $value->name }}</a>
@@ -59,12 +60,16 @@
                                             </td>
                                         @else
                                             <td>
-                                                <a class="btn btn-outline-danger" href="{{ route('group.member.add-invitation', [$groupId, $value->id]) }}">Add to invitation list</a>
+                                                <a class="btn btn-outline-danger"
+                                                   href="{{ route('group.member.add-invitation', [$groupId, $value->id]) }}">Add
+                                                    to invitation list</a>
                                             </td>
                                         @endif
                                     @else
                                         <td>
-                                            <a class="btn btn-outline-danger" href="{{ route('group.member.add-invitation', [$groupId, $value->id]) }}">Add to invitation list</a>
+                                            <a class="btn btn-outline-danger"
+                                               href="{{ route('group.member.add-invitation', [$groupId, $value->id]) }}">Add
+                                                to invitation list</a>
                                         </td>
                                     @endif
                                 </tr>
@@ -74,18 +79,21 @@
                         <div>
 
                             <span>
-                                <a class="btn btn-outline-primary" href="{{ route('group.member.show-invitation', $groupId) }}">Show invitaiton list</a>
+                                <a class="btn btn-outline-primary"
+                                   href="{{ route('group.member.show-invitation', $groupId) }}">Show invitaiton list</a>
 
                                 <!-- Button trigger modal -->
 {{--                                <a class="btn btn-outline-primary" data-toggle="modal" data-target="#deleteModal{{ $value->id }}">Show invitaiton list</a>--}}
 
-                                <!-- Modal -->
-                                <div class="modal fade" id="deleteModal{{ $value->id }}" tabindex="-1" role="dialog" aria-labelledby="deleteModal" aria-hidden="true">
+                            <!-- Modal -->
+                                <div class="modal fade" id="deleteModal{{ $value->id }}" tabindex="-1" role="dialog"
+                                     aria-labelledby="deleteModal" aria-hidden="true">
                                         <div class="modal-dialog modal-lg" role="document">
                                             <div class="modal-content">
                                                 <div class="modal-header">
                                                     <h5 class="modal-title" id="exampleModalLabel">Invitation list of group {{ $groupId }}</h5>
-                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <button type="button" class="close" data-dismiss="modal"
+                                                            aria-label="Close">
                                                         <span aria-hidden="true">&times;</span>
                                                     </button>
                                                 </div>
@@ -108,7 +116,8 @@
                                                                             <td>{{ $user->name }}</td>
                                                                             <td>{{ $user->email }}</td>
                                                                             <td>
-                                                                                <a class="btn btn-outline-danger" href="">Remove</a>
+                                                                                <a class="btn btn-outline-danger"
+                                                                                   href="">Remove</a>
                                                                             </td>
                                                                         </tr>
                                                                     @endforeach
@@ -119,7 +128,8 @@
 
                                                 </div>
                                                 <div class="modal-footer">
-                                                    <a class="btn btn-primary" role="button" href="">Send invite email</a>
+                                                    <a class="btn btn-primary" role="button"
+                                                       href="">Send invite email</a>
                                                     <a class="btn btn-secondary" data-dismiss="modal">Close</a>
                                                 </div>
                                             </div>

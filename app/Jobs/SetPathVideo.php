@@ -42,7 +42,7 @@ class SetPathVideo implements ShouldQueue
         $recursive = false;
         $contents = collect(Storage::cloud()->listContents($dir, $recursive));
         $videoPath = null;
-        while (!$videoPath){
+        while (!$videoPath) {
             $videoPath = $contents->where('filename', '=', $this->name)->first()['path'];
         }
         $this->videoService->setVideoPath($this->id, $videoPath);

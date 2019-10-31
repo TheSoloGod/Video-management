@@ -2,7 +2,7 @@
 
 @section('title')
     User detail
-    @endsection
+@endsection
 
 @section('content')
     <div class="container">
@@ -24,7 +24,7 @@
                             <div class="alert alert-success" role="alert">
                                 {{ session('status') }}
                             </div>
-                            @endif
+                        @endif
                     </div>
                     <div class="card-body">
                         <div class="row">
@@ -32,26 +32,26 @@
                                 <div class="card card-body">
                                     <div>
                                         <table class="table">
-                                        <tr>
-                                            <td>Name:</td>
-                                            <td>{{ $user->name }}</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Email:</td>
-                                            <td>{{ $user->email }}</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Phone:</td>
-                                            <td>{{ $user->phone }}</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Address:</td>
-                                            <td>{{ $user->address }}</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Created at:</td>
-                                            <td>{{ $user->created_at }}</td>
-                                        </tr>
+                                            <tr>
+                                                <td>Name:</td>
+                                                <td>{{ $user->name }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Email:</td>
+                                                <td>{{ $user->email }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Phone:</td>
+                                                <td>{{ $user->phone }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Address:</td>
+                                                <td>{{ $user->address }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Created at:</td>
+                                                <td>{{ $user->created_at }}</td>
+                                            </tr>
                                         </table>
                                     </div>
                                 </div>
@@ -60,26 +60,32 @@
                                 <div>
                                     <div class="text-center">
                                         <div class="mb-3">
-                                            <img src="{{ asset('storage/avatar/' . $user->image) }}" class="border rounded-circle" style="width: 150px; height: 150px">
+                                            <img src="{{ asset('storage/avatar/' . $user->image) }}"
+                                                 class="border rounded-circle" style="width: 150px; height: 150px">
                                         </div>
                                         <div>
                                             <h5>Groups:</h5>
                                         </div>
                                         <div>
                                             <!-- function edit $ delete -->
-                                            <span><a href="{{ route('users.edit', $user->id) }}" class="btn btn-outline-primary">Edit</a></span>
+                                            <span><a href="{{ route('users.edit', $user->id) }}"
+                                                     class="btn btn-outline-primary">Edit</a></span>
                                             <span>
                                                 <!-- Button trigger modal -->
-                                                <a class="btn btn-outline-danger" data-toggle="modal" data-target="#deleteModal{{ $user->id }}">Delete</a>
+                                                <a class="btn btn-outline-danger" data-toggle="modal"
+                                                   data-target="#deleteModal{{ $user->id }}">Delete</a>
                                             </span>
 
                                             <!-- Modal -->
-                                            <div class="modal fade" id="deleteModal{{ $user->id }}" tabindex="-1" role="dialog" aria-labelledby="deleteModal" aria-hidden="true">
+                                            <div class="modal fade" id="deleteModal{{ $user->id }}" tabindex="-1"
+                                                 role="dialog" aria-labelledby="deleteModal" aria-hidden="true">
                                                 <div class="modal-dialog" role="document">
                                                     <div class="modal-content">
                                                         <div class="modal-header">
-                                                            <h5 class="modal-title" id="exampleModalLabel">Delete {{ $user->name }}</h5>
-                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                            <h5 class="modal-title" id="exampleModalLabel">
+                                                                Delete {{ $user->name }}</h5>
+                                                            <button type="button" class="close" data-dismiss="modal"
+                                                                    aria-label="Close">
                                                                 <span aria-hidden="true">&times;</span>
                                                             </button>
                                                         </div>
@@ -87,10 +93,12 @@
                                                             Are you sure to delete this user?
                                                         </div>
                                                         <div class="modal-footer">
-                                                            <form method="post" action="{{ route('users.destroy', $user->id )}}">
+                                                            <form method="post"
+                                                                  action="{{ route('users.destroy', $user->id )}}">
                                                                 @csrf
                                                                 @method('DELETE')
-                                                                <button class="btn btn-light" role="button">Delete</button>
+                                                                <button class="btn btn-light" role="button">Delete
+                                                                </button>
                                                             </form>
                                                             <a class="btn btn-secondary" data-dismiss="modal">Close</a>
                                                         </div>
