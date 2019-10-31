@@ -21,7 +21,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = $this->userService->paginate(5);
+        $users = $this->userService->paginate();
         return view('admin.user.list', compact('users'));
     }
 
@@ -80,7 +80,7 @@ class UserController extends Controller
     public function update(Request $request, $id)
     {
         $this->userService->update($request, $id);
-        return redirect()->route('users.show', compact('id'))->with('status', 'Update user information success');
+        return redirect()->route('users.show', compact('id'));
     }
 
     /**
@@ -92,6 +92,6 @@ class UserController extends Controller
     public function destroy($id)
     {
         $this->userService->delete($id);
-        return redirect()->route('users.index')->with('status', 'Delete user success');
+        return redirect()->route('users.index');
     }
 }

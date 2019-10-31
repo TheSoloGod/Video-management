@@ -29,7 +29,7 @@ class GroupController extends Controller
      */
     public function index()
     {
-        $groups = $this->groupService->paginate(8);
+        $groups = $this->groupService->paginate();
         return view('admin.group.list', compact('groups'));
     }
 
@@ -64,7 +64,7 @@ class GroupController extends Controller
      */
     public function show($id)
     {
-        $this->sessionService->forgetSession('invitationList');
+        $this->groupService->checkGroupSessionExist($id);
         $group = $this->groupService->getById($id);
         return view('admin.group.detail', compact('group'));
     }
@@ -91,7 +91,7 @@ class GroupController extends Controller
     public function update(Request $request, $id)
     {
         $this->groupService->update($request, $id);
-        return redirect()->route('groups.show', compact('id'))->with('status', 'Update group information success');
+        return redirect()->route('groups.show', compact('id'));
     }
 
     /**
@@ -103,6 +103,6 @@ class GroupController extends Controller
     public function destroy($id)
     {
         $this->groupService->delete($id);
-        return redirect()->route('groups.index')->with('status', 'Delete group success');
+        return redirect()->route('groups.index');
     }
 }

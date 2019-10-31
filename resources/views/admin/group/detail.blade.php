@@ -35,7 +35,7 @@
                                     </div>
                                     <div>
                                         <a class="btn btn-outline-secondary"
-                                           href="{{ route('group.member.index', $group->id) }}">Member management</a>
+                                           href="{{ route('group.member.all', $group->id) }}">Member management</a>
                                     </div>
                                 </div>
                                 <div class="card card-body" style="height: 180px">
@@ -43,7 +43,7 @@
                                         Videos:
                                     </div>
                                     <div>
-                                        <a class="btn btn-outline-secondary" href="">Videos management</a>
+                                        <a class="btn btn-outline-secondary" href="{{ route('group.video.all', $group->id) }}">Videos management</a>
                                     </div>
                                 </div>
                             </div>
@@ -85,7 +85,7 @@
                                                         </div>
                                                         <div class="modal-footer">
                                                             <form method="post"
-                                                                  action="{{ route('users.destroy', $group->id )}}">
+                                                                  action="{{ route('groups.destroy', $group->id )}}">
                                                                 @csrf
                                                                 @method('DELETE')
                                                                 <button class="btn btn-light" role="button">Delete

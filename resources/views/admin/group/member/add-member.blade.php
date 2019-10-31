@@ -56,7 +56,7 @@
                                     @if(Session::has('invitationList'))
                                         @if(array_key_exists($value->id, Session::get('invitationList')->users))
                                             <td>
-                                                <div class="btn btn-secondary">Add to invitation list</div>
+                                                <div class="btn btn-outline-danger disabled">Add to invitation list</div>
                                             </td>
                                         @else
                                             <td>

@@ -22,7 +22,7 @@ class VideoController extends Controller
      */
     public function index()
     {
-        $videos = $this->videoService->paginate(3);
+        $videos = $this->videoService->paginate();
         return view('admin.video.list', compact('videos'));
     }
 
@@ -47,7 +47,7 @@ class VideoController extends Controller
         $video = $this->videoService->store($request);
         if($video){
             $id = $video->id;
-            return redirect()->route('videos.show', compact('id'))->with('status', 'Uploading video');
+            return redirect()->route('videos.show', compact('id'));
         }else{
             return redirect()->back();
         }
@@ -87,7 +87,7 @@ class VideoController extends Controller
     public function update(Request $request, $id)
     {
         $this->videoService->update($request, $id);
-        return redirect()->route('videos.show', compact('id'))->with('status', 'Update video information success');
+        return redirect()->route('videos.show', compact('id'));
     }
 
     /**
@@ -98,7 +98,7 @@ class VideoController extends Controller
      */
     public function destroy($id)
     {
-        $this->videoService->delete($id);
-        return redirect()->route('videos.index')->with('status', 'Delete video success');
+        $this->videoService->softDelete($id);
+        return redirect()->route('videos.index');
     }
 }

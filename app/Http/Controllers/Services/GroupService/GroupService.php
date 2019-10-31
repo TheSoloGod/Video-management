@@ -4,15 +4,19 @@
 namespace App\Http\Controllers\Services\GroupService;
 
 use App\Http\Controllers\Repositories\GroupRepository\GroupRepositoryInterface;
+use App\Services\SessionService;
 use Illuminate\Support\Facades\Session;
 
 class GroupService implements GroupServiceInterface
 {
     protected $groupRepository;
+    protected $sessionService;
 
-    public function __construct(GroupRepositoryInterface $groupRepository)
+    public function __construct(GroupRepositoryInterface $groupRepository,
+                                SessionService $sessionService)
     {
         $this->groupRepository = $groupRepository;
+        $this->sessionService = $sessionService;
     }
 
     public function getAll()
@@ -21,8 +25,9 @@ class GroupService implements GroupServiceInterface
         return $groups;
     }
 
-    public function paginate($number)
+    public function paginate()
     {
+        $number = 8;
         $groups = $this->groupRepository->paginate($number);
         return $groups;
     }
@@ -66,11 +71,31 @@ class GroupService implements GroupServiceInterface
         }
 
         $this->groupRepository->update($data, $group);
+        Session::flash('status', 'Update group information success');
     }
 
     public function delete($id)
     {
         $user = $this->groupRepository->getById($id);
         $this->groupRepository->delete($user);
+        Session::flash('status', 'Delete group success');
+    }
+
+    public function checkGroupSessionExist($id)
+    {
+        $group = $this->groupRepository->getById($id);
+        $groupId = $group->id;
+
+        $groupIdInvitationListExist = $this->sessionService
+            ->checkGroupSessionExist('invitationList', $groupId);
+        if (!$groupIdInvitationListExist) {
+            $this->sessionService->forgetSession('invitationList');
+        }
+
+        $groupIdAdditionVideoListExist = $this->sessionService
+            ->checkGroupSessionExist('additionVideoList', $groupId);
+        if (!$groupIdAdditionVideoListExist) {
+            $this->sessionService->forgetSession('additionVideoList');
+        }
     }
 }

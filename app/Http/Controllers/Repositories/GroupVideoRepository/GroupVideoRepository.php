@@ -14,4 +14,18 @@ class GroupVideoRepository extends EloquentRepository implements GroupVideoRepos
     {
         return GroupVideo::class;
     }
+
+    public function getAllVideo($groupId, $number)
+    {
+        $videos = $this->model->where('group_id', $groupId)
+                              ->paginate($number);
+        return $videos;
+    }
+
+    public function removeVideo($groupId, $videoId)
+    {
+        $this->model->where('group_id', $groupId)
+                    ->where('video_id', $videoId)
+                    ->delete();
+    }
 }

@@ -26,8 +26,9 @@ class VideoService implements VideoServiceInterface
         return $videos;
     }
 
-    public function paginate($number)
+    public function paginate()
     {
+        $number = 3;
         $videos = $this->videoRepository->paginate($number);
         return $videos;
     }
@@ -66,6 +67,7 @@ class VideoService implements VideoServiceInterface
                 $newVideo = $this->videoRepository->create($data);
                 UploadFile::dispatch($newVideo->id, $videoFullName);
                 SetPathVideo::dispatch($newVideo->id, $newVideo->name);
+                Session::flash('status', 'Uploading video');
                 return $newVideo;
             }
         }else{
@@ -89,11 +91,13 @@ class VideoService implements VideoServiceInterface
         }
 
         $this->videoRepository->update($data, $video);
+        Session::flash('status', 'Update video information success');
     }
 
     public function softDelete($id)
     {
         $this->videoRepository->softDelete($id);
+        Session::flash('status', 'Delete video success');
     }
 
     public function checkExistVideo($name)
@@ -119,4 +123,9 @@ class VideoService implements VideoServiceInterface
         $this->videoRepository->setVideoPath($id, $path);
     }
 
+    public function getVideoNotInGroup($groupId, $number)
+    {
+        $video = $this->videoRepository->getVideoNotInGroup($groupId, $number);
+        return $video;
+    }
 }

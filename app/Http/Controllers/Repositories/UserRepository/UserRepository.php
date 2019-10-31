@@ -16,7 +16,7 @@ class UserRepository extends EloquentRepository implements UserRepositoryInterfa
 
     public function getUserNotInGroup($groupId, $number)
     {
-        $users = $this->model->whereNotIn('id', function ($query) use ($groupId){
+        $users = $this->model->whereNotIn('id', function ($query) use ($groupId) {
             $query->select('user_id')
                   ->where('group_id', $groupId)
                   ->from('group_user');

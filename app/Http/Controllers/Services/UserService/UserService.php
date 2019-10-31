@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Services\UserService;
 
 
 use App\Http\Controllers\Repositories\UserRepository\UserRepositoryInterface;
+use Illuminate\Support\Facades\Session;
 
 class UserService implements UserServiceInterface
 {
@@ -27,8 +28,9 @@ class UserService implements UserServiceInterface
         return $user;
     }
 
-    public function paginate($number)
+    public function paginate()
     {
+        $number = 5;
         $users = $this->userRepository->paginate($number);
         return $users;
     }
@@ -48,12 +50,14 @@ class UserService implements UserServiceInterface
         }
 
         $this->userRepository->update($data, $user);
+        Session::flash('status', 'Update user information success');
     }
 
     public function delete($id)
     {
         $user = $this->userRepository->getById($id);
         $this->userRepository->delete($user);
+        Session::flash('status', 'Delete user success');
     }
 
     public function getUserNotInGroup($groupId, $number)

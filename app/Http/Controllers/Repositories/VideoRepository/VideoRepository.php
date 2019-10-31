@@ -33,10 +33,20 @@ class VideoRepository extends EloquentRepository implements VideoRepositoryInter
         $video->save();
     }
 
-    public function softDelete($id){
+    public function softDelete($id)
+    {
         $video = $this->getById($id);
         $video->delete_at = Carbon::now();
         $video->save();
     }
 
+    public function getVideoNotInGroup($groupId, $number)
+    {
+        $videos = $this->model->whereNotIn('id', function ($query) use ($groupId) {
+            $query->select('video_id')
+                  ->where('group_id', $groupId)
+                  ->from('group_video');
+        })->paginate($number);
+        return $videos;
+    }
 }

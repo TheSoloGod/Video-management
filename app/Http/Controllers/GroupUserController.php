@@ -14,21 +14,21 @@ class GroupUserController extends Controller
         $this->groupUserService = $groupUserService;
     }
 
-    public function index($groupId)
+    public function showAllMember($groupId)
     {
-        $members = $this->groupUserService->getAllMember($groupId, 5);
+        $members = $this->groupUserService->getAllMember($groupId);
         return view('admin.group..member.member-management', compact('members', 'groupId'));
     }
 
     public function removeMember($groupId, $userId)
     {
         $this->groupUserService->removeMember($groupId, $userId);
-        return redirect()->back()->with('status', 'Remove member sucess');
+        return redirect()->back();
     }
 
     public function addMember($groupId)
     {
-        $users = $this->groupUserService->getUserNotInGroup($groupId, 5);
+        $users = $this->groupUserService->getUserNotInGroup($groupId);
         return view('admin.group.member.add-member', compact('groupId', 'users'));
     }
 
@@ -53,19 +53,19 @@ class GroupUserController extends Controller
         }
     }
 
-    public function inviteUser($groupId, $userId)
+    public function inviteUser($groupId)
     {
-        $this->groupUserService->inviteUser($groupId, $userId);
-        return redirect()->back()->with('status', 'OK');
+        $this->groupUserService->inviteUser($groupId);
+        return redirect()->back();
     }
 
     public function verifyInvitationEmail($groupId, $userId, $token)
     {
         $verifyResult = $this->groupUserService->verifyInvitationEmail($groupId, $userId, $token);
         if ($verifyResult) {
-            dd('dieu huong den trang loi token');
+            dd('dieu huong den trang front end group');
         } else {
-            dd(' dieu huong den trang front end group');
+            dd(' dieu huong den trang loi token');
         }
     }
 }

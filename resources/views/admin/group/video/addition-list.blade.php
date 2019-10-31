@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('title')
-    Invitation list
+    Addition video list
 @endsection
 
 @section('content')
@@ -19,7 +19,7 @@
             <div class="col-md-10">
                 <div class="card mt-3">
                     <div class="card-header">
-                        Invitation list of group {{ $groupId }}
+                        Addition video list of group {{ $groupId }}
                         @if (session('status'))
                             <div class="alert alert-success" role="alert">
                                 {{ session('status') }}
@@ -27,26 +27,26 @@
                         @endif
                     </div>
                     <div class="card-body">
-                        @if(Session::has('invitationList'))
+                        @if(Session::has('additionVideoList'))
                             <form>
                                 <table class="table table-striped">
                                     <thead>
                                     <tr class="text-center">
                                         <th>Id</th>
-                                        <th>Name</th>
-                                        <th>Email</th>
+                                        <th>Title</th>
+                                        <th>Description</th>
                                         <th>Function</th>
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    @foreach(Session::get('invitationList')->users as $key => $user)
+                                    @foreach(Session::get('additionVideoList')->videos as $key => $value)
                                         <tr class="text-center">
                                             <th>{{ $key }}</th>
-                                            <td>{{ $user->name }}</td>
-                                            <td>{{ $user->email }}</td>
+                                            <td>{{ $value->title }}</td>
+                                            <td>{{ $value->description }}</td>
                                             <td>
                                                 <a class="btn btn-outline-danger"
-                                                   href="{{ route('group.member.remove-invitation', [$groupId ,$user->id]) }}">Remove</a>
+                                                   href="{{ route('group.video.remove-addition', [$groupId ,$value->id]) }}">Remove</a>
                                             </td>
                                         </tr>
                                     @endforeach
@@ -57,7 +57,7 @@
                                 <span>
                                     <!-- Button trigger modal -->
                                     <a class="btn btn-outline-primary" data-toggle="modal"
-                                       data-target="#deleteModal{{ $groupId }}">Invite all user in list</a>
+                                       data-target="#deleteModal{{ $groupId }}">Add all video in list to group</a>
 
                                     <!-- Modal -->
                                     <div class="modal fade" id="deleteModal{{ $groupId }}" tabindex="-1" role="dialog"
@@ -65,18 +65,18 @@
                                             <div class="modal-dialog" role="document">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
-                                                        <h5 class="modal-title" id="exampleModalLabel">Invitation list of group {{ $groupId }}</h5>
+                                                        <h5 class="modal-title" id="exampleModalLabel">Addition video list of group {{ $groupId }}</h5>
                                                         <button type="button" class="close" data-dismiss="modal"
                                                                 aria-label="Close">
                                                             <span aria-hidden="true">&times;</span>
                                                         </button>
                                                     </div>
                                                     <div class="modal-body">
-                                                        Are you sure to send invitation email to all user in list?
+                                                        Are you sure to add all video in list to group?
                                                     </div>
                                                     <div class="modal-footer">
                                                         <a class="btn btn-primary" role="button"
-                                                           href="{{ route('group.member.invite', $groupId) }}">Send invitation email</a>
+                                                           href="{{ route('group.video.add-confirm', $groupId) }}">Add</a>
                                                         <a class="btn btn-secondary" data-dismiss="modal">Close</a>
                                                     </div>
                                                 </div>
@@ -84,12 +84,12 @@
                                         </div>
                                 </span>
                                 {{--                            <span class="float-right">--}}
-                                {{--                                {{ $users->appends(request()->query()) }}--}}
+                                {{--                                {{ $videos->appends(request()->query()) }}--}}
                                 {{--                            </span>--}}
                             </div>
                         @else
                             <div class="text-center">
-                                There are no user in this invitation list! Please add someone
+                                There are no video in this addition list! Please add some video
                             </div>
                         @endif
                     </div>
