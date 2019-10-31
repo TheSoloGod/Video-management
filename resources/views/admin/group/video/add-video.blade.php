@@ -89,7 +89,10 @@
                         </table>
                         <div>
                             <span>
-                                <a class="btn btn-outline-primary"
+                                <a class="btn btn-outline-primary" href="{{ route('group.video.all', $groupId) }}">Back</a>
+                            </span>
+                            <span>
+                                <a class="btn btn-outline-info"
                                    href="{{ route('group.video.show-addition', $groupId) }}">Show addition video list</a>
                             </span>
                             <span class="float-right">

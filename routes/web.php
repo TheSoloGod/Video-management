@@ -29,6 +29,7 @@ Route::group(['prefix' => 'admin'], function () {
     Route::resource('users', 'UserController')->except(['create', 'store']);
     Route::resource('videos', 'VideoController');
     Route::resource('groups', 'GroupController');
+    Route::resource('categories', 'CategoryController');
 });
 
 //route group member management

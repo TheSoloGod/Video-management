@@ -22,7 +22,8 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        //
+        $categories = $this->categoryService->paginate();
+        return view('admin.category.list', compact('categories'));
     }
 
     /**
@@ -32,7 +33,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.category.create');
     }
 
     /**
@@ -43,7 +44,9 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $newCategory = $this->categoryService->store($request);
+        $categoryId = $newCategory->id;
+        return redirect()->route('categories.show', compact('categoryId'));
     }
 
     /**
@@ -54,7 +57,8 @@ class CategoryController extends Controller
      */
     public function show($id)
     {
-        //
+        $category = $this->categoryService->getById($id);
+        return view('admin.category.detail', compact('category'));
     }
 
     /**
@@ -65,7 +69,8 @@ class CategoryController extends Controller
      */
     public function edit($id)
     {
-        //
+        $category = $this->categoryService->getById($id);
+        return view('admin.category.edit', compact('category'));
     }
 
     /**
@@ -77,7 +82,8 @@ class CategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->categoryService->update($request, $id);
+        return redirect()->route('categories.show', compact('id'));
     }
 
     /**
@@ -88,6 +94,7 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $this->categoryService->delete($id);
+        return redirect()->route('categories.index');
     }
 }

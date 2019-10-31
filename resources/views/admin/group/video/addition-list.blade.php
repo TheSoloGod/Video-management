@@ -88,8 +88,11 @@
                                 {{--                            </span>--}}
                             </div>
                         @else
-                            <div class="text-center">
+                            <div class="text-center mb-3">
                                 There are no video in this addition list! Please add some video
+                            </div>
+                            <div class="text-center">
+                                <a class="btn btn-outline-primary" href="{{ route('group.video.add', $groupId) }}">Back</a>
                             </div>
                         @endif
                     </div>

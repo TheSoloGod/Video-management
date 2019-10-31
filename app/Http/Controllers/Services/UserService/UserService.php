@@ -5,15 +5,19 @@ namespace App\Http\Controllers\Services\UserService;
 
 
 use App\Http\Controllers\Repositories\UserRepository\UserRepositoryInterface;
+use App\Services\StoreImageService;
 use Illuminate\Support\Facades\Session;
 
 class UserService implements UserServiceInterface
 {
     protected $userRepository;
+    protected $storeImageService;
 
-    public function __construct(UserRepositoryInterface $userRepository)
+    public function __construct(UserRepositoryInterface $userRepository,
+                                StoreImageService $storeImageService)
     {
         $this->userRepository = $userRepository;
+        $this->storeImageService = $storeImageService;
     }
 
     public function getAll()
@@ -38,17 +42,10 @@ class UserService implements UserServiceInterface
     public function update($request, $id)
     {
         $user = $this->userRepository->getById($id);
-        $data = $request->all();
-        if($request->hasFile('image')){
-            $image = $request->file('image');
-            $imageName = $image->getClientOriginalName();
-            $imageExtension = $image->getClientOriginalExtension();
-            $image->move('storage/avatar', $imageName);
-            $data['image'] = $imageName;
-        } else {
-            $data['image'] = $user->image;
-        }
-
+        $folder = 'avatar';
+        $imageDefault = $user->image;
+        $data = $this->storeImageService->buildData($request, $folder, $imageDefault);
+        
         $this->userRepository->update($data, $user);
         Session::flash('status', 'Update user information success');
     }

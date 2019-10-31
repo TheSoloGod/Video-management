@@ -93,10 +93,13 @@
                             @endforeach
                             </tbody>
                         </table>
-                        @if(!$invited)
-                            <div>
+                        <div>
+                            <span>
+                                <a class="btn btn-outline-primary" href="{{ route('groups.show', $groupId) }}">Back</a>
+                            </span>
+                            @if(!$invited)
                                 <span>
-                                    <a class="btn btn-outline-primary" href="{{ route('group.member.add', $groupId) }}">Add member</a>
+                                    <a class="btn btn-outline-info" href="{{ route('group.member.add', $groupId) }}">Add member</a>
                                 </span>
                                 <span>
                                     <a class="btn btn-outline-secondary"
@@ -105,14 +108,12 @@
                                 <span class="float-right">
                                     {{ $members->appends(request()->query()) }}
                                 </span>
-                            </div>
-                        @else
-                            <div>
+                            @else
                                 <span>
-                                    <a class="btn btn-outline-primary" href="{{ route('group.member.all', $groupId) }}">Show all members</a>
+                                    <a class="btn btn-outline-info" href="{{ route('group.member.all', $groupId) }}">Show all members</a>
                                 </span>
-                            </div>
-                        @endif
+                            @endif
+                        </div>
                     </div>
                 </div>
             </div>

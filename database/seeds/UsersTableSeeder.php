@@ -55,7 +55,7 @@ class UsersTableSeeder extends Seeder
 
         $user = new User();
         $user->name = 'user six';
-        $user->email = 'user6@gmail.com';
+        $user->email = 'testlaravel20@gmail.com';
         $user->password = Hash::make('user1234');
         $user->address = 'address 6';
         $user->phone = '0123456789';

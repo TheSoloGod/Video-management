@@ -7,6 +7,7 @@ namespace App\Http\Controllers\Services\VideoService;
 use App\Http\Controllers\Repositories\VideoRepository\VideoRepositoryInterface;
 use App\Jobs\SetPathVideo;
 use App\Jobs\UploadFile;
+use App\Services\StoreImageService;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
 
@@ -14,10 +15,13 @@ class VideoService implements VideoServiceInterface
 {
 
     protected $videoRepository;
+    protected $storeImageService;
 
-    public function __construct(VideoRepositoryInterface $videoRepository)
+    public function __construct(VideoRepositoryInterface $videoRepository,
+                                StoreImageService $storeImageService)
     {
         $this->videoRepository = $videoRepository;
+        $this->storeImageService = $storeImageService;
     }
 
     public function getAll()
@@ -33,25 +37,19 @@ class VideoService implements VideoServiceInterface
         return $videos;
     }
 
-    public function getById($id){
+    public function getById($id)
+    {
         $video = $this->videoRepository->getById($id);
         return $video;
     }
 
-    public function store($request){
-        $data = $request->all();
+    public function store($request)
+    {
+        $folder = 'preview';
+        $imageDefault = 'preview-default.jpg';
+        $data = $this->storeImageService->buildData($request, $folder, $imageDefault);
 
-        if($request->hasFile('image')){
-            $image = $request->file('image');
-            $imageName = $image->getClientOriginalName();
-            $imageExtension = $image->getClientOriginalExtension();
-            $image->move('storage/preview', $imageName);
-            $data['image'] = $imageName;
-        }else{
-            $data['image'] = 'preview-default.jpg';
-        }
-
-        if($request->hasFile('video')){
+        if ($request->hasFile('video')) {
             $video = $request->video;
             $videoFullName = $video->getClientOriginalName();
             $videoExtension = $video->getClientOriginalExtension();
@@ -59,10 +57,10 @@ class VideoService implements VideoServiceInterface
             $request->video->storeAs('/', $videoFullName, 'public');
             $data['name'] = $videoName;
 
-            if($this->checkExistVideo($videoName)){
+            if ($this->checkExistVideo($videoName)) {
                 Session::flash('error', 'Video exist!');
                 return false;
-            }else {
+            } else {
                 $data['status'] = $this->videoRepository->uploadStatus[0];
                 $newVideo = $this->videoRepository->create($data);
                 UploadFile::dispatch($newVideo->id, $videoFullName);
@@ -70,25 +68,18 @@ class VideoService implements VideoServiceInterface
                 Session::flash('status', 'Uploading video');
                 return $newVideo;
             }
-        }else{
+        } else {
             Session::flash('error', 'Choose video to upload');
             return false;
         }
     }
 
-    public function update($request, $id){
+    public function update($request, $id)
+    {
         $video = $this->videoRepository->getById($id);
-        $data = $request->all();
-
-        if($request->hasFile('image')){
-            $image = $request->file('image');
-            $imageName = $image->getClientOriginalName();
-            $imageExtension = $image->getClientOriginalExtension();
-            $image->move('storage/preview', $imageName);
-            $data['image'] = $imageName;
-        }else{
-            $data['image'] = $video->image;
-        }
+        $folder = 'preview';
+        $imageDefault = $video->image;
+        $data = $this->storeImageService->buildData($request, $folder, $imageDefault);
 
         $this->videoRepository->update($data, $video);
         Session::flash('status', 'Update video information success');
@@ -106,7 +97,7 @@ class VideoService implements VideoServiceInterface
         $recursive = false;
         $contents = collect(Storage::cloud()->listContents($dir, $recursive));
         $video = $contents->where('filename', '=', $name)->first();
-        if ($video){
+        if ($video) {
             return true;
         } else {
             return false;

@@ -77,9 +77,11 @@
                             </tbody>
                         </table>
                         <div>
-
                             <span>
-                                <a class="btn btn-outline-primary"
+                                <a class="btn btn-outline-primary" href="{{ route('group.member.all', $groupId) }}">Back</a>
+                            </span>
+                            <span>
+                                <a class="btn btn-outline-info"
                                    href="{{ route('group.member.show-invitation', $groupId) }}">Show invitaiton list</a>
 
                                 <!-- Button trigger modal -->

@@ -5,18 +5,22 @@ namespace App\Http\Controllers\Services\GroupService;
 
 use App\Http\Controllers\Repositories\GroupRepository\GroupRepositoryInterface;
 use App\Services\SessionService;
+use App\Services\StoreImageService;
 use Illuminate\Support\Facades\Session;
 
 class GroupService implements GroupServiceInterface
 {
     protected $groupRepository;
     protected $sessionService;
+    protected $storeImageService;
 
     public function __construct(GroupRepositoryInterface $groupRepository,
-                                SessionService $sessionService)
+                                SessionService $sessionService,
+                                StoreImageService $storeImageService)
     {
         $this->groupRepository = $groupRepository;
         $this->sessionService = $sessionService;
+        $this->storeImageService = $storeImageService;
     }
 
     public function getAll()
@@ -40,35 +44,21 @@ class GroupService implements GroupServiceInterface
 
     public function store($request)
     {
-        $data = $request->all();
-
-        if ($request->hasFile('image')) {
-            $image = $request->file('image');
-            $imageName = $image->getClientOriginalName();
-            $imageExtension = $image->getClientOriginalExtension();
-            $image->move('storage/group', $imageName);
-            $data['image'] = $imageName;
-        } else {
-            $data['image'] = 'group-default.jpg';
-        }
+        $folder = 'group';
+        $imageDefault = 'group-default.jpg';
+        $data = $this->storeImageService->buildData($request, $folder, $imageDefault);
 
         $group = $this->groupRepository->create($data);
+        Session::flash('status', 'Create new group success');
         return $group;
     }
 
     public function update($request, $id)
     {
         $group = $this->groupRepository->getById($id);
-        $data = $request->all();
-        if ($request->hasFile('image')) {
-            $image = $request->file('image');
-            $imageName = $image->getClientOriginalName();
-            $imageExtension = $image->getClientOriginalExtension();
-            $image->move('storage/group', $imageName);
-            $data['image'] = $imageName;
-        } else {
-            $data['image'] = $group->image;
-        }
+        $folder = 'group';
+        $imageDefault = $group->image;
+        $data = $this->storeImageService->buildData($request, $folder, $imageDefault);
 
         $this->groupRepository->update($data, $group);
         Session::flash('status', 'Update group information success');

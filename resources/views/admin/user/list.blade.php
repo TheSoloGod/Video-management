@@ -63,7 +63,7 @@
                                     <!-- button delete -->
                                     <td>
                                         <!-- Button trigger modal -->
-                                        <a type="button" class="btn btn-outline-danger" data-toggle="modal"
+                                        <a class="btn btn-outline-danger" data-toggle="modal"
                                            data-target="#deleteModal{{ $value->id }}">Delete</a>
                                     </td>
                                     <!-- Modal -->
@@ -87,7 +87,7 @@
                                                           action="{{ route('users.destroy', $value->id )}}">
                                                         @csrf
                                                         @method('DELETE')
-                                                        <button class="btn btn-light" role="button">Delete</button>
+                                                        <button class="btn btn-primary" role="button">Delete</button>
                                                     </form>
                                                     <a class="btn btn-secondary" data-dismiss="modal">Close</a>
                                                 </div>

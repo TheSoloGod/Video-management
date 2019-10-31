@@ -52,8 +52,8 @@ class GroupController extends Controller
     public function store(Request $request)
     {
         $newGroup = $this->groupService->store($request);
-        $id = $newGroup->id;
-        return redirect()->route('groups.show', compact('id'));
+        $groupId = $newGroup->id;
+        return redirect()->route('groups.show', compact('groupId'));
     }
 
     /**

@@ -46,8 +46,8 @@ class VideoController extends Controller
     {
         $video = $this->videoService->store($request);
         if($video){
-            $id = $video->id;
-            return redirect()->route('videos.show', compact('id'));
+            $videoId = $video->id;
+            return redirect()->route('videos.show', compact('videoId'));
         }else{
             return redirect()->back();
         }

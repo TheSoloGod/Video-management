@@ -27,7 +27,7 @@ class GroupVideoService implements GroupVideoServiceInterface
 
     public function getAllVideo($groupId)
     {
-        $number = 5;
+        $number = 4;
         $videos = $this->groupVideoRepository->getAllVideo($groupId, $number);
         return $videos;
     }
