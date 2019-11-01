@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Services\GroupService\GroupServiceInterface;
 use App\Http\Controllers\Services\GroupUserService\GroupUserServiceInterface;
+use App\Http\Controllers\Services\GroupVideoService\GroupVideoServiceInterface;
 use Illuminate\Http\Request;
 use App\Services\SessionService;
 
@@ -11,14 +12,17 @@ class GroupController extends Controller
 {
     protected $groupService;
     protected $groupUserService;
+    protected $groupVideoService;
     protected $sessionService;
 
     public function __construct(GroupServiceInterface $groupService,
                                 GroupUserServiceInterface $groupUserService,
+                                GroupVideoServiceInterface $groupVideoService,
                                 SessionService $sessionService)
     {
         $this->groupService = $groupService;
         $this->groupUserService = $groupUserService;
+        $this->groupVideoService = $groupVideoService;
         $this->sessionService = $sessionService;
     }
 
@@ -66,7 +70,9 @@ class GroupController extends Controller
     {
         $this->groupService->checkGroupSessionExist($id);
         $group = $this->groupService->getById($id);
-        return view('admin.group.detail', compact('group'));
+        $totalMembers = $this->groupUserService->countMember($id);
+        $totalVideos = $this->groupVideoService->countVideo($id);
+        return view('admin.group.detail', compact('group', 'totalMembers', 'totalVideos'));
     }
 
     /**

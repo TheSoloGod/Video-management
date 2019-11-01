@@ -25,10 +25,10 @@ class GroupVideoService implements GroupVideoServiceInterface
         $this->sessionService = $sessionService;
     }
 
-    public function getAllVideo($groupId)
+    public function getAllVideoPaginate($groupId)
     {
         $number = 4;
-        $videos = $this->groupVideoRepository->getAllVideo($groupId, $number);
+        $videos = $this->groupVideoRepository->getAllVideoPaginate($groupId, $number);
         return $videos;
     }
 
@@ -90,5 +90,18 @@ class GroupVideoService implements GroupVideoServiceInterface
         }
         $this->sessionService->forgetSession('additionVideoList');
         Session::flash('status', 'Add video to group success');
+    }
+
+    public function countVideo($groupId)
+    {
+        $videos = $this->groupVideoRepository->getAllVideo($groupId);
+        $totalVideos = count($videos);
+        return $totalVideos;
+    }
+
+    public function getAllGroup($videoId)
+    {
+        $groups = $this->groupVideoRepository->getAllGroup($videoId);
+        return $groups;
     }
 }

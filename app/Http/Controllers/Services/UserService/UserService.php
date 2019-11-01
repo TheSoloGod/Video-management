@@ -4,19 +4,27 @@
 namespace App\Http\Controllers\Services\UserService;
 
 
+use App\Http\Controllers\Repositories\GroupUserRepository\GroupUserRepositoryInterface;
 use App\Http\Controllers\Repositories\UserRepository\UserRepositoryInterface;
+use App\Http\Controllers\Services\GroupUserService\GroupUserServiceInterface;
 use App\Services\StoreImageService;
 use Illuminate\Support\Facades\Session;
 
 class UserService implements UserServiceInterface
 {
     protected $userRepository;
+    protected $groupUserService; //why inject this service not work???
+    protected $groupUserRepository;
     protected $storeImageService;
 
     public function __construct(UserRepositoryInterface $userRepository,
+//                                GroupUserServiceInterface $groupUserService,
+                                GroupUserRepositoryInterface $groupUserRepository,
                                 StoreImageService $storeImageService)
     {
         $this->userRepository = $userRepository;
+//        $this->groupUserService = $groupUserService;
+        $this->groupUserRepository = $groupUserRepository;
         $this->storeImageService = $storeImageService;
     }
 
@@ -26,9 +34,9 @@ class UserService implements UserServiceInterface
         return $users;
     }
 
-    public function getById($id)
+    public function getById($userId)
     {
-        $user = $this->userRepository->getById($id);
+        $user = $this->userRepository->getById($userId);
         return $user;
     }
 
@@ -39,20 +47,20 @@ class UserService implements UserServiceInterface
         return $users;
     }
 
-    public function update($request, $id)
+    public function update($request, $userId)
     {
-        $user = $this->userRepository->getById($id);
+        $user = $this->userRepository->getById($userId);
         $folder = 'avatar';
         $imageDefault = $user->image;
         $data = $this->storeImageService->buildData($request, $folder, $imageDefault);
-        
+
         $this->userRepository->update($data, $user);
         Session::flash('status', 'Update user information success');
     }
 
-    public function delete($id)
+    public function delete($userId)
     {
-        $user = $this->userRepository->getById($id);
+        $user = $this->userRepository->getById($userId);
         $this->userRepository->delete($user);
         Session::flash('status', 'Delete user success');
     }
@@ -61,5 +69,11 @@ class UserService implements UserServiceInterface
     {
         $users = $this->userRepository->getUserNotInGroup($groupId, $number);
         return $users;
+    }
+
+    public function getAllGroup($userId)
+    {
+        $groups = $this->groupUserRepository->getAllGroup($userId);
+        return $groups;
     }
 }

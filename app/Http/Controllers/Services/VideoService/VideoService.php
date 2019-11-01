@@ -4,7 +4,10 @@
 namespace App\Http\Controllers\Services\VideoService;
 
 
+use App\Http\Controllers\Repositories\GroupVideoRepository\GroupVideoRepositoryInterface;
 use App\Http\Controllers\Repositories\VideoRepository\VideoRepositoryInterface;
+use App\Http\Controllers\Services\CategoryVideoService\CategoryVideoServiceInterface;
+use App\Http\Controllers\Services\GroupVideoService\GroupVideoServiceInterface;
 use App\Jobs\SetPathVideo;
 use App\Jobs\UploadFile;
 use App\Services\StoreImageService;
@@ -13,14 +16,22 @@ use Illuminate\Support\Facades\Storage;
 
 class VideoService implements VideoServiceInterface
 {
-
     protected $videoRepository;
+    protected $categoryVideoService;
+    protected $groupVideoService; //loi do 2 service goi nhau
+    protected $groupVideoRepository;
     protected $storeImageService;
 
     public function __construct(VideoRepositoryInterface $videoRepository,
+                                CategoryVideoServiceInterface $categoryVideoService,
+//                                GroupVideoServiceInterface $groupVideoService,
+                                GroupVideoRepositoryInterface $groupVideoRepository,
                                 StoreImageService $storeImageService)
     {
         $this->videoRepository = $videoRepository;
+        $this->categoryVideoService = $categoryVideoService;
+//        $this->groupVideoService = $groupVideoService;
+        $this->groupVideoRepository = $groupVideoRepository;
         $this->storeImageService = $storeImageService;
     }
 
@@ -32,14 +43,14 @@ class VideoService implements VideoServiceInterface
 
     public function paginate()
     {
-        $number = 3;
+        $number = 5;
         $videos = $this->videoRepository->paginate($number);
         return $videos;
     }
 
-    public function getById($id)
+    public function getById($videoId)
     {
-        $video = $this->videoRepository->getById($id);
+        $video = $this->videoRepository->getById($videoId);
         return $video;
     }
 
@@ -74,9 +85,9 @@ class VideoService implements VideoServiceInterface
         }
     }
 
-    public function update($request, $id)
+    public function update($request, $videoId)
     {
-        $video = $this->videoRepository->getById($id);
+        $video = $this->videoRepository->getById($videoId);
         $folder = 'preview';
         $imageDefault = $video->image;
         $data = $this->storeImageService->buildData($request, $folder, $imageDefault);
@@ -85,9 +96,9 @@ class VideoService implements VideoServiceInterface
         Session::flash('status', 'Update video information success');
     }
 
-    public function softDelete($id)
+    public function softDelete($videoId)
     {
-        $this->videoRepository->softDelete($id);
+        $this->videoRepository->softDelete($videoId);
         Session::flash('status', 'Delete video success');
     }
 
@@ -104,19 +115,31 @@ class VideoService implements VideoServiceInterface
         }
     }
 
-    public function setUploadStatus($id, $statusIndex)
+    public function setUploadStatus($videoId, $statusIndex)
     {
-        $this->videoRepository->setUploadStatus($id, $statusIndex);
+        $this->videoRepository->setUploadStatus($videoId, $statusIndex);
     }
 
-    public function setVideoPath($id, $path)
+    public function setVideoPath($videoId, $path)
     {
-        $this->videoRepository->setVideoPath($id, $path);
+        $this->videoRepository->setVideoPath($videoId, $path);
     }
 
     public function getVideoNotInGroup($groupId, $number)
     {
         $video = $this->videoRepository->getVideoNotInGroup($groupId, $number);
         return $video;
+    }
+
+    public function getAllCategory($videoId)
+    {
+        $categories = $this->categoryVideoService->getAllCategory($videoId);
+        return $categories;
+    }
+
+    public function getAllGroup($videoId)
+    {
+        $groups = $this->groupVideoRepository->getAllGroup($videoId);
+        return $groups;
     }
 }

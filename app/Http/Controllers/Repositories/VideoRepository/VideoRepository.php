@@ -18,24 +18,24 @@ class VideoRepository extends EloquentRepository implements VideoRepositoryInter
 
     public $uploadStatus = ['not upload', 'uploading', 'upload success', 'upload fail'];
 
-    public function setUploadStatus($id, $statusIndex)
+    public function setUploadStatus($videoId, $statusIndex)
     {
-        $video = $this->getById($id);
+        $video = $this->getById($videoId);
         $video->status = $this->uploadStatus[$statusIndex];
         $video->save();
     }
 
-    public function setVideoPath($id, $path)
+    public function setVideoPath($videoId, $path)
     {
-        $video = $this->getById($id);
+        $video = $this->getById($videoId);
         $video->status = $this->uploadStatus[2];
         $video->path = $path;
         $video->save();
     }
 
-    public function softDelete($id)
+    public function softDelete($videoId)
     {
-        $video = $this->getById($id);
+        $video = $this->getById($videoId);
         $video->delete_at = Carbon::now();
         $video->save();
     }

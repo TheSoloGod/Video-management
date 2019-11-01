@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Services\CategoryService\CategoryServiceInterface;
+use App\Http\Controllers\Services\CategoryVideoService\CategoryVideoServiceInterface;
 use Illuminate\Http\Request;
 
 class CategoryController extends Controller
@@ -58,7 +59,8 @@ class CategoryController extends Controller
     public function show($id)
     {
         $category = $this->categoryService->getById($id);
-        return view('admin.category.detail', compact('category'));
+        $totalVideos = $this->categoryService->countAllVideo($id);
+        return view('admin.category.detail', compact('category', 'totalVideos'));
     }
 
     /**

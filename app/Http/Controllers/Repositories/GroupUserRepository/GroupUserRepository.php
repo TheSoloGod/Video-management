@@ -11,14 +11,20 @@ use Illuminate\Support\Facades\DB;
 
 class GroupUserRepository extends EloquentRepository implements GroupUserRepositoryInterface
 {
-    public $status = ['invited', 'join'];
-
     public function getModel()
     {
         return GroupUser::class;
     }
 
-    public function getAllMember($groupId, $number)
+    public function getAllMember($groupId)
+    {
+        $members = $this->model->where('group_id', $groupId)
+                               ->whereNotNull('verify_at')
+                               ->get();
+        return $members;
+    }
+
+    public function getAllMemberPaginate($groupId, $number)
     {
         $members = $this->model->where('group_id', $groupId)
                                ->whereNotNull('verify_at')
@@ -56,5 +62,13 @@ class GroupUserRepository extends EloquentRepository implements GroupUserReposit
                              ->whereNull('verify_at')
                              ->paginate($number);
         return $users;
+    }
+
+    public function getAllGroup($userId)
+    {
+        $groups = $this->model->where('user_id', $userId)
+                              ->whereNotNull('verify_at')
+                              ->get();
+        return $groups;
     }
 }

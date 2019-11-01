@@ -62,7 +62,9 @@ class VideoController extends Controller
     public function show($id)
     {
         $video = $this->videoService->getById($id);
-        return view('admin.video.detail', compact('video'));
+        $categories = $this->videoService->getAllCategory($id);
+        $groups = $this->videoService->getAllGroup($id);
+        return view('admin.video.detail', compact('video', 'categories', 'groups'));
     }
 
     /**
@@ -74,7 +76,9 @@ class VideoController extends Controller
     public function edit($id)
     {
         $video = $this->videoService->getById($id);
-        return view('admin.video.edit', compact('video'));
+        $categories = $this->videoService->getAllCategory($id);
+        $groups = $this->videoService->getAllGroup($id);
+        return view('admin.video.edit', compact('video', 'categories', 'groups'));
     }
 
     /**

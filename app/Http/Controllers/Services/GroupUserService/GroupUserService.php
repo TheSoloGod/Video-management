@@ -32,10 +32,10 @@ class GroupUserService implements GroupUserServiceInterface
         $this->sessionService = $sessionService;
     }
 
-    public function getAllMember($groupId)
+    public function getAllMemberPaginate($groupId)
     {
         $number = 5;
-        $members = $this->groupUserRepository->getAllMember($groupId, $number);
+        $members = $this->groupUserRepository->getAllMemberPaginate($groupId, $number);
         return $members;
     }
 
@@ -119,5 +119,18 @@ class GroupUserService implements GroupUserServiceInterface
         $number = 5;
         $users = $this->groupUserRepository->getInvitedUser($groupId, $number);
         return $users;
+    }
+
+    public function countMember($groupId)
+    {
+        $members = $this->groupUserRepository->getAllMember($groupId);
+        $totalMembers = count($members);
+        return $totalMembers;
+    }
+
+    public function getAllGroup($userId)
+    {
+        $groups = $this->groupUserRepository->getAllGroup($userId);
+        return $groups;
     }
 }

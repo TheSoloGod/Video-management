@@ -26,9 +26,6 @@
                                 {{ session('status') }}
                             </div>
                         @endif
-                        {{--                        <video width="320" height="240" controls>--}}
-                        {{--                            <source src="https://docs.google.com/uc?id=1kacnjiNqBrIWp7HKVCWai2nOLGA6uBBE" type="video/mp4">--}}
-                        {{--                        </video>--}}
                     </div>
                     <div class="card-body">
                         <table class="table table-striped">
@@ -49,8 +46,10 @@
                                 <tr class="text-center">
                                     <th scope="row">{{ ++$key }}</th>
                                     <td>
-                                        <img src="{{ asset("storage/preview/" . $value->image ) }}"
-                                             class="border rounded" style="width: 50px; height: 30px">
+                                        <a href="{{ route('videos.show', $value->id) }}">
+                                            <img src="{{ asset("storage/preview/" . $value->image ) }}"
+                                                 class="border rounded" style="width: 50px; height: 30px">
+                                        </a>
                                     </td>
                                     <td>
                                         <a href="{{ route('videos.show', $value->id) }}">{{ $value->title }}</a>

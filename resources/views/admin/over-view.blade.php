@@ -18,41 +18,45 @@
 
             <!-- content -->
             <div class="col-md-10">
-                <div class="card card-body">
+                <div class="card card-body mt-3">
                     <div class="row">
                         <div class="col-md-6">
                             <div class="card mb-4">
                                 <div class="card-header">
-                                    <p>Users</p>
+                                    Users
                                 </div>
-                                <div class="card-body">
+                                <div class="card-body text-center">
                                     <p>Total users: </p>
+                                    <h1>{{ $totalArray[0] }}</h1>
                                 </div>
                             </div>
                             <div class="card mb-4">
                                 <div class="card-header">
-                                    <p>Videos</p>
+                                    Videos
                                 </div>
-                                <div class="card-body">
+                                <div class="card-body text-center">
                                     <p>Total videos:</p>
+                                    <h1>{{ $totalArray[2] }}</h1>
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="card mb-4">
                                 <div class="card-header">
-                                    <p>Groups</p>
+                                    Groups
                                 </div>
-                                <div class="card-body">
+                                <div class="card-body text-center">
                                     <p>Total groups:</p>
+                                    <h1>{{ $totalArray[1] }}</h1>
                                 </div>
                             </div>
                             <div class="card mb-4">
                                 <div class="card-header">
-                                    <p>Categories</p>
+                                    Categories
                                 </div>
-                                <div class="card-body">
+                                <div class="card-body text-center">
                                     <p>Total categories:</p>
+                                    <h1>{{ $totalArray[3] }}</h1>
                                 </div>
                             </div>
                         </div>

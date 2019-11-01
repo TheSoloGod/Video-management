@@ -28,23 +28,42 @@
                     </div>
                     <div class="card-body">
                         <div class="row">
-                            <div class="col-md-6">
+                            <div class="col-md-6 text-center">
                                 <div>
-                                    <div class="text-center">
-                                        <div class="mb-3">
-                                            <img src="{{ asset('storage/preview/' . $video->image) }}"
-                                                 class="border rounded" style="width: 250px; height: 150px">
-                                        </div>
-                                        <div class="mb-3">
-                                            <span class="border border-primary">
-                                                views
-                                            </span>
-                                            <span class="border border-primary">
-                                                favorites
-                                            </span>
+                                    <div class="">
+                                        <div class="row">
+                                            <div class="col-md-3">
+                                                <div class="mb-3">
+                                                    <img src="{{ asset('storage/preview/' . $video->image) }}"
+                                                         class="border rounded w-100" style="height: auto">
+                                                </div>
+                                                <div>
+                                                    <div class="border rounded mb-3">
+                                                        <div class="">
+                                                            Views
+                                                        </div>
+                                                        <div>
+                                                            {{ $video->views }}
+                                                        </div>
+                                                    </div>
+                                                    <div class="border rounded mb-3">
+                                                        <div class="">
+                                                            Favorites
+                                                        </div>
+                                                        <div>
+                                                            ...
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-9">
+                                                <video width="100%" height="auto" controls>
+                                                    <source src="{{ 'https://docs.google.com/uc?id=' . $video->path}}" type="video/mp4">
+                                                </video>
+                                            </div>
                                         </div>
                                         <div>
-                                            <textarea class="form-control mb-3">comments</textarea>
+                                            <textarea class="form-control mb-3" style="height: 100px" placeholder="View comments here"></textarea>
                                         </div>
 
                                         @if(!$video->delete_at)
@@ -118,19 +137,41 @@
                                             </td>
                                         </tr>
                                         <tr>
+                                            <td>Display:</td>
+                                            <td>
+                                                @if($video->is_display)
+                                                    Show
+                                                @else
+                                                    Hide
+                                                @endif
+                                            </td>
+                                        </tr>
+                                        <tr>
                                             <td>Status:</td>
                                             <td>{{ $video->status }}</td>
                                         </tr>
                                         <tr>
-                                            <td colspan="2">
-                                                <div>Categories:</div>
-                                                <div></div>
+                                            <td>Categories:</td>
+                                            <td>
+                                                @foreach($categories as $key => $value)
+                                                    <span>
+                                                        <a class="badge badge-info" href="{{ route('categories.show', $value->category->id) }}">
+                                                            {{ $value->category->name }}
+                                                        </a>
+                                                    </span>
+                                                @endforeach
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td colspan="2">
-                                                <div>Groups:</div>
-                                                <div></div>
+                                            <td>Groups:</td>
+                                            <td>
+                                                @foreach($groups as $key => $value)
+                                                    <span>
+                                                        <a class="badge badge-info" href="{{ route('groups.show', $value->group->id) }}">
+                                                            {{ $value->group->name }}
+                                                        </a>
+                                                    </span>
+                                                @endforeach
                                             </td>
                                         </tr>
                                         <tr>

@@ -23,30 +23,17 @@ class AdminController extends Controller
 
     public function postLogin(Request $request)
     {
-        $arr = [
-            'email' => $request->email,
-            'password' => $request->password,
-        ];
-        if ($request->remember == trans('remember.Remember Me')) {
-            $remember = true;
-        } else {
-            $remember = false;
-        }
-        //kiểm tra trường remember có được chọn hay không
-
-        if (Auth::guard('admin')->attempt($arr)) {
-
+        $loginResult = $this->adminService->postLogin($request);
+        if ($loginResult) {
             return redirect()->route('admin.over-view');
-
         } else {
-
             dd('tài khoản và mật khẩu chưa chính xác');
-
         }
     }
 
     public function overView()
     {
-        return view('admin.over-view');
+        $totalArray = $this->adminService->getQuantityInfomation();
+        return view('admin.over-view', compact('totalArray'));
     }
 }

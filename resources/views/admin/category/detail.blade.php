@@ -37,13 +37,13 @@
                                             <td>{{ $category->name }}</td>
                                         </tr>
                                     </table>
-                                    <div class="text-center">
+                                    <div class="text-center mt-3">
                                         Number videos have this category
                                     </div>
                                     <div class="text-center">
-                                        50
+                                        <h1><strong>{{ $totalVideos }}</strong></h1>
                                     </div>
-                                    <div class="text-center" style="margin-top: 100px">
+                                    <div class="text-center mt-5" style="">
                                         <span class="">
                                             <a class="btn btn-outline-primary"
                                                href="{{ route('categories.edit', $category->id) }}">Edit</a>
@@ -88,7 +88,7 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="text-center">
-                                    <img class="border rounded-circle w-75" style="height: 315px"
+                                    <img class="border rounded-circle w-50 h-auto mt-5"
                                          src="{{ asset('storage/category/' . $category->image) }}">
                                 </div>
                             </div>

@@ -52,17 +52,36 @@
                                                 </tr>
                                                 <tr>
                                                     <td>Categories:</td>
-                                                    <td colspan="2">Chua biet cach sua</td>
+                                                    <td>
+                                                        <span>
+                                                            <a class="btn btn-outline-secondary btn-sm">Change</a>
+                                                        </span>
+                                                        @foreach($categories as $key => $value)
+                                                            <span>
+                                                                <a class="badge badge-info" href="{{ route('categories.show', $value->category->id) }}">
+                                                                    {{ $value->category->name }}
+                                                                </a>
+                                                            </span>
+                                                        @endforeach
+                                                    </td>
                                                 </tr>
                                                 <tr>
                                                     <td>Groups:</td>
-                                                    <td colspan="2">Chua biet cach sua</td>
+                                                    <td>
+                                                        @foreach($groups as $key => $value)
+                                                        <span>
+                                                            <a class="badge badge-info" href="{{ route('groups.show', $value->group->id) }}">
+                                                                {{ $value->group->name }}
+                                                            </a>
+                                                        </span>
+                                                        @endforeach
+                                                    </td>
                                                 </tr>
                                                 <tr>
+                                                    <td>Display:</td>
                                                     <td>
-                                                        <span>Display:</span>
                                                         <span>
-                                                            <select class="form-control" name="is_display">
+                                                            <select class="custom-select" name="is_display">
                                                                 <option value="{{ $video->is_display }}" selected
                                                                         disabled hidden>
                                                                     @if($video->is_display)
@@ -76,10 +95,12 @@
                                                             </select>
                                                         </span>
                                                     </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Type:</td>
                                                     <td>
-                                                        <span>Type:</span>
                                                         <span>
-                                                            <select class="form-control" name="type">
+                                                            <select class="custom-select" name="type">
                                                                 <option value="{{ $video->type }}" selected disabled
                                                                         hidden>
                                                                     @if($video->type)
@@ -93,9 +114,11 @@
                                                             </select>
                                                         </span>
                                                     </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Status:</td>
                                                     <td>
-                                                        <span>Status:</span>
-                                                        <span>{{ $video->status }}</span>
+                                                        {{ $video->status }}
                                                     </td>
                                                 </tr>
                                             </div>
@@ -103,9 +126,9 @@
                                     </div>
                                 </div>
                                 <div class="col-md-6">
-                                    <div class="text-center">
+                                    <div class="">
                                         <img src="{{ asset('storage/preview/' . $video->image) }}"
-                                             style="width: 250px; height: 150px">
+                                             class="w-100 border rounded" style="height: 250px">
                                         <div class="input-group mb-3 mt-3">
                                             <div class="input-group-prepend">
                                                 <span class="input-group-text">Upload</span>
@@ -113,12 +136,13 @@
                                             <div class="custom-file">
                                                 <input type="file" name="image" class="custom-file-input"
                                                        id="inputGroupFile01">
-                                                <label class="custom-file-label" for="inputGroupFile01">Choose
-                                                    file</label>
+                                                <label class="custom-file-label" for="inputGroupFile01">
+                                                    Choose thumbnail
+                                                </label>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="text-center">
+                                    <div class="text-center" style="margin-top: 100px">
                                         <button class="btn btn-outline-primary" type="submit">Update</button>
                                     </div>
                                 </div>

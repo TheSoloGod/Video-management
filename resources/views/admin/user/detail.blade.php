@@ -63,8 +63,17 @@
                                             <img src="{{ asset('storage/avatar/' . $user->image) }}"
                                                  class="border rounded-circle" style="width: 150px; height: 150px">
                                         </div>
-                                        <div>
-                                            <h5>Groups:</h5>
+                                        <div class="card card-body mb-3">
+                                            <div>Groups:</div>
+                                            <div>
+                                                @foreach($groups as $key => $value)
+                                                    <span>
+                                                        <a class="badge badge-info" href="{{ route('groups.show', $value->group->id) }}">
+                                                        {{ $value->group->name }}
+                                                        </a>
+                                                    </span>
+                                                @endforeach
+                                            </div>
                                         </div>
                                         <div>
                                             <!-- function edit $ delete -->

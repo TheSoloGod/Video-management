@@ -34,7 +34,10 @@
                                         Members:
                                     </div>
                                     <div>
-                                        <a class="btn btn-outline-secondary"
+                                        <h1><strong>{{ $totalMembers }}</strong></h1>
+                                    </div>
+                                    <div>
+                                        <a class="btn btn-outline-info"
                                            href="{{ route('group.member.all', $group->id) }}">Member management</a>
                                     </div>
                                 </div>
@@ -43,7 +46,10 @@
                                         Videos:
                                     </div>
                                     <div>
-                                        <a class="btn btn-outline-secondary" href="{{ route('group.video.all', $group->id) }}">Videos management</a>
+                                        <h1><strong>{{ $totalVideos }}</strong></h1>
+                                    </div>
+                                    <div>
+                                        <a class="btn btn-outline-info" href="{{ route('group.video.all', $group->id) }}">Videos management</a>
                                     </div>
                                 </div>
                             </div>

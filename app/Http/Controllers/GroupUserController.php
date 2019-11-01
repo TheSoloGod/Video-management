@@ -17,7 +17,7 @@ class GroupUserController extends Controller
     public function showAllMember($groupId)
     {
         $invited = false;
-        $members = $this->groupUserService->getAllMember($groupId);
+        $members = $this->groupUserService->getAllMemberPaginate($groupId);
         return view('admin.group..member.member-management', compact('members', 'groupId', 'invited'));
     }
 

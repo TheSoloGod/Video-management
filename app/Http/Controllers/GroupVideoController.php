@@ -16,7 +16,7 @@ class GroupVideoController extends Controller
 
     public function showAllVideo($groupId)
     {
-        $videos = $this->groupVideoService->getAllVideo($groupId);
+        $videos = $this->groupVideoService->getAllVideoPaginate($groupId);
         return view('admin.group.video.video-management', compact('videos', 'groupId'));
     }
 

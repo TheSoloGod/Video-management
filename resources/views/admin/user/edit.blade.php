@@ -42,7 +42,7 @@
                                                         <td>Email:</td>
                                                         <td>
                                                             <input class="form-control" value="{{ $user->email }}"
-                                                                   disabled>
+                                                                   readonly>
                                                         </td>
                                                     </tr>
                                                     <tr>
@@ -89,7 +89,17 @@
                                             </div>
                                             <div class="card">
                                                 <div class="card-header">Groups:</div>
-                                                <div class="card-body"></div>
+                                                <div class="card-body">
+                                                    <div>
+                                                        @foreach($groups as $key => $value)
+                                                            <span>
+                                                        <a class="badge badge-info" href="{{ route('groups.show', $value->group->id) }}">
+                                                        {{ $value->group->name }}
+                                                        </a>
+                                                    </span>
+                                                        @endforeach
+                                                    </div>
+                                                </div>
                                             </div>
                                             <div class="mt-3">
                                                 <a class="btn btn-outline-warning">Set Admin</a>
