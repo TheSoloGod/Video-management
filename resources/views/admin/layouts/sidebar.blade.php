@@ -21,8 +21,8 @@
             <div>
                 <a class="btn btn-light w-100 mb-2" href="{{ route('categories.index') }}">Categories</a>
             </div>
-            <div class="btn btn-light w-100 mb-2">
-                Analytics
+            <div>
+                <a class="btn btn-light w-100 mb-2" href="{{ route('analytics.index') }}">Analytics</a>
             </div>
         </div>
     </div>

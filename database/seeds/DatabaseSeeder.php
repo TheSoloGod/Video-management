@@ -21,5 +21,6 @@ class DatabaseSeeder extends Seeder
         $this->call(GroupUserTableSeeder::class);
         $this->call(GroupVideoTableSeeder::class);
         $this->call(UserVideoTableSeeder::class);
+        $this->call(DateVideoTableSeeder::class);
     }
 }

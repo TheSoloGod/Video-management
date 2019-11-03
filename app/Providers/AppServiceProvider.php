@@ -8,6 +8,8 @@ use App\Http\Controllers\Repositories\CategoryRepository\CategoryRepository;
 use App\Http\Controllers\Repositories\CategoryRepository\CategoryRepositoryInterface;
 use App\Http\Controllers\Repositories\CategoryVideoRepository\CategoryVideoRepository;
 use App\Http\Controllers\Repositories\CategoryVideoRepository\CategoryVideoRepositoryInterface;
+use App\Http\Controllers\Repositories\DateVideoRepository\DateVideoRepository;
+use App\Http\Controllers\Repositories\DateVideoRepository\DateVideoRepositoryInterface;
 use App\Http\Controllers\Repositories\GroupRepository\GroupRepository;
 use App\Http\Controllers\Repositories\GroupRepository\GroupRepositoryInterface;
 use App\Http\Controllers\Repositories\GroupUserRepository\GroupUserRepository;
@@ -26,6 +28,8 @@ use App\Http\Controllers\Services\CategoryService\CategoryService;
 use App\Http\Controllers\Services\CategoryService\CategoryServiceInterface;
 use App\Http\Controllers\Services\CategoryVideoService\CategoryVideoService;
 use App\Http\Controllers\Services\CategoryVideoService\CategoryVideoServiceInterface;
+use App\Http\Controllers\Services\DateVideoService\DateVideoService;
+use App\Http\Controllers\Services\DateVideoService\DateVideoServiceInterface;
 use App\Http\Controllers\Services\GroupService\GroupService;
 use App\Http\Controllers\Services\GroupService\GroupServiceInterface;
 use App\Http\Controllers\Services\GroupUserService\GroupUserService;
@@ -137,6 +141,16 @@ class AppServiceProvider extends ServiceProvider
         $this->app->singleton(
             CategoryVideoServiceInterface::class,
             CategoryVideoService::class
+        );
+
+        $this->app->singleton(
+            DateVideoRepositoryInterface::class,
+            DateVideoRepository::class
+        );
+
+        $this->app->singleton(
+            DateVideoServiceInterface::class,
+            DateVideoService::class
         );
     }
 

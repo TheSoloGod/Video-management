@@ -30,6 +30,7 @@ Route::group(['prefix' => 'admin'], function () {
     Route::resource('videos', 'VideoController');
     Route::resource('groups', 'GroupController');
     Route::resource('categories', 'CategoryController');
+    Route::resource('analytics', 'DateVideoController')->except(['edit', 'update', 'destroy']);
 });
 
 //route group member management
@@ -58,6 +59,11 @@ Route::group(['prefix' => 'admin/group/{group_id}'], function () {
     Route::get('/add-confirm', 'GroupVideoController@addVideoConfirm')->name('group.video.add-confirm');
 });
 
+//route analytics
+Route::group(['prefix' => 'admin/analytics'], function (){
+   Route::post('/search/date', 'DateVideoController@searchByDate')->name('analytics.search.date');
+   Route::get('/search/date/{date?}', 'DateVideoController@resultSearchByDate')->name('analytics.search.date.result');
+});
 
 
 

@@ -54,4 +54,9 @@ class Video extends Model
     {
         return $this->hasMany(UserVideo::class);
     }
+
+    public function dateVideo()
+    {
+        return $this->hasMany(DateVideo::class);
+    }
 }
