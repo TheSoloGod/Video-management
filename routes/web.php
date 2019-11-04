@@ -17,7 +17,7 @@ Auth::routes(['verify' => true]);
 // route public
 Route::get('/', 'PublicController@index')->name('home.public.index');
 Route::group(['prefix' => 'public'], function (){
-//   Route::get('');
+   Route::get('/video/{video_id}', 'PublicController@showVideo')->name('home.public.show');
 });
 
 

@@ -19,4 +19,11 @@ class PublicController extends Controller
         $videos = $this->videoService->getPaginateAllVideoPublic();
         return view('welcome', compact('videos'));
     }
+
+    public function showVideo($videoId)
+    {
+        $video = $this->videoService->getById($videoId);
+        $recommendedVideos = $this->videoService->getRecommendedPublicVideos();
+        return view('public.show-video', compact('video', 'recommendedVideos'));
+    }
 }

@@ -55,7 +55,17 @@ class VideoRepository extends EloquentRepository implements VideoRepositoryInter
         $videos = $this->model->where('type', 0)
                               ->where('is_display', '1')
                               ->where('status', $this->uploadStatus[2])
+                              ->orderBy('created_at', 'desc')
                               ->paginate($number);
         return $videos;
+    }
+
+    public function getRecommendedPublicVideos()
+    {
+        $recommendPublicVideos = $this->model->where('type', 0)
+                                             ->where('is_display', '1')
+                                             ->where('status', $this->uploadStatus[2])
+                                             ->get();
+        return $recommendPublicVideos;
     }
 }

@@ -20,7 +20,7 @@ class VideosTableSeeder extends Seeder
         $video->views = '10';
         $video->is_display = '1';
         $video->name = 'video1';
-        $video->path = '1nQae7HTgBtSoQgzTF3ljXa8c_SwF_rZ_';
+        $video->path = '1on5uJG4_tTbP_K3fYf6KjfAL72oyF6Oi';
         $video->save();
 
         $video = new Video();
@@ -31,7 +31,7 @@ class VideosTableSeeder extends Seeder
         $video->views = '20';
         $video->is_display = '1';
         $video->name = 'video2';
-        $video->path = '1nQae7HTgBtSoQgzTF3ljXa8c_SwF_rZ_';
+        $video->path = '1on5uJG4_tTbP_K3fYf6KjfAL72oyF6Oi';
         $video->save();
 
         $video = new Video();
@@ -42,7 +42,7 @@ class VideosTableSeeder extends Seeder
         $video->views = '30';
         $video->is_display = '1';
         $video->name = 'video3';
-        $video->path = '1nQae7HTgBtSoQgzTF3ljXa8c_SwF_rZ_';
+        $video->path = '1on5uJG4_tTbP_K3fYf6KjfAL72oyF6Oi';
         $video->save();
 
         $video = new Video();
@@ -53,7 +53,7 @@ class VideosTableSeeder extends Seeder
         $video->views = '10';
         $video->is_display = '1';
         $video->name = 'video4';
-        $video->path = '1nQae7HTgBtSoQgzTF3ljXa8c_SwF_rZ_';
+        $video->path = '1on5uJG4_tTbP_K3fYf6KjfAL72oyF6Oi';
         $video->save();
 
         $video = new Video();
@@ -64,7 +64,7 @@ class VideosTableSeeder extends Seeder
         $video->views = '15';
         $video->is_display = '1';
         $video->name = 'video5';
-        $video->path = '1nQae7HTgBtSoQgzTF3ljXa8c_SwF_rZ_';
+        $video->path = '1on5uJG4_tTbP_K3fYf6KjfAL72oyF6Oi';
         $video->save();
 
         $video = new Video();
@@ -75,7 +75,7 @@ class VideosTableSeeder extends Seeder
         $video->views = '150';
         $video->is_display = '1';
         $video->name = 'video6';
-        $video->path = '1nQae7HTgBtSoQgzTF3ljXa8c_SwF_rZ_';
+        $video->path = '1on5uJG4_tTbP_K3fYf6KjfAL72oyF6Oi';
         $video->save();
     }
 }

@@ -29,7 +29,7 @@
                             <div class="col-md-3">
                                 <div class="card">
                                     <div class="card-body text-center p-0">
-                                        <a href="">
+                                        <a href="{{ route('home.public.show', $value->id) }}">
                                             <img class="w-100" style="height: 110px" src="{{ asset('storage/preview/' . $value->image ) }}">
                                         </a>
                                     </div>
@@ -131,19 +131,3 @@
         @include('layouts.footer')
     </div>
 @endsection
-
-{{--<div class="flex-center position-ref full-height">--}}
-{{--    @if (Route::has('login'))--}}
-{{--        <div class="top-right links">--}}
-{{--            @auth--}}
-{{--                <a href="{{ url('/home') }}">Home</a>--}}
-{{--            @else--}}
-{{--                <a href="{{ route('login') }}">Login</a>--}}
-
-{{--                @if (Route::has('register'))--}}
-{{--                    <a href="{{ route('register') }}">Register</a>--}}
-{{--                @endif--}}
-{{--            @endauth--}}
-{{--        </div>--}}
-{{--    @endif--}}
-{{--</div>--}}
