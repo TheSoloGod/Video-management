@@ -142,13 +142,28 @@ class VideoService implements VideoServiceInterface
     public function getPaginateAllVideoPublic()
     {
         $number = 4;
-        $videos = $this->videoRepository->getPaginateAllVideoPublic($number);
-        return $videos;
+        $publicVideos = $this->videoRepository->getPaginateAllVideoPublic($number);
+        return $publicVideos;
+    }
+
+    public function getPaginateAllVideoMember()
+    {
+        $number = 4;
+        $memberVideos = $this->videoRepository->getPaginateAllVideoMember($number);
+        return $memberVideos;
     }
 
     public function getRecommendedPublicVideos()
     {
-        $recommendPublicVideos = $this->videoRepository->getRecommendedPublicVideos();
+        $number = 5;
+        $recommendPublicVideos = $this->videoRepository->getRecommendedPublicVideos($number);
         return $recommendPublicVideos;
+    }
+
+    public function getPaginateVideoDisplayShow()
+    {
+        $number = 4;
+        $allVideos = $this->videoRepository->getPaginateVideoDisplayShow($number);
+        return $allVideos;
     }
 }

@@ -14,24 +14,31 @@
 //verify email
 Auth::routes(['verify' => true]);
 
-// route public
-Route::get('/', 'PublicController@index')->name('home.public.index');
-Route::group(['prefix' => 'public'], function (){
-   Route::get('/video/{video_id}', 'PublicController@showVideo')->name('home.public.show');
+// index
+Route::get('/', function () {
+    return redirect()->route('home.public.index');
 });
 
+// route public
+Route::group(['prefix' => 'public'], function () {
+    Route::get('/', 'PublicController@index')->name('home.public.index')->middleware('check.user.login');
+    Route::get('/video/{video_id}', 'PublicController@showVideo')->name('home.public.show');
+});
 
+// route member
+Route::group(['prefix' => 'member'], function () {
+    Route::get('/', 'MemberController@index')->name('home.member.index')->middleware('verified');
+});
 
-
-
-//route member
-Route::get('/home', 'HomeController@index')->name('home');
-
-
-//route admin
+//route admin login logout
 Route::group(['prefix' => 'admin'], function () {
-    Route::get('/login', 'AdminController@getLogin');
+    Route::get('/login', 'AdminController@getLogin')->name('admin');
     Route::post('/login', 'AdminController@postLogin')->name('admin.login');
+    Route::get('/logout', 'AdminController@getLogout')->name('admin.logout');
+});
+
+//route admin with middleware
+Route::group(['prefix' => 'admin', 'middleware' => 'check.admin.login'], function (){
     Route::get('overview', 'AdminController@overView')->name('admin.over-view');
     Route::resource('users', 'UserController')->except(['create', 'store']);
     Route::resource('videos', 'VideoController');
@@ -41,7 +48,7 @@ Route::group(['prefix' => 'admin'], function () {
 });
 
 //route group member management
-Route::group(['prefix' => 'admin/group/{group_id}'], function () {
+Route::group(['prefix' => 'admin/group/{group_id}', 'middleware' => 'check.admin.login'], function () {
     Route::get('/members', 'GroupUserController@showAllMember')->name('group.member.all');
     Route::get('/member/invited', 'GroupUserController@showInvitedUser')->name('group.member.invited');
     Route::get('/member/{user_id}', 'GroupUserController@removeMember')->name('group.member.remove');
@@ -56,7 +63,7 @@ Route::group(['prefix' => 'admin/group/{group_id}'], function () {
 Route::get('/group/invite/verify/{group_id?}/{user_id?}/{token?}', 'GroupUserController@verifyInvitationEmail')->name('group.member.verify');
 
 //route group video management
-Route::group(['prefix' => 'admin/group/{group_id}'], function () {
+Route::group(['prefix' => 'admin/group/{group_id}', 'middleware' => 'check.admin.login'], function () {
     Route::get('/videos', 'GroupVideoController@showAllVideo')->name('group.video.all');
     Route::get('/video/{video_id}', 'GroupVideoController@removeVideo')->name('group.video.remove');
     Route::get('/add-video', 'GroupVideoController@addVideo')->name('group.video.add');
@@ -67,17 +74,10 @@ Route::group(['prefix' => 'admin/group/{group_id}'], function () {
 });
 
 //route analytics
-Route::group(['prefix' => 'admin/analytics'], function (){
-   Route::post('/search/date', 'DateVideoController@searchByDate')->name('analytics.search.date');
-   Route::get('/search/date/{date?}', 'DateVideoController@resultSearchByDate')->name('analytics.search.date.result');
+Route::group(['prefix' => 'admin/analytics', 'middleware' => 'check.admin.login'], function () {
+    Route::post('/search/date', 'DateVideoController@searchByDate')->name('analytics.search.date');
+    Route::get('/search/date/{date?}', 'DateVideoController@resultSearchByDate')->name('analytics.search.date.result');
 });
-
-
-
-
-
-
-
 
 //route test
 Route::get('test', function () {

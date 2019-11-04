@@ -25,7 +25,7 @@
                 <a class="btn btn-light w-100 mb-2" href="{{ route('analytics.index') }}">Analytics</a>
             </div>
             <div>
-                <a class="btn btn-light w-100 mb-2" href="">Log out</a>
+                <a class="btn btn-light w-100 mb-2" href="{{ route('admin.logout') }}">Log out</a>
             </div>
         </div>
     </div>

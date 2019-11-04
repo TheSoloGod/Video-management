@@ -64,7 +64,7 @@
                 <div class="row mb-3">
                     <div class="col-6">
                         <div class="card card-body p-0 w-100 ">
-                            <a href="">
+                            <a href="{{ route('home.public.show', $video->id) }}">
                                 <img class="w-100" style="height: 110px" src="{{ asset('storage/preview/' . $video->image ) }}">
                             </a>
                         </div>
@@ -89,7 +89,7 @@
                     <div class="row mb-3">
                         <div class="col-6">
                             <div class="card card-body p-0 w-100 ">
-                                <a href="">
+                                <a href="{{ route('home.public.show', $value->id) }}">
                                     <img class="w-100" style="height: 110px" src="{{ asset('storage/preview/' . $value->image ) }}">
                                 </a>
                             </div>

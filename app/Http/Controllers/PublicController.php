@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Services\VideoService\VideoServiceInterface;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class PublicController extends Controller
 {
@@ -16,8 +17,8 @@ class PublicController extends Controller
 
     public function index()
     {
-        $videos = $this->videoService->getPaginateAllVideoPublic();
-        return view('welcome', compact('videos'));
+        $publicVideos = $this->videoService->getPaginateAllVideoPublic();
+        return view('welcome', compact('publicVideos'));
     }
 
     public function showVideo($videoId)

@@ -36,4 +36,10 @@ class AdminController extends Controller
         $totalArray = $this->adminService->getQuantityInfomation();
         return view('admin.over-view', compact('totalArray'));
     }
+
+    public function getLogout()
+    {
+        $this->adminService->getLogout();
+        return redirect()->route('admin');
+    }
 }

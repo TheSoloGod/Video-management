@@ -54,6 +54,11 @@ class AdminService implements AdminServiceInterface
         }
     }
 
+    public function getLogout()
+    {
+        Auth::guard('admin')->logout();
+    }
+
     public function getQuantityInfomation()
     {
         $totalArray = [];

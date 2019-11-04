@@ -22,10 +22,10 @@
                 <!-- recommended -->
                 <div class="card card-body mt-3">
                     <div class="mb-3">
-                        <strong>Recommended</strong>
+                        <strong>Recommended (public)</strong>
                     </div>
                     <div class="row">
-                        @foreach($videos as $key => $value)
+                        @foreach($publicVideos as $key => $value)
                             <div class="col-md-3">
                                 <div class="card">
                                     <div class="card-body text-center p-0">
@@ -45,7 +45,7 @@
                             </div>
                         @endforeach
 
-                            @foreach($videos as $key => $value)
+                            @foreach($publicVideos as $key => $value)
                                 <div class="col-md-3">
                                     <div class="card">
                                         <div class="card-body text-center p-0">
@@ -67,18 +67,18 @@
                     </div>
                     <div>
                         <div class="float-right">
-                            {{ $videos->appends(request()->query()) }}
+                            {{ $publicVideos->appends(request()->query()) }}
                         </div>
                     </div>
                 </div>
 
                 <!-- Recently uploaded -->
-                <div class="card card-body mt-3 mb-3">
+                <div class="card card-body mt-3 mb-5">
                     <div class="mb-3">
-                        <strong>Recently uploaded</strong>
+                        <strong>Recently uploaded (public)</strong>
                     </div>
                     <div class="row">
-                        @foreach($videos as $key => $value)
+                        @foreach($publicVideos as $key => $value)
                             <div class="col-md-3">
                                 <div class="card">
                                     <div class="card-body text-center p-0">
@@ -98,7 +98,7 @@
                             </div>
                         @endforeach
 
-                            @foreach($videos as $key => $value)
+                            @foreach($publicVideos as $key => $value)
                                 <div class="col-md-3">
                                     <div class="card">
                                         <div class="card-body text-center p-0">
@@ -120,7 +120,7 @@
                     </div>
                     <div>
                         <div class="float-right">
-                            {{ $videos->appends(request()->query()) }}
+                            {{ $publicVideos->appends(request()->query()) }}
                         </div>
                     </div>
                 </div>
