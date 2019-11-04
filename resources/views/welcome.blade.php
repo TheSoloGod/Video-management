@@ -1,99 +1,149 @@
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+@extends('layouts.master')
 
-        <title>Laravel</title>
+@section('title')
+    Video+
+    @endsection
 
-        <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
+@section('content')
+    <div class="container">
 
-        <!-- Styles -->
-        <style>
-            html, body {
-                background-color: #fff;
-                color: #636b6f;
-                font-family: 'Nunito', sans-serif;
-                font-weight: 200;
-                height: 100vh;
-                margin: 0;
-            }
+        <!-- navbar -->
+        @include('layouts.navbar')
 
-            .full-height {
-                height: 100vh;
-            }
+        <div class="row">
+            <!-- side bar -->
+            <div class="col-md-2">
+                @include('layouts.sidebar-public')
+            </div>
 
-            .flex-center {
-                align-items: center;
-                display: flex;
-                justify-content: center;
-            }
+            <!-- content -->
+            <div class="col-md-10">
 
-            .position-ref {
-                position: relative;
-            }
+                <!-- recommended -->
+                <div class="card card-body mt-3">
+                    <div class="mb-3">
+                        <strong>Recommended</strong>
+                    </div>
+                    <div class="row">
+                        @foreach($videos as $key => $value)
+                            <div class="col-md-3">
+                                <div class="card">
+                                    <div class="card-body text-center p-0">
+                                        <a href="">
+                                            <img class="w-100" style="height: 110px" src="{{ asset('storage/preview/' . $value->image ) }}">
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="ml-1">
+                                    <p class="mb-0">
+                                        <strong>{{ $value->title }}</strong>
+                                    </p>
+                                </div>
+                                <div class="ml-1">
+                                    <p style="font-size: small">{{ $value->description }}</p>
+                                </div>
+                            </div>
+                        @endforeach
 
-            .top-right {
-                position: absolute;
-                right: 10px;
-                top: 18px;
-            }
-
-            .content {
-                text-align: center;
-            }
-
-            .title {
-                font-size: 84px;
-            }
-
-            .links > a {
-                color: #636b6f;
-                padding: 0 25px;
-                font-size: 13px;
-                font-weight: 600;
-                letter-spacing: .1rem;
-                text-decoration: none;
-                text-transform: uppercase;
-            }
-
-            .m-b-md {
-                margin-bottom: 30px;
-            }
-        </style>
-    </head>
-    <body>
-        <div class="flex-center position-ref full-height">
-            @if (Route::has('login'))
-                <div class="top-right links">
-                    @auth
-                        <a href="{{ url('/home') }}">Home</a>
-                    @else
-                        <a href="{{ route('login') }}">Login</a>
-
-                        @if (Route::has('register'))
-                            <a href="{{ route('register') }}">Register</a>
-                        @endif
-                    @endauth
-                </div>
-            @endif
-
-            <div class="content">
-                <div class="title m-b-md">
-                    Laravel
+                            @foreach($videos as $key => $value)
+                                <div class="col-md-3">
+                                    <div class="card">
+                                        <div class="card-body text-center p-0">
+                                            <a href="">
+                                                <img class="w-100" style="height: 110px" src="{{ asset('storage/preview/' . $value->image ) }}">
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="ml-1">
+                                        <p class="mb-0">
+                                            <strong>{{ $value->title }}</strong>
+                                        </p>
+                                    </div>
+                                    <div class="ml-1">
+                                        <p style="font-size: small">{{ $value->description }}</p>
+                                    </div>
+                                </div>
+                            @endforeach
+                    </div>
+                    <div>
+                        <div class="float-right">
+                            {{ $videos->appends(request()->query()) }}
+                        </div>
+                    </div>
                 </div>
 
-                <div class="links">
-                    <a href="https://laravel.com/docs">Docs</a>
-                    <a href="https://laracasts.com">Laracasts</a>
-                    <a href="https://laravel-news.com">News</a>
-                    <a href="https://blog.laravel.com">Blog</a>
-                    <a href="https://nova.laravel.com">Nova</a>
-                    <a href="https://forge.laravel.com">Forge</a>
-                    <a href="https://github.com/laravel/laravel">GitHub</a>
+                <!-- Recently uploaded -->
+                <div class="card card-body mt-3 mb-3">
+                    <div class="mb-3">
+                        <strong>Recently uploaded</strong>
+                    </div>
+                    <div class="row">
+                        @foreach($videos as $key => $value)
+                            <div class="col-md-3">
+                                <div class="card">
+                                    <div class="card-body text-center p-0">
+                                        <a href="">
+                                            <img class="w-100" style="height: 110px" src="{{ asset('storage/preview/' . $value->image ) }}">
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="ml-1">
+                                    <p class="mb-0">
+                                        <strong>{{ $value->title }}</strong>
+                                    </p>
+                                </div>
+                                <div class="ml-1">
+                                    <p style="font-size: small">{{ $value->description }}</p>
+                                </div>
+                            </div>
+                        @endforeach
+
+                            @foreach($videos as $key => $value)
+                                <div class="col-md-3">
+                                    <div class="card">
+                                        <div class="card-body text-center p-0">
+                                            <a href="">
+                                                <img class="w-100" style="height: 110px" src="{{ asset('storage/preview/' . $value->image ) }}">
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="ml-1">
+                                        <p class="mb-0">
+                                            <strong>{{ $value->title }}</strong>
+                                        </p>
+                                    </div>
+                                    <div class="ml-1">
+                                        <p style="font-size: small">{{ $value->description }}</p>
+                                    </div>
+                                </div>
+                            @endforeach
+                    </div>
+                    <div>
+                        <div class="float-right">
+                            {{ $videos->appends(request()->query()) }}
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-    </body>
-</html>
+
+        <!-- footer -->
+        @include('layouts.footer')
+    </div>
+@endsection
+
+{{--<div class="flex-center position-ref full-height">--}}
+{{--    @if (Route::has('login'))--}}
+{{--        <div class="top-right links">--}}
+{{--            @auth--}}
+{{--                <a href="{{ url('/home') }}">Home</a>--}}
+{{--            @else--}}
+{{--                <a href="{{ route('login') }}">Login</a>--}}
+
+{{--                @if (Route::has('register'))--}}
+{{--                    <a href="{{ route('register') }}">Register</a>--}}
+{{--                @endif--}}
+{{--            @endauth--}}
+{{--        </div>--}}
+{{--    @endif--}}
+{{--</div>--}}

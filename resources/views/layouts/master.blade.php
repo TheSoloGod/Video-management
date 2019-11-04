@@ -35,8 +35,8 @@
 
 </head>
 <body>
-<div>
-    @yield('content')
-</div>
+    <div>
+        @yield('content')
+    </div>
 </body>
 </html>

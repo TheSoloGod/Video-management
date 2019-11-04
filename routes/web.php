@@ -11,15 +11,22 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-})->middleware('verified');
-
 //verify email
 Auth::routes(['verify' => true]);
 
-//route home
+// route public
+Route::get('/', 'PublicController@index')->name('home.public.index');
+Route::group(['prefix' => 'public'], function (){
+//   Route::get('');
+});
+
+
+
+
+
+//route member
 Route::get('/home', 'HomeController@index')->name('home');
+
 
 //route admin
 Route::group(['prefix' => 'admin'], function () {
@@ -69,11 +76,8 @@ Route::group(['prefix' => 'admin/analytics'], function (){
 
 
 
-//test upload
-Route::get('/upload', function () {
-    return view('testupload');
-});
-Route::post('/upload', 'UploadController@store')->name('post.file');
+
+
 
 //route test
 Route::get('test', function () {

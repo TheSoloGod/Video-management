@@ -22,12 +22,6 @@
                             </label>
                         @endif
                     </span>
-                    <span class="float-right">
-                        <a class="btn btn-primary" href="{{route('invite')}}">intvite</a>
-                    </span>
-                    <div>
-                        <input type="file" name="test">
-                    </div>
                 </div>
             </div>
         </div>

@@ -49,4 +49,13 @@ class VideoRepository extends EloquentRepository implements VideoRepositoryInter
         })->paginate($number);
         return $videos;
     }
+
+    public function getPaginateAllVideoPublic($number)
+    {
+        $videos = $this->model->where('type', 0)
+                              ->where('is_display', '1')
+                              ->where('status', $this->uploadStatus[2])
+                              ->paginate($number);
+        return $videos;
+    }
 }

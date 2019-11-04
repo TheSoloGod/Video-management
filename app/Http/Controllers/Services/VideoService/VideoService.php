@@ -4,10 +4,9 @@
 namespace App\Http\Controllers\Services\VideoService;
 
 
+use App\Http\Controllers\Repositories\CategoryVideoRepository\CategoryVideoRepositoryInterface;
 use App\Http\Controllers\Repositories\GroupVideoRepository\GroupVideoRepositoryInterface;
 use App\Http\Controllers\Repositories\VideoRepository\VideoRepositoryInterface;
-use App\Http\Controllers\Services\CategoryVideoService\CategoryVideoServiceInterface;
-use App\Http\Controllers\Services\GroupVideoService\GroupVideoServiceInterface;
 use App\Jobs\SetPathVideo;
 use App\Jobs\UploadFile;
 use App\Services\StoreImageService;
@@ -17,20 +16,17 @@ use Illuminate\Support\Facades\Storage;
 class VideoService implements VideoServiceInterface
 {
     protected $videoRepository;
-    protected $categoryVideoService;
-    protected $groupVideoService; //loi do 2 service goi nhau
+    protected $categoryVideoRepository;
     protected $groupVideoRepository;
     protected $storeImageService;
 
     public function __construct(VideoRepositoryInterface $videoRepository,
-                                CategoryVideoServiceInterface $categoryVideoService,
-//                                GroupVideoServiceInterface $groupVideoService,
+                                CategoryVideoRepositoryInterface $categoryVideoRepository,
                                 GroupVideoRepositoryInterface $groupVideoRepository,
                                 StoreImageService $storeImageService)
     {
         $this->videoRepository = $videoRepository;
-        $this->categoryVideoService = $categoryVideoService;
-//        $this->groupVideoService = $groupVideoService;
+        $this->categoryVideoRepository = $categoryVideoRepository;
         $this->groupVideoRepository = $groupVideoRepository;
         $this->storeImageService = $storeImageService;
     }
@@ -133,7 +129,7 @@ class VideoService implements VideoServiceInterface
 
     public function getAllCategory($videoId)
     {
-        $categories = $this->categoryVideoService->getAllCategory($videoId);
+        $categories = $this->categoryVideoRepository->getAllCategory($videoId);
         return $categories;
     }
 
@@ -141,5 +137,12 @@ class VideoService implements VideoServiceInterface
     {
         $groups = $this->groupVideoRepository->getAllGroup($videoId);
         return $groups;
+    }
+
+    public function getPaginateAllVideoPublic()
+    {
+        $number = 4;
+        $videos = $this->videoRepository->getPaginateAllVideoPublic($number);
+        return $videos;
     }
 }
