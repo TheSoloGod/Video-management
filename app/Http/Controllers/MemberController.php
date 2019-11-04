@@ -31,4 +31,17 @@ class MemberController extends Controller
         $otherGroups = $this->groupService->getPaginateOtherGroup($userId);
         return view('member.group.group-list', compact('groups', 'otherGroups'));
     }
+
+    public function getVideoOfGroup($userId, $groupId)
+    {
+        $groupVideos = $this->videoService->getPaginateVideoOfGroup($groupId);
+        return view('member.group.video-list', compact('groupVideos'));
+    }
+
+    public function showVideo($userId, $videoId)
+    {
+        $video = $this->videoService->getById($videoId);
+        $recommendedVideos = $this->videoService->getRecommendedMemberVideos();
+        return view('public.show-video', compact('video', 'recommendedVideos'));
+    }
 }

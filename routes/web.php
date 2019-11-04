@@ -26,9 +26,11 @@ Route::group(['prefix' => 'public'], function () {
 });
 
 // route member
-Route::group(['prefix' => 'member/{user_id?}'], function () {
-    Route::get('/', 'MemberController@index')->name('home.member.index')->middleware('verified');
+Route::group(['prefix' => 'member/{user_id?}', 'middleware' => 'verified'], function () {
+    Route::get('/', 'MemberController@index')->name('home.member.index');
     Route::get('/group', 'MemberController@getGroup')->name('member.group.all');
+    Route::get('/group/{group_id}/video', 'MemberController@getVideoOfGroup')->name('member.group.video.all');
+    Route::get('/video/{video_id}', 'MemberController@showVideo')->name('member.video.show');
 });
 
 //route admin login logout

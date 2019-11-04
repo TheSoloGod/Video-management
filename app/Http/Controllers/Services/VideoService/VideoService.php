@@ -123,7 +123,7 @@ class VideoService implements VideoServiceInterface
 
     public function getVideoNotInGroup($groupId, $number)
     {
-        $video = $this->videoRepository->getVideoNotInGroup($groupId, $number);
+        $video = $this->videoRepository->getPaginateVideoNotInGroup($groupId, $number);
         return $video;
     }
 
@@ -160,10 +160,24 @@ class VideoService implements VideoServiceInterface
         return $recommendPublicVideos;
     }
 
+    public function getRecommendedMemberVideos()
+    {
+        $number = 5;
+        $recommendMemberVideos = $this->videoRepository->getRecommendedMemberVideos($number);
+        return $recommendMemberVideos;
+    }
+
     public function getPaginateVideoDisplayShow()
     {
         $number = 4;
         $allVideos = $this->videoRepository->getPaginateVideoDisplayShow($number);
         return $allVideos;
+    }
+
+    public function getPaginateVideoOfGroup($groupId)
+    {
+        $number = 6;
+        $groupVideos = $this->videoRepository->getPaginateVideoOfGroup($groupId, $number);
+        return $groupVideos;
     }
 }

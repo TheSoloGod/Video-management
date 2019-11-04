@@ -40,7 +40,7 @@ class VideoRepository extends EloquentRepository implements VideoRepositoryInter
         $video->save();
     }
 
-    public function getVideoNotInGroup($groupId, $number)
+    public function getPaginateVideoNotInGroup($groupId, $number)
     {
         $videos = $this->model->whereNotIn('id', function ($query) use ($groupId) {
             $query->select('video_id')
@@ -87,5 +87,26 @@ class VideoRepository extends EloquentRepository implements VideoRepositoryInter
                                              ->limit($number)
                                              ->get();
         return $recommendPublicVideos;
+    }
+
+    public function getRecommendedMemberVideos($number)
+    {
+        $recommendPublicVideos = $this->model->where('type', 1)
+            ->where('is_display', 1)
+            ->where('status', $this->uploadStatus[2])
+            ->limit($number)
+            ->get();
+        return $recommendPublicVideos;
+    }
+
+    public function getPaginateVideoOfGroup($groupId, $number)
+    {
+        $groupVideos = $this->model->whereIn('id', function ($query) use ($groupId){
+            $query->select('video_id')
+                  ->where('group_id', $groupId)
+                  ->from('group_video');
+        })->orderBy('created_at', 'desc')
+          ->paginate($number);
+        return $groupVideos;
     }
 }

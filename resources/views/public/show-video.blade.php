@@ -50,7 +50,7 @@
                         </div>
                     </div>
                 </div>
-                <div>
+                <div class="mb-5">
                     <textarea class="form-control" style="height: 200px" placeholder="View comments here"></textarea>
                 </div>
             </div>
