@@ -62,5 +62,19 @@ class GroupUserTableSeeder extends Seeder
         $groupUser->verify_at = Carbon::now();
         $groupUser->token = Str::random(10);
         $groupUser->save();
+
+        $groupUser = new GroupUser();
+        $groupUser->group_id = '1';
+        $groupUser->user_id = '6';
+        $groupUser->verify_at = Carbon::now();
+        $groupUser->token = Str::random(10);
+        $groupUser->save();
+
+        $groupUser = new GroupUser();
+        $groupUser->group_id = '2';
+        $groupUser->user_id = '6';
+        $groupUser->verify_at = Carbon::now();
+        $groupUser->token = Str::random(10);
+        $groupUser->save();
     }
 }

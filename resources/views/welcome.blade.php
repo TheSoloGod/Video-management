@@ -40,7 +40,7 @@
                                     </p>
                                 </div>
                                 <div class="ml-1">
-                                    <p style="font-size: small">{{ $value->description }}</p>
+                                    <p style="color: gray">{{ $value->description }}</p>
                                 </div>
                             </div>
                         @endforeach
@@ -60,7 +60,7 @@
                                         </p>
                                     </div>
                                     <div class="ml-1">
-                                        <p style="font-size: small">{{ $value->description }}</p>
+                                        <p style="color: gray">{{ $value->description }}</p>
                                     </div>
                                 </div>
                             @endforeach
@@ -93,7 +93,7 @@
                                     </p>
                                 </div>
                                 <div class="ml-1">
-                                    <p style="font-size: small">{{ $value->description }}</p>
+                                    <p style="color: gray">{{ $value->description }}</p>
                                 </div>
                             </div>
                         @endforeach
@@ -113,7 +113,7 @@
                                         </p>
                                     </div>
                                     <div class="ml-1">
-                                        <p style="font-size: small">{{ $value->description }}</p>
+                                        <p style="color: gray">{{ $value->description }}</p>
                                     </div>
                                 </div>
                             @endforeach

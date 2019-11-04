@@ -62,11 +62,6 @@
                             @foreach($otherGroups as $key => $value)
                                 <div class="col-md-3">
                                     <div class="card">
-                                        <div class="card-header">
-                                            <div class="text-center">
-                                                {{ $value->name }}
-                                            </div>
-                                        </div>
                                         <div class="card-body">
                                             <a href="">
                                                 <img style="width: 150px; height: 150px"
@@ -74,7 +69,10 @@
                                             </a>
                                         </div>
                                         <div class="card-footer">
-                                            <div class="text-center">
+                                            <div class="float-left mt-2">
+                                                {{ $value->name }}
+                                            </div>
+                                            <div class="float-right">
                                                 <a class="btn btn-outline-primary" href="">Join</a>
                                             </div>
                                         </div>
