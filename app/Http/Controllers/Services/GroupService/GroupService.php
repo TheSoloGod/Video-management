@@ -76,16 +76,28 @@ class GroupService implements GroupServiceInterface
         $group = $this->groupRepository->getById($id);
         $groupId = $group->id;
 
-        $groupIdInvitationListExist = $this->sessionService
-            ->checkGroupSessionExist('invitationList', $groupId);
+        $groupIdInvitationListExist = $this->sessionService->checkGroupSessionExist('invitationList', $groupId);
         if (!$groupIdInvitationListExist) {
             $this->sessionService->forgetSession('invitationList');
         }
 
-        $groupIdAdditionVideoListExist = $this->sessionService
-            ->checkGroupSessionExist('additionVideoList', $groupId);
+        $groupIdAdditionVideoListExist = $this->sessionService->checkGroupSessionExist('additionVideoList', $groupId);
         if (!$groupIdAdditionVideoListExist) {
             $this->sessionService->forgetSession('additionVideoList');
         }
+    }
+
+    public function getPaginateGroupMember($userId)
+    {
+        $number = 4;
+        $groups = $this->groupRepository->getPaginateGroupMember($userId, $number);
+        return $groups;
+    }
+
+    public function getPaginateOtherGroup($userId)
+    {
+        $number = 4;
+        $otherGroups = $this->groupRepository->getPaginateOtherGroup($userId, $number);
+        return $otherGroups;
     }
 }

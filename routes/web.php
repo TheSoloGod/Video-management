@@ -22,12 +22,13 @@ Route::get('/', function () {
 // route public
 Route::group(['prefix' => 'public'], function () {
     Route::get('/', 'PublicController@index')->name('home.public.index')->middleware('check.user.login');
-    Route::get('/video/{video_id}', 'PublicController@showVideo')->name('home.public.show');
+    Route::get('/video/{video_id}', 'PublicController@showVideo')->name('public.video.show');
 });
 
 // route member
-Route::group(['prefix' => 'member'], function () {
+Route::group(['prefix' => 'member/{user_id?}'], function () {
     Route::get('/', 'MemberController@index')->name('home.member.index')->middleware('verified');
+    Route::get('/group', 'MemberController@getGroup')->name('member.group.all');
 });
 
 //route admin login logout

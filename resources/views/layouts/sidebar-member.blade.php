@@ -1,5 +1,5 @@
 <div class="sticky-top">
-    <div class="card card-body mt-3">
+    <div class="card card-body mt-3 mb-5">
         <div style="">
             <div class="text-center mb-3">
                 <img src="{{ asset('storage/avatar/' . Auth::user()->image) }}" class="h-75 w-75 border rounded-circle">
@@ -17,7 +17,7 @@
                 <a class="btn btn-light w-100 mb-2" href="">Categories</a>
             </div>
             <div>
-                <a class="btn btn-light w-100 mb-2" href="">Groups</a>
+                <a class="btn btn-light w-100 mb-2" href="{{ route('member.group.all', Auth::user()->id) }}">Groups</a>
             </div>
             <div>
                 <a class="btn btn-light w-100 mb-2" href="">Favorites</a>
