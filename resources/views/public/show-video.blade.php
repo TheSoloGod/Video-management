@@ -48,9 +48,19 @@
                                     </div>
                                 </div>
                                 <div class="col-6">
-                                    <a class="text-danger" id="favorite" video_id="{{ $video->id }}">
-                                        <i class="far fa-heart" style="font-size: 40px"></i>
-                                    </a>
+                                    @if(Auth::user())
+                                        <a class="text-danger" id="favorite" video_id="{{ $video->id }}" user_id="{{ Auth::user()->id }}">
+                                            @if($favoriteStatus)
+                                                <i class="fas fa-heart" style="font-size: 40px"></i>
+                                            @else
+                                                <i class="far fa-heart" style="font-size: 40px"></i>
+                                            @endif
+                                        </a>
+                                    @else
+                                        <a class="text-danger">
+                                            <i class="far fa-heart" style="font-size: 40px"></i>
+                                        </a>
+                                    @endif
                                 </div>
                             </div>
                         </div>
@@ -121,4 +131,5 @@
     </div>
 
     <script src="{{ asset('js/favorite.js') }}"></script>
+
 @endsection

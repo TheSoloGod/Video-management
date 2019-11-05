@@ -16,3 +16,9 @@ use Illuminate\Http\Request;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::get('/categories', function (Request $request)
+{
+    $categories = \App\Category::where('name', 'like', '%' . $request->get('q') . '%')->get();
+    return response()->json($categories);
+});

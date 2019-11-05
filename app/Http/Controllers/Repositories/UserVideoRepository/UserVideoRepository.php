@@ -14,4 +14,12 @@ class UserVideoRepository extends EloquentRepository implements UserVideoReposit
     {
         return UserVideo::class;
     }
+
+    public function getFavorite($userId, $videoId)
+    {
+        $favorite = $this->model->where('user_id', $userId)
+                                ->where('video_id', $videoId)
+                                ->first();
+        return $favorite;
+    }
 }

@@ -36,6 +36,7 @@ class PublicController extends Controller
         $video = $this->videoService->getById($videoId);
         $recommendedVideos = $this->videoService->getRecommendedPublicVideos();
         $categories = $this->categoryService->getAll();
-        return view('public.show-video', compact('video', 'recommendedVideos', 'categories'));
+        $favoriteStatus = false;
+        return view('public.show-video', compact('video', 'recommendedVideos', 'categories', 'favoriteStatus'));
     }
 }

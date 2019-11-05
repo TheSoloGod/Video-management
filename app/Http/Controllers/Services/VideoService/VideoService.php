@@ -185,4 +185,11 @@ class VideoService implements VideoServiceInterface
         $groupVideos = $this->videoRepository->getPaginateVideoOfGroup($groupId, $number);
         return $groupVideos;
     }
+
+    public function getPaginateVideoFavorite($userId)
+    {
+        $number = 4;
+        $videos = $this->videoRepository->getPaginateVideoFavorite($userId, $number);
+        return $videos;
+    }
 }

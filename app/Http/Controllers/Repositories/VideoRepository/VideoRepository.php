@@ -115,4 +115,14 @@ class VideoRepository extends EloquentRepository implements VideoRepositoryInter
         $this->model->where('id', $videoId)
                     ->increment('views');
     }
+
+    public function getPaginateVideoFavorite($userId, $number)
+    {
+        $videos = $this->model->whereIn('id', function ($query) use ($userId){
+            $query->select('video_id')
+                  ->where('user_id', $userId)
+                  ->from('user_video');
+        })->paginate($number);
+        return $videos;
+    }
 }

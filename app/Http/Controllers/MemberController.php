@@ -65,7 +65,8 @@ class MemberController extends Controller
         $video = $this->videoService->getById($videoId);
         $recommendedVideos = $this->videoService->getRecommendedMemberVideos();
         $categories = $this->categoryService->getAll();
-        return view('public.show-video', compact('video', 'recommendedVideos', 'categories'));
+        $favoriteStatus = $this->userVideoService->checkFavorited($userId, $videoId);
+        return view('public.show-video', compact('video', 'recommendedVideos', 'categories', 'favoriteStatus'));
     }
 
     public function info($userId)
@@ -78,7 +79,20 @@ class MemberController extends Controller
 
     public function favorite(Request $request)
     {
-        $data = $this->userVideoService->favorite($request);
+        $status =  $this->userVideoService->favorite($request);
+        $data = ['status' => $status];
         return $data;
+    }
+
+    public function getPaginateVideoFavorite($userId)
+    {
+        $videos = $this->videoService->getPaginateVideoFavorite($userId);
+        return $videos;
+    }
+
+    public function showVideoFavorite($userId, $videoId)
+    {
+        $video = $this->videoService->getById($videoId);
+        return $video;
     }
 }

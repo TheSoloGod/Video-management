@@ -22,6 +22,10 @@
 
     <!-- CSS -->
     <link href="{{asset('css/home.css')}}" rel="stylesheet">
+    <link href="{{asset('css/token-input.css')}}" rel="stylesheet">
+    <link href="{{asset('css/token-input-facebook.css')}}" rel="stylesheet">
+
+
 
 <!-- popover -->
     <script>
@@ -38,5 +42,7 @@
     <div>
         @yield('content')
     </div>
+
+    @yield('script')
 </body>
 </html>

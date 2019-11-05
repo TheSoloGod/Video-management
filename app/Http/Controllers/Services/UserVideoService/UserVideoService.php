@@ -17,8 +17,28 @@ class UserVideoService implements UserVideoServiceInterface
 
     public function favorite($request)
     {
-        $data = [];
-        $data = ['video_id' => $request->video_id];
-        return $data;
+        $userId = $request->user_id;
+        $videoId = $request->video_id;
+        if (!$this->checkFavorited($userId, $videoId)) {
+            $this->createFavorite($request);
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function createFavorite($request)
+    {
+        $this->userVideoRepository->create($request->all());
+    }
+
+    public function checkFavorited($userId, $videoId)
+    {
+        $favorite = $this->userVideoRepository->getFavorite($userId, $videoId);
+        if ($favorite == null) {
+            return false;
+        } else {
+            return true;
+        }
     }
 }

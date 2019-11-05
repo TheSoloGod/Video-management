@@ -33,6 +33,8 @@ Route::group(['prefix' => 'member/{user_id?}', 'middleware' => 'verified'], func
     Route::get('/video/{video_id}', 'MemberController@showVideo')->name('member.video.show');
     Route::get('/info', 'MemberController@info')->name('member.info');
     Route::get('/favorite', 'MemberController@favorite')->name('member.favorite');
+    Route::get('favorite/video', 'MemberController@getPaginateVideoFavorite')->name('member.video.favorite.all');
+    Route::get('favorite/video/{video_id}', 'MemberController@showVideoFavorite')->name('member.video.favorite.show');
 });
 
 //route admin login logout

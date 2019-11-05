@@ -99,4 +99,6 @@ class CategoryController extends Controller
         $this->categoryService->delete($id);
         return redirect()->route('categories.index');
     }
+
+
 }
