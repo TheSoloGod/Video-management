@@ -109,4 +109,10 @@ class VideoRepository extends EloquentRepository implements VideoRepositoryInter
           ->paginate($number);
         return $groupVideos;
     }
+
+    public function incrementVideoTotalView($videoId)
+    {
+        $this->model->where('id', $videoId)
+                    ->increment('views');
+    }
 }

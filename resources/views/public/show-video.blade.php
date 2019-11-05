@@ -21,7 +21,7 @@
                 </div>
                 <div class="card card-body mt-1 mb-3">
                     <div class="row">
-                        <div class="col-md-8">
+                        <div class="col-md-6">
                             <div class="">
                                 <p class="mb-0">
                                     <strong>{{ $video->title }}</strong>
@@ -33,11 +33,17 @@
                                 </p>
                             </div>
                         </div>
+                        <div class="col-md-2 text-center">
+                            <div>Views</div>
+                            <div>
+                                <p class="mb-0"><strong>{{ $video->views }}</strong></p>
+                            </div>
+                        </div>
                         <div class="col-md-4">
                             <div class="row">
-                                <div class="col-6">
+                                <div class="col-6 text-center">
                                     <div>Favorites</div>
-                                    <div class="text-center">
+                                    <div>
                                         <p class="mb-0"><strong>50</strong></p>
                                     </div>
                                 </div>

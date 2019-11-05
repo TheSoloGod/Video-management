@@ -3,9 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Services\CategoryService\CategoryServiceInterface;
+use App\Http\Controllers\Services\DateVideoService\DateVideoServiceInterface;
 use App\Http\Controllers\Services\GroupService\GroupServiceInterface;
-use App\Http\Controllers\Services\GroupUserService\GroupUserServiceInterface;
-use App\Http\Controllers\Services\GroupVideoService\GroupVideoServiceInterface;
 use App\Http\Controllers\Services\UserService\UserServiceInterface;
 use App\Http\Controllers\Services\VideoService\VideoServiceInterface;
 use Illuminate\Http\Request;
@@ -16,16 +15,19 @@ class MemberController extends Controller
     protected $groupService;
     protected $userService;
     protected $categoryService;
+    protected $dateVideoService;
 
     public function __construct(VideoServiceInterface $videoService,
                                 GroupServiceInterface $groupService,
                                 UserServiceInterface $userService,
-                                CategoryServiceInterface $categoryService)
+                                CategoryServiceInterface $categoryService,
+                                DateVideoServiceInterface $dateVideoService)
     {
         $this->videoService = $videoService;
         $this->groupService = $groupService;
         $this->userService = $userService;
         $this->categoryService = $categoryService;
+        $this->dateVideoService = $dateVideoService;
     }
 
     public function index()
@@ -55,6 +57,7 @@ class MemberController extends Controller
 
     public function showVideo($userId, $videoId)
     {
+        $this->dateVideoService->incrementVideoView($videoId);
         $video = $this->videoService->getById($videoId);
         $recommendedVideos = $this->videoService->getRecommendedMemberVideos();
         $categories = $this->categoryService->getAll();

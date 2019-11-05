@@ -18,7 +18,7 @@ class CreateDateVideoTable extends Migration
             $table->unsignedBigInteger('video_id');
             $table->bigInteger('today_views');
             $table->bigInteger('yesterday_views');
-            $table->string('view_rate');
+            $table->string('view_rate')->nullable();
             $table->foreign('video_id')->references('id')->on('videos');
             $table->primary(array('date', 'video_id'));
             $table->timestamps();

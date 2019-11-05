@@ -21,4 +21,38 @@ class DateVideoRepository extends EloquentRepository implements DateVideoReposit
                               ->paginate($number);
         return $videos;
     }
+
+    public function incrementVideoView($date, $videoId)
+    {
+        $this->model->where('date', $date)
+                    ->where('video_id', $videoId)
+                    ->increment('today_views');
+    }
+
+    public function updateViewRate($date, $videoId, $viewRate)
+    {
+        $this->model->where('date', $date)
+                    ->where('video_id', $videoId)
+                    ->update([
+                        'view_rate' => $viewRate
+                    ]);
+    }
+
+    public function getByDateVideoId($date, $videoId)
+    {
+        $viewDateVideo = $this->model->where('date', $date)
+                                     ->where('video_id', $videoId)
+                                     ->first();
+        return $viewDateVideo;
+    }
+
+    public function createNewViewDateVideo($date, $videoId, $yesterdayViews)
+    {
+        $viewDateVideo = new DateVideo();
+        $viewDateVideo->date = $date;
+        $viewDateVideo->video_id = $videoId;
+        $viewDateVideo->today_views = 0;
+        $viewDateVideo->yesterday_views = $yesterdayViews;
+        $viewDateVideo->save();
+    }
 }

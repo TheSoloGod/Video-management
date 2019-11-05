@@ -64,20 +64,25 @@ class VideoService implements VideoServiceInterface
             $request->video->storeAs('/', $videoFullName, 'public');
             $data['name'] = $videoName;
 
-            if ($this->checkExistVideo($videoName)) {
-                Session::flash('error', 'Video exist!');
-                return false;
-            } else {
-                $data['status'] = $this->videoRepository->uploadStatus[0];
-                $newVideo = $this->videoRepository->create($data);
-                UploadFile::dispatch($newVideo->id, $videoFullName);
-                SetPathVideo::dispatch($newVideo->id, $newVideo->name);
-                Session::flash('status', 'Uploading video');
-                return $newVideo;
-            }
+            return $this->storeVideoOnCloud($data, $videoName, $videoFullName);
         } else {
             Session::flash('error', 'Choose video to upload');
             return false;
+        }
+    }
+
+    public function storeVideoOnCloud($data, $videoName, $videoFullName)
+    {
+        if ($this->checkExistVideo($videoName)) {
+            Session::flash('error', 'Video exist!');
+            return false;
+        } else {
+            $data['status'] = $this->videoRepository->uploadStatus[0];
+            $newVideo = $this->videoRepository->create($data);
+            UploadFile::dispatch($newVideo->id, $videoFullName);
+            SetPathVideo::dispatch($newVideo->id, $newVideo->name);
+            Session::flash('status', 'Uploading video');
+            return $newVideo;
         }
     }
 
