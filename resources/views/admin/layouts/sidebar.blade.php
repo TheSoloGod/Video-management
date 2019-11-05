@@ -1,7 +1,7 @@
 <!-- Sidebar -->
 
 <div class="sticky-top">
-    <div class="card card-body mt-3">
+    <div class="card card-body mt-3 mb-3">
         <div style="">
             <div class="text-center mb-3">
                 <img src="{{ asset('storage/avatar/' . Auth::guard('admin')->user()->image) }}" class="h-75 w-75 border rounded-circle">

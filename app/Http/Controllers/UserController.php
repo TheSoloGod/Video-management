@@ -82,7 +82,7 @@ class UserController extends Controller
     public function update(Request $request, $id)
     {
         $this->userService->update($request, $id);
-        return redirect()->route('users.show', compact('id'));
+        return redirect()->back();
     }
 
     /**

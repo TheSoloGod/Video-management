@@ -100,4 +100,10 @@ class GroupService implements GroupServiceInterface
         $otherGroups = $this->groupRepository->getPaginateOtherGroup($userId, $number);
         return $otherGroups;
     }
+
+    public function getAllGroupOfUser($userId)
+    {
+        $groups = $this->groupRepository->getAllGroupOfUser($userId);
+        return $groups;
+    }
 }

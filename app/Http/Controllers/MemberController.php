@@ -2,7 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\Services\CategoryService\CategoryServiceInterface;
 use App\Http\Controllers\Services\GroupService\GroupServiceInterface;
+use App\Http\Controllers\Services\GroupUserService\GroupUserServiceInterface;
+use App\Http\Controllers\Services\GroupVideoService\GroupVideoServiceInterface;
+use App\Http\Controllers\Services\UserService\UserServiceInterface;
 use App\Http\Controllers\Services\VideoService\VideoServiceInterface;
 use Illuminate\Http\Request;
 
@@ -10,38 +14,58 @@ class MemberController extends Controller
 {
     protected $videoService;
     protected $groupService;
+    protected $userService;
+    protected $categoryService;
 
     public function __construct(VideoServiceInterface $videoService,
-                                GroupServiceInterface $groupService)
+                                GroupServiceInterface $groupService,
+                                UserServiceInterface $userService,
+                                CategoryServiceInterface $categoryService)
     {
         $this->videoService = $videoService;
         $this->groupService = $groupService;
+        $this->userService = $userService;
+        $this->categoryService = $categoryService;
     }
 
     public function index()
     {
         $memberVideos = $this->videoService->getPaginateAllVideoMember();
         $allVideos = $this->videoService->getPaginateVideoDisplayShow();
-        return view('home', compact('memberVideos', 'allVideos'));
+        $categories = $this->categoryService->getAll();
+        return view('home', compact('memberVideos', 'allVideos', 'categories'));
     }
 
     public function getGroup($userId)
     {
         $groups = $this->groupService->getPaginateGroupMember($userId);
         $otherGroups = $this->groupService->getPaginateOtherGroup($userId);
-        return view('member.group.group-list', compact('groups', 'otherGroups'));
+        $categories = $this->categoryService->getAll();
+        return view('member.group.group-list', compact('groups', 'otherGroups', 'categories'));
     }
 
     public function getVideoOfGroup($userId, $groupId)
     {
         $groupVideos = $this->videoService->getPaginateVideoOfGroup($groupId);
-        return view('member.group.video-list', compact('groupVideos'));
+        $group = $this->groupService->getById($groupId);
+        $members = $this->userService->getUserOfGroup($groupId);
+        $categories = $this->categoryService->getAll();
+        return view('member.group.video-list', compact('groupVideos','group', 'members', 'categories'));
     }
 
     public function showVideo($userId, $videoId)
     {
         $video = $this->videoService->getById($videoId);
         $recommendedVideos = $this->videoService->getRecommendedMemberVideos();
-        return view('public.show-video', compact('video', 'recommendedVideos'));
+        $categories = $this->categoryService->getAll();
+        return view('public.show-video', compact('video', 'recommendedVideos', 'categories'));
+    }
+
+    public function info($userId)
+    {
+        $user = $this->userService->getById($userId);
+        $groups = $this->groupService->getAllGroupOfUser($userId);
+        $categories = $this->categoryService->getAll();
+        return view('member.info', compact('user', 'groups', 'categories'));
     }
 }

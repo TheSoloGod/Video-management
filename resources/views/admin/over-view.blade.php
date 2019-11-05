@@ -17,7 +17,7 @@
             </div>
 
             <!-- content -->
-            <div class="col-md-10">
+            <div class="col-md-10 mb-3">
                 <div class="card card-body mt-3">
                     <div class="row">
                         <div class="col-md-6">
@@ -64,5 +64,8 @@
                 </div>
             </div>
         </div>
+
+        <!-- footer -->
+        @include('admin.layouts.footer')
     </div>
 @endsection

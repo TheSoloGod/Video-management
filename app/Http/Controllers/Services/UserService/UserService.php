@@ -13,17 +13,14 @@ use Illuminate\Support\Facades\Session;
 class UserService implements UserServiceInterface
 {
     protected $userRepository;
-    protected $groupUserService; //why inject this service not work???
     protected $groupUserRepository;
     protected $storeImageService;
 
     public function __construct(UserRepositoryInterface $userRepository,
-//                                GroupUserServiceInterface $groupUserService,
                                 GroupUserRepositoryInterface $groupUserRepository,
                                 StoreImageService $storeImageService)
     {
         $this->userRepository = $userRepository;
-//        $this->groupUserService = $groupUserService;
         $this->groupUserRepository = $groupUserRepository;
         $this->storeImageService = $storeImageService;
     }
@@ -75,5 +72,12 @@ class UserService implements UserServiceInterface
     {
         $groups = $this->groupUserRepository->getAllGroup($userId);
         return $groups;
+    }
+
+    public function getUserOfGroup($groupId)
+    {
+        $limit = 4;
+        $users = $this->userRepository->getUserOfGroup($groupId, $limit);
+        return $users;
     }
 }

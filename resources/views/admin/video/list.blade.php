@@ -17,7 +17,7 @@
             </div>
 
             <!-- content -->
-            <div class="col-md-10">
+            <div class="col-md-10 mb-4">
                 <div class="card mt-3">
                     <div class="card-header">
                         Videos management
@@ -133,7 +133,8 @@
                 </div>
             </div>
         </div>
+
+        <!-- footer -->
+        @include('admin.layouts.footer')
     </div>
-
-
 @endsection

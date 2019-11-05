@@ -33,4 +33,14 @@ class GroupRepository extends EloquentRepository implements GroupRepositoryInter
         })->paginate($number);
         return $otherGroups;
     }
+
+    public function getAllGroupOfUser($userId)
+    {
+        $groups = $this->model->whereIn('id', function ($query) use ($userId) {
+            $query->select('group_id')
+                ->where('user_id', $userId)
+                ->from('group_user');
+        })->get();
+        return $groups;
+    }
 }

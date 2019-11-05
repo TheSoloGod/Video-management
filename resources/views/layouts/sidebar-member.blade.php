@@ -8,13 +8,19 @@
                 <h5><strong>{{ Auth::user()->name }}</strong></h5>
             </div>
             <div>
-                <a class="btn btn-light w-100 mb-2" href="">Trending</a>
+                <a class="btn btn-light w-100 mb-2"
+                   data-container="body" data-toggle="popover" data-placement="right"  data-content="developing feature">
+                    Trending
+                </a>
             </div>
             <div>
-                <a class="btn btn-light w-100 mb-2" href="">New</a>
+                <a class="btn btn-light w-100 mb-2"
+                   data-container="body" data-toggle="popover" data-placement="right" data-content="developing feature">
+                    New videos
+                </a>
             </div>
             <div>
-                <a class="btn btn-light w-100 mb-2" href="">Categories</a>
+                <a class="btn btn-light w-100 mb-2" data-toggle="modal" data-target="#categoryModal">Categories</a>
             </div>
             <div>
                 <a class="btn btn-light w-100 mb-2" href="{{ route('member.group.all', Auth::user()->id) }}">Groups</a>
@@ -23,8 +29,13 @@
                 <a class="btn btn-light w-100 mb-2" href="">Favorites</a>
             </div>
             <div>
-                <a class="btn btn-light w-100 mb-2" href="">History</a>
+                <a class="btn btn-light w-100 mb-2"
+                   data-container="body" data-toggle="popover" data-placement="right" data-content="developing feature">
+                    History
+                </a>
             </div>
         </div>
     </div>
 </div>
+@include('member.modal.category')
+

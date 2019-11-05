@@ -118,5 +118,8 @@
                 </div>
             </div>
         </div>
+
+        <!-- footer -->
+        @include('admin.layouts.footer')
     </div>
 @endsection

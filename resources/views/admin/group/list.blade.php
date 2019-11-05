@@ -17,7 +17,7 @@
             </div>
 
             <!-- content -->
-            <div class="col-md-10">
+            <div class="col-md-10 mb-3">
                 <div class="card mt-3 mb-3">
                     <div class="card-header">
                         Group management
@@ -100,5 +100,8 @@
                 </div>
             </div>
         </div>
+
+        <!-- footer -->
+        @include('admin.layouts.footer')
     </div>
 @endsection

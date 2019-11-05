@@ -26,11 +26,11 @@
 <!-- popover -->
     <script>
         $(function () {
-            $('[data-toggle="popover"]').popover()
+            $('[data-toggle="popover"]').popover();
+            $('.popover-dismiss').popover({
+                trigger: 'focus'
+            })
         });
-        $('.popover-dismiss').popover({
-            trigger: 'focus'
-        })
     </script>
 
 </head>

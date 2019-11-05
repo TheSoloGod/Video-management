@@ -56,36 +56,36 @@
             </div>
 
             <!-- Recommend -->
-            <div class="col-md-5 mt-5 mb-5">
-
-                <div class="mb-3">
-                    <strong>Up next</strong>
-                </div>
-                <div class="row mb-3">
-                    <div class="col-6">
-                        <div class="card card-body p-0 w-100 ">
-                            <a href="{{ route('public.video.show', $video->id) }}">
-                                <img class="w-100" style="height: 110px" src="{{ asset('storage/preview/' . $video->image ) }}">
-                            </a>
+            <div class="col-md-5">
+                <div class="card card-body mt-5 mb-5">
+                    <div class="mb-3">
+                        <strong>Up next</strong>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-6">
+                            <div class="card card-body p-0 w-100 ">
+                                <a href="{{ route('public.video.show', $video->id) }}">
+                                    <img class="w-100" style="height: 110px" src="{{ asset('storage/preview/' . $video->image ) }}">
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col-6 p-0">
+                            <div>
+                                <p class="mb-0">
+                                    <strong>{{ $video->title }}</strong>
+                                </p>
+                            </div>
+                            <div>
+                                <p style="color: gray">{{ $video->description }}</p>
+                            </div>
                         </div>
                     </div>
-                    <div class="col-6 p-0">
-                        <div>
-                            <p class="mb-0">
-                                <strong>{{ $video->title }}</strong>
-                            </p>
-                        </div>
-                        <div>
-                            <p style="color: gray">{{ $video->description }}</p>
-                        </div>
-                    </div>
-                </div>
-                <hr>
+                    <hr>
 
-                <div class="mb-3">
-                    <strong>Recommended</strong>
-                </div>
-                @foreach($recommendedVideos as $key => $value)
+                    <div class="mb-3">
+                        <strong>Recommended</strong>
+                    </div>
+                    @foreach($recommendedVideos as $key => $value)
                     <div class="row mb-3">
                         <div class="col-6">
                             <div class="card card-body p-0 w-100 ">
@@ -106,6 +106,7 @@
                         </div>
                     </div>
                 @endforeach
+                </div>
             </div>
         </div>
 
