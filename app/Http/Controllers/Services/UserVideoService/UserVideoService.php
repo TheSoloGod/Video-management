@@ -14,4 +14,11 @@ class UserVideoService implements UserVideoServiceInterface
     {
         $this->userVideoRepository = $userVideoRepository;
     }
+
+    public function favorite($request)
+    {
+        $data = [];
+        $data = ['video_id' => $request->video_id];
+        return $data;
+    }
 }

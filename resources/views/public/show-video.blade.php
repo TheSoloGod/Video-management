@@ -48,7 +48,7 @@
                                     </div>
                                 </div>
                                 <div class="col-6">
-                                    <a class="text-danger" href="">
+                                    <a class="text-danger" id="favorite" video_id="{{ $video->id }}">
                                         <i class="far fa-heart" style="font-size: 40px"></i>
                                     </a>
                                 </div>
@@ -119,4 +119,6 @@
         <!-- footer -->
         @include('layouts.footer')
     </div>
+
+    <script src="{{ asset('js/favorite.js') }}"></script>
 @endsection

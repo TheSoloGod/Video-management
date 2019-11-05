@@ -6,6 +6,7 @@ use App\Http\Controllers\Services\CategoryService\CategoryServiceInterface;
 use App\Http\Controllers\Services\DateVideoService\DateVideoServiceInterface;
 use App\Http\Controllers\Services\GroupService\GroupServiceInterface;
 use App\Http\Controllers\Services\UserService\UserServiceInterface;
+use App\Http\Controllers\Services\UserVideoService\UserVideoService;
 use App\Http\Controllers\Services\VideoService\VideoServiceInterface;
 use Illuminate\Http\Request;
 
@@ -16,18 +17,21 @@ class MemberController extends Controller
     protected $userService;
     protected $categoryService;
     protected $dateVideoService;
+    protected $userVideoService;
 
     public function __construct(VideoServiceInterface $videoService,
                                 GroupServiceInterface $groupService,
                                 UserServiceInterface $userService,
                                 CategoryServiceInterface $categoryService,
-                                DateVideoServiceInterface $dateVideoService)
+                                DateVideoServiceInterface $dateVideoService,
+                                UserVideoService $userVideoService)
     {
         $this->videoService = $videoService;
         $this->groupService = $groupService;
         $this->userService = $userService;
         $this->categoryService = $categoryService;
         $this->dateVideoService = $dateVideoService;
+        $this->userVideoService = $userVideoService;
     }
 
     public function index()
@@ -70,5 +74,11 @@ class MemberController extends Controller
         $groups = $this->groupService->getAllGroupOfUser($userId);
         $categories = $this->categoryService->getAll();
         return view('member.info', compact('user', 'groups', 'categories'));
+    }
+
+    public function favorite(Request $request)
+    {
+        $data = $this->userVideoService->favorite($request);
+        return $data;
     }
 }

@@ -21,7 +21,7 @@
     <script src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
 
     <!-- CSS -->
-{{--    <link href="{{asset('css/home.css')}}" rel="stylesheet">--}}
+    <link href="{{asset('css/home.css')}}" rel="stylesheet">
 
 <!-- popover -->
     <script>

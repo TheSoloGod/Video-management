@@ -32,6 +32,7 @@ Route::group(['prefix' => 'member/{user_id?}', 'middleware' => 'verified'], func
     Route::get('/group/{group_id}/video', 'MemberController@getVideoOfGroup')->name('member.group.video.all');
     Route::get('/video/{video_id}', 'MemberController@showVideo')->name('member.video.show');
     Route::get('/info', 'MemberController@info')->name('member.info');
+    Route::get('/favorite', 'MemberController@favorite')->name('member.favorite');
 });
 
 //route admin login logout
