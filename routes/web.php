@@ -37,6 +37,9 @@ Route::group(['prefix' => 'member/{user_id?}', 'middleware' => 'verified'], func
     Route::get('favorite/video/{video_id}', 'MemberController@showVideoFavorite')->name('member.video.favorite.show');
 });
 
+// route search
+Route::post('/search', 'VideoController@search')->name('navbar.search');
+
 //route admin login logout
 Route::group(['prefix' => 'admin'], function () {
     Route::get('/login', 'AdminController@getLogin')->name('admin');

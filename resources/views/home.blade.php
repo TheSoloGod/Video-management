@@ -19,9 +19,6 @@
             <!-- content -->
             <div class="col-md-10">
 
-                <input id="category">
-
-
                 <!-- recommended -->
                 <div class="card card-body mt-3">
                     <div class="mb-3">
@@ -135,19 +132,3 @@
 
     </div>
 @endsection
-
-@section('script')
-    <script src="{{ asset('js/jquery.tokeninput.js') }}"></script>
-    <script>
-        $(document).ready(function ($) {
-            $("#category").tokenInput("{{asset('api/categories?q=categories')}}", {
-                hintText: 'Nhập tên ca sỹ',
-                noResultsText: "Không tìm thấy ca sỹ.",
-                searchingText: 'Đang tìm kiếm...',
-                theme: 'facebook',
-                preventDuplicates: true,
-                prePopulate: '',
-            });
-        });
-    </script>
-    @endsection

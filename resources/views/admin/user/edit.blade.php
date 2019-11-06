@@ -23,6 +23,15 @@
                         @method('PUT')
                         <div class="card-header">
                             Update user infomation
+                            @if($errors->any())
+                                <div>
+                                    <ul>
+                                        @foreach($errors->all() as $error)
+                                            <li style="color: red;">{{ $error }}</li>
+                                        @endforeach
+                                    </ul>
+                                </div>
+                            @endif
                         </div>
                         <div class="card-body">
                             <div class="row">

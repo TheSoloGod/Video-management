@@ -1,11 +1,17 @@
 @extends('layouts.master')
 
 @section('content')
+    <div class="container-fluid">
+        <nav class="navbar navbar-expand-lg navbar-light border" style="background-color: #EEEEEE">
+            <a class="navbar-brand">Video+</a>
+        </nav>
+    </div>
+
     <div class="container mt-5">
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
-                    <div class="card-header">{{ __('Login') }}</div>
+                    <div class="card-header">Admin {{ __('Login') }}</div>
 
                     <div class="card-body">
                         <form method="POST" action="{{ route('admin.login') }}">

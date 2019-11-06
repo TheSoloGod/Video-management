@@ -26,6 +26,15 @@
                                 <strong>{{ Session::get('error') }}</strong>
                             </div>
                         @endif
+                        @if($errors->any())
+                            <div>
+                                <ul>
+                                    @foreach($errors->all() as $error)
+                                        <li style="color: red">{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        @endif
                     </div>
                     <div class="card-body">
                         <form method="post" action="{{ route('videos.store') }}" enctype="multipart/form-data">
@@ -34,13 +43,12 @@
                                 <div class="col-md-6">
                                     <div class="">
                                         <div class="text-center">
-                                            <img src="{{ asset('storage/preview/preview-default.jpg') }}" class="mb-3"
-                                                 style="width: 250px; height: 150px">
+                                            <img src="{{ asset('storage/preview/preview-default.jpg') }}" class="mb-3 w-100">
                                         </div>
                                         <div class="card card-body">
                                             <table class="table">
                                                 <tr>
-                                                    <td>Preview:</td>
+                                                    <td>Thumbnail:</td>
                                                     <td>
                                                         <input class="form-control" type="file" name="image">
                                                     </td>
@@ -68,6 +76,18 @@
                                                 <td>Description:</td>
                                                 <td>
                                                     <textarea class="form-control" name="description"></textarea>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>Category:</td>
+                                                <td>
+                                                    <input id="category" name="category">
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>Group:</td>
+                                                <td>
+                                                    <input id="group" name="group">
                                                 </td>
                                             </tr>
                                             <tr>
@@ -103,4 +123,29 @@
             </div>
         </div>
     </div>
+@endsection
+
+@section('script')
+    <script src="{{ asset('js/tokenInput/jquery.tokeninput.js') }}"></script>
+    <script>
+        $(document).ready(function ($) {
+            $("#category").tokenInput("{{asset('api/categories?q=categories')}}", {
+                hintText: 'Choose category for this video',
+                noResultsText: "Not found category",
+                searchingText: 'Searching...',
+                theme: 'facebook',
+                preventDuplicates: true,
+                prePopulate: '',
+            });
+
+            $("#group").tokenInput("{{asset('api/groups?q=groups')}}", {
+                hintText: 'Choose group for this video',
+                noResultsText: "Not found group",
+                searchingText: 'Searching...',
+                theme: 'facebook',
+                preventDuplicates: true,
+                prePopulate: '',
+            });
+        });
+    </script>
 @endsection

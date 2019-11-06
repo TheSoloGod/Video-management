@@ -44,7 +44,9 @@
                                 <div class="col-6 text-center">
                                     <div>Favorites</div>
                                     <div>
-                                        <p class="mb-0"><strong>50</strong></p>
+                                        <p id="totalFavorite" class="mb-0" favorite="{{ $video->favorite }}">
+                                            <strong>{{ $video->favorite }}</strong>
+                                        </p>
                                     </div>
                                 </div>
                                 <div class="col-6">
@@ -57,7 +59,7 @@
                                             @endif
                                         </a>
                                     @else
-                                        <a class="text-danger">
+                                        <a class="text-danger" data-container="body" data-toggle="popover" data-placement="bottom" data-content="You must login to favorite this video">
                                             <i class="far fa-heart" style="font-size: 40px"></i>
                                         </a>
                                     @endif

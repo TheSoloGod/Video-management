@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Services\UserService\UserServiceInterface;
 use Illuminate\Http\Request;
+use App\Http\Requests\StoreNameRequest;
 
 class UserController extends Controller
 {
@@ -79,7 +80,7 @@ class UserController extends Controller
      * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(StoreNameRequest $request, $id)
     {
         $this->userService->update($request, $id);
         return redirect()->back();

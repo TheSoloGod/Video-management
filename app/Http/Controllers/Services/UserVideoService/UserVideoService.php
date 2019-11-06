@@ -5,14 +5,18 @@ namespace App\Http\Controllers\Services\UserVideoService;
 
 
 use App\Http\Controllers\Repositories\UserVideoRepository\UserVideoRepositoryInterface;
+use App\Http\Controllers\Repositories\VideoRepository\VideoRepositoryInterface;
 
 class UserVideoService implements UserVideoServiceInterface
 {
     protected $userVideoRepository;
+    protected $videoRepository;
 
-    public function __construct(UserVideoRepositoryInterface $userVideoRepository)
+    public function __construct(UserVideoRepositoryInterface $userVideoRepository,
+                                VideoRepositoryInterface $videoRepository)
     {
         $this->userVideoRepository = $userVideoRepository;
+        $this->videoRepository = $videoRepository;
     }
 
     public function favorite($request)
@@ -21,6 +25,7 @@ class UserVideoService implements UserVideoServiceInterface
         $videoId = $request->video_id;
         if (!$this->checkFavorited($userId, $videoId)) {
             $this->createFavorite($request);
+            $this->incrementVideoTotalFavorite($videoId);
             return true;
         } else {
             return false;
@@ -40,5 +45,10 @@ class UserVideoService implements UserVideoServiceInterface
         } else {
             return true;
         }
+    }
+
+    public function incrementVideoTotalFavorite($videoId)
+    {
+        $this->videoRepository->incrementVideoTotalFavorite($videoId);
     }
 }

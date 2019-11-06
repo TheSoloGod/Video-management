@@ -6,6 +6,7 @@ use App\Http\Controllers\Services\GroupService\GroupServiceInterface;
 use App\Http\Controllers\Services\GroupUserService\GroupUserServiceInterface;
 use App\Http\Controllers\Services\GroupVideoService\GroupVideoServiceInterface;
 use Illuminate\Http\Request;
+use App\Http\Requests\StoreNameRequest;
 use App\Services\SessionService;
 
 class GroupController extends Controller
@@ -53,7 +54,7 @@ class GroupController extends Controller
      * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreNameRequest $request)
     {
         $newGroup = $this->groupService->store($request);
         $groupId = $newGroup->id;
@@ -94,7 +95,7 @@ class GroupController extends Controller
      * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(StoreNameRequest $request, $id)
     {
         $this->groupService->update($request, $id);
         return redirect()->route('groups.show', compact('id'));

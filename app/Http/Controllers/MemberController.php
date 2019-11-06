@@ -74,7 +74,7 @@ class MemberController extends Controller
         $user = $this->userService->getById($userId);
         $groups = $this->groupService->getAllGroupOfUser($userId);
         $categories = $this->categoryService->getAll();
-        return view('member.info', compact('user', 'groups', 'categories'));
+        return view('member.user.info', compact('user', 'groups', 'categories'));
     }
 
     public function favorite(Request $request)
@@ -87,7 +87,8 @@ class MemberController extends Controller
     public function getPaginateVideoFavorite($userId)
     {
         $videos = $this->videoService->getPaginateVideoFavorite($userId);
-        return $videos;
+        $categories = $this->categoryService->getAll();
+        return view('member.favorite.video-favorite', compact('videos', 'categories'));
     }
 
     public function showVideoFavorite($userId, $videoId)

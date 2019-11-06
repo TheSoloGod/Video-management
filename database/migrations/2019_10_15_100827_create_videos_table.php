@@ -20,9 +20,9 @@ class CreateVideosTable extends Migration
             $table->string('type')->default(0);
             $table->string('status');
             $table->bigInteger('views')->default(0);
+            $table->bigInteger('favorite')->default(0);
             $table->string('image')->default('preview-default.jpg');
             $table->tinyInteger('is_display')->default(0);
-//            $table->tinyInteger('is_in_group')->default(0);
             $table->dateTime('delete_at')->nullable();
             $table->string('name');
             $table->string('path')->nullable();

@@ -33,7 +33,7 @@
                 </div>
                 <div class="col-md-3">
                     <div class="dropdown mr-1">
-                        <a class="btn btn-outline-primary dropdown-toggle" id="dropdownMenuOffset" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-offset="10,20">
+                        <a class="btn btn-outline-secondary dropdown-toggle" id="dropdownMenuOffset" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-offset="10,20">
                             Option
                             <i class="fas fa-sliders-h"></i>
                         </a>
@@ -59,7 +59,7 @@
                             <div class="card">
                                 <div class="card-body text-center p-0">
                                     <a href="{{ route('member.video.show', [Auth::user()->id, $value->id]) }}">
-                                        <img class="w-100" style="height: 130px"
+                                        <img class="w-100" style="height: 140px"
                                              src="{{ asset('storage/preview/' . $value->image ) }}">
                                     </a>
                                 </div>
@@ -80,7 +80,7 @@
                             <div class="card">
                                 <div class="card-body text-center p-0">
                                     <a href="{{ route('member.video.show', [Auth::user()->id, $value->id]) }}">
-                                        <img class="w-100" style="height: 130px"
+                                        <img class="w-100" style="height: 140px"
                                              src="{{ asset('storage/preview/' . $value->image ) }}">
                                     </a>
                                 </div>
@@ -101,7 +101,7 @@
                             <div class="card">
                                 <div class="card-body text-center p-0">
                                     <a href="{{ route('member.video.show', [Auth::user()->id, $value->id]) }}">
-                                        <img class="w-100" style="height: 130px"
+                                        <img class="w-100" style="height: 140px"
                                              src="{{ asset('storage/preview/' . $value->image ) }}">
                                     </a>
                                 </div>

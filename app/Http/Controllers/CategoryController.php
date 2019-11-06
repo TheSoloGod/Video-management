@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Services\CategoryService\CategoryServiceInterface;
 use App\Http\Controllers\Services\CategoryVideoService\CategoryVideoServiceInterface;
 use Illuminate\Http\Request;
+use App\Http\Requests\StoreNameRequest;
 
 class CategoryController extends Controller
 {
@@ -43,7 +44,7 @@ class CategoryController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreNameRequest $request)
     {
         $newCategory = $this->categoryService->store($request);
         $categoryId = $newCategory->id;
@@ -82,7 +83,7 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(StoreNameRequest $request, $id)
     {
         $this->categoryService->update($request, $id);
         return redirect()->route('categories.show', compact('id'));

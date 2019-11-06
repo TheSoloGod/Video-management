@@ -12,6 +12,7 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+{{--    <link href="{{ asset('css/bootstrap/bootstrap.css') }}" rel="stylesheet">--}}
 
     <!-- Booostrap JS -->
 
@@ -19,23 +20,18 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
     <script src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
+{{--    <script src="{{ asset('js/bootstrap/bootstrap.js') }}"></script>--}}
+{{--    <script src="{{ asset('js/bootstrap/jquery.min.js') }}"></script>--}}
+{{--    <script src="{{ asset('js/bootstrap/popper.min.js') }}"></script>--}}
+{{--    <script src="{{ asset('js/fontawesome/all.js') }}"></script>--}}
 
     <!-- CSS -->
     <link href="{{asset('css/home.css')}}" rel="stylesheet">
-    <link href="{{asset('css/token-input.css')}}" rel="stylesheet">
-    <link href="{{asset('css/token-input-facebook.css')}}" rel="stylesheet">
+    <link href="{{asset('css/tokenInput/token-input.css')}}" rel="stylesheet">
+    <link href="{{asset('css/tokenInput/token-input-facebook.css')}}" rel="stylesheet">
 
-
-
-<!-- popover -->
-    <script>
-        $(function () {
-            $('[data-toggle="popover"]').popover();
-            $('.popover-dismiss').popover({
-                trigger: 'focus'
-            })
-        });
-    </script>
+    <!-- SCRIPT -->
+    <script src="{{ asset('js/home.js') }}"></script>
 
 </head>
 <body>

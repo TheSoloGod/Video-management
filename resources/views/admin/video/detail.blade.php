@@ -51,7 +51,7 @@
                                                             Favorites
                                                         </div>
                                                         <div>
-                                                            ...
+                                                            {{ $video->favorite }}
                                                         </div>
                                                     </div>
                                                 </div>
@@ -186,8 +186,5 @@
                 </div>
             </div>
         </div>
-
     </div>
-
-
 @endsection

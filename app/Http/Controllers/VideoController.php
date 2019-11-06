@@ -2,17 +2,21 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\Services\CategoryService\CategoryServiceInterface;
 use App\Http\Controllers\Services\VideoService\VideoServiceInterface;
 use Illuminate\Http\Request;
+use App\Http\Requests\StoreVideoRequest;
 
 class VideoController extends Controller
 {
-
     protected $videoService;
+    protected $categoryService;
 
-    public function __construct(VideoServiceInterface $videoService)
+    public function __construct(VideoServiceInterface $videoService,
+                                CategoryServiceInterface $categoryService)
     {
         $this->videoService = $videoService;
+        $this->categoryService = $categoryService;
     }
 
     /**
@@ -42,7 +46,7 @@ class VideoController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreVideoRequest $request)
     {
         $video = $this->videoService->store($request);
         if($video){
@@ -88,7 +92,7 @@ class VideoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(StoreVideoRequest $request, $id)
     {
         $this->videoService->update($request, $id);
         return redirect()->route('videos.show', compact('id'));
@@ -104,5 +108,12 @@ class VideoController extends Controller
     {
         $this->videoService->softDelete($id);
         return redirect()->route('videos.index');
+    }
+
+    public function search(Request $request)
+    {
+        $videos = $this->videoService->search($request);
+        $categories = $this->categoryService->getAll();
+        return view('public.search-result', compact('videos', 'categories'));
     }
 }

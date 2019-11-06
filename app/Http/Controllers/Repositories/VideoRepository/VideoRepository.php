@@ -125,4 +125,17 @@ class VideoRepository extends EloquentRepository implements VideoRepositoryInter
         })->paginate($number);
         return $videos;
     }
+
+    public function incrementVideoTotalFavorite($videoId)
+    {
+        $this->model->where('id', $videoId)
+                    ->increment('favorite');
+    }
+
+    public function search($keyWord, $number)
+    {
+        $videos = $this->model->where('title', 'LIKE', '%' . $keyWord . '%')
+                              ->paginate($number);
+        return $videos;
+    }
 }

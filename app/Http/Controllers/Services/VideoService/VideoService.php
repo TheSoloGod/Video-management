@@ -52,23 +52,40 @@ class VideoService implements VideoServiceInterface
 
     public function store($request)
     {
-        $folder = 'preview';
-        $imageDefault = 'preview-default.jpg';
-        $data = $this->storeImageService->buildData($request, $folder, $imageDefault);
-
         if ($request->hasFile('video')) {
+
+            //store image
+            $folder = 'preview';
+            $imageDefault = 'preview-default.jpg';
+            $data = $this->storeImageService->buildData($request, $folder, $imageDefault);
+
+            //store video
             $video = $request->video;
             $videoFullName = $video->getClientOriginalName();
             $videoExtension = $video->getClientOriginalExtension();
-            $videoName = str_replace('.' . $videoExtension, '', $videoFullName);
-            $request->video->storeAs('/', $videoFullName, 'public');
-            $data['name'] = $videoName;
 
-            return $this->storeVideoOnCloud($data, $videoName, $videoFullName);
+            if ($this->checkVideoExtension($videoExtension)) {
+                $videoName = str_replace('.' . $videoExtension, '', $videoFullName);
+                $data['name'] = $videoName;
+
+                $this->storeVideoOnPublic($request, $videoFullName);
+                $newVideo = $this->storeVideoOnCloud($data, $videoName, $videoFullName);
+                $this->storeNewVideoCategory($request, $newVideo);
+                $this->storeNewVideoGroup($request, $newVideo);
+                return $newVideo;
+            } else {
+                Session::flash('error', 'Video+ only support mp4 file');
+                return false;
+            }
         } else {
             Session::flash('error', 'Choose video to upload');
             return false;
         }
+    }
+
+    public function storeVideoOnPublic($request, $videoFullName)
+    {
+        $request->video->storeAs('/', $videoFullName, 'public');
     }
 
     public function storeVideoOnCloud($data, $videoName, $videoFullName)
@@ -83,6 +100,15 @@ class VideoService implements VideoServiceInterface
             SetPathVideo::dispatch($newVideo->id, $newVideo->name);
             Session::flash('status', 'Uploading video');
             return $newVideo;
+        }
+    }
+
+    public function checkVideoExtension($extension)
+    {
+        if ($extension == 'mp4') {
+            return true;
+        } else {
+            return false;
         }
     }
 
@@ -138,10 +164,40 @@ class VideoService implements VideoServiceInterface
         return $categories;
     }
 
+    public function storeNewVideoCategory($request, $newVideo)
+    {
+        if ($newVideo) {
+            if ($request->category != null) {
+                $arrayCategory = explode(',', $request->category);
+                foreach ($arrayCategory as $key => $value) {
+                    $data = [];
+                    $data['category_id'] = $value;
+                    $data['video_id'] = $newVideo->id;
+                    $this->categoryVideoRepository->create($data);
+                }
+            }
+        }
+    }
+
     public function getAllGroup($videoId)
     {
         $groups = $this->groupVideoRepository->getAllGroup($videoId);
         return $groups;
+    }
+
+    public function storeNewVideoGroup($request, $newVideo)
+    {
+        if ($newVideo) {
+            if ($request->group != null) {
+                $arrayGroup = explode(',', $request->group);
+                foreach ($arrayGroup as $key => $value) {
+                    $data = [];
+                    $data['group_id'] = $value;
+                    $data['video_id'] = $newVideo->id;
+                    $this->groupVideoRepository->create($data);
+                }
+            }
+        }
     }
 
     public function getPaginateAllVideoPublic()
@@ -190,6 +246,14 @@ class VideoService implements VideoServiceInterface
     {
         $number = 4;
         $videos = $this->videoRepository->getPaginateVideoFavorite($userId, $number);
+        return $videos;
+    }
+
+    public function search($request)
+    {
+        $number = 8;
+        $keyWord = $request->navbar_search;
+        $videos = $this->videoRepository->search($keyWord, $number);
         return $videos;
     }
 }

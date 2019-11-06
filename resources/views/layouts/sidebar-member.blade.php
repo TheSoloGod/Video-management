@@ -26,7 +26,7 @@
                 <a class="btn btn-light w-100 mb-2" href="{{ route('member.group.all', Auth::user()->id) }}">Groups</a>
             </div>
             <div>
-                <a class="btn btn-light w-100 mb-2" href="">Favorites</a>
+                <a class="btn btn-light w-100 mb-2" href="{{ route('member.video.favorite.all', Auth::user()->id) }}">Favorites</a>
             </div>
             <div>
                 <a class="btn btn-light w-100 mb-2"
