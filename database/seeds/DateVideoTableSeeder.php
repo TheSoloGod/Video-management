@@ -17,7 +17,7 @@ class DateVideoTableSeeder extends Seeder
         $dateVideo->video_id = '1';
         $dateVideo->today_views = '10';
         $dateVideo->yesterday_views = '0';
-        $dateVideo->view_rate = 'have no view of the day before this day';
+        $dateVideo->view_rate = 'not calculated';
         $dateVideo->save();
 
         $dateVideo = new DateVideo();
@@ -25,7 +25,7 @@ class DateVideoTableSeeder extends Seeder
         $dateVideo->video_id = '2';
         $dateVideo->today_views = '20';
         $dateVideo->yesterday_views = '0';
-        $dateVideo->view_rate = 'have no view of the day before this day';
+        $dateVideo->view_rate = 'not calculated';
         $dateVideo->save();
 
         $dateVideo = new DateVideo();
@@ -49,7 +49,7 @@ class DateVideoTableSeeder extends Seeder
         $dateVideo->video_id = '3';
         $dateVideo->today_views = '55';
         $dateVideo->yesterday_views = '0';
-        $dateVideo->view_rate = 'have no view of the day before this day';
+        $dateVideo->view_rate = 'not calculated';
         $dateVideo->save();
 
         $dateVideo = new DateVideo();
@@ -65,7 +65,7 @@ class DateVideoTableSeeder extends Seeder
         $dateVideo->video_id = '5';
         $dateVideo->today_views = '25';
         $dateVideo->yesterday_views = '0';
-        $dateVideo->view_rate = 'have no view of the day before this day';
+        $dateVideo->view_rate = 'not calculated';
         $dateVideo->save();
 
         $dateVideo = new DateVideo();
@@ -73,7 +73,7 @@ class DateVideoTableSeeder extends Seeder
         $dateVideo->video_id = '4';
         $dateVideo->today_views = '40';
         $dateVideo->yesterday_views = '0';
-        $dateVideo->view_rate = 'have no view of the day before this day';
+        $dateVideo->view_rate = 'not calculated';
         $dateVideo->save();
 
         $dateVideo = new DateVideo();
@@ -81,7 +81,7 @@ class DateVideoTableSeeder extends Seeder
         $dateVideo->video_id = '2';
         $dateVideo->today_views = '22';
         $dateVideo->yesterday_views = '0';
-        $dateVideo->view_rate = 'have no view of the day before this day';
+        $dateVideo->view_rate = 'not calculated';
         $dateVideo->save();
 
         $dateVideo = new DateVideo();
@@ -89,7 +89,7 @@ class DateVideoTableSeeder extends Seeder
         $dateVideo->video_id = '4';
         $dateVideo->today_views = '44';
         $dateVideo->yesterday_views = '0';
-        $dateVideo->view_rate = 'have no view of the day before this day';
+        $dateVideo->view_rate = 'not calculated';
         $dateVideo->save();
 
         $dateVideo = new DateVideo();
@@ -97,7 +97,7 @@ class DateVideoTableSeeder extends Seeder
         $dateVideo->video_id = '3';
         $dateVideo->today_views = '33';
         $dateVideo->yesterday_views = '0';
-        $dateVideo->view_rate = 'have no view of the day before this day';
+        $dateVideo->view_rate = 'not calculated';
         $dateVideo->save();
 
         $dateVideo = new DateVideo();
@@ -105,7 +105,7 @@ class DateVideoTableSeeder extends Seeder
         $dateVideo->video_id = '1';
         $dateVideo->today_views = '11';
         $dateVideo->yesterday_views = '0';
-        $dateVideo->view_rate = 'have no view of the day before this day';
+        $dateVideo->view_rate = 'not calculated';
         $dateVideo->save();
     }
 }

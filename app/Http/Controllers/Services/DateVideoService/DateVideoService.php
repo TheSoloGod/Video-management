@@ -9,6 +9,8 @@ use App\Http\Controllers\Repositories\DateVideoRepository\DateVideoRepositoryInt
 use App\Http\Controllers\Repositories\VideoRepository\VideoRepositoryInterface;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Session;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Exports\ViewRateExport;
 
 class DateVideoService implements DateVideoServiceInterface
 {
@@ -22,11 +24,11 @@ class DateVideoService implements DateVideoServiceInterface
         $this->videoRepository = $videoRepository;
     }
 
-    public function getAllVideoViewHistory()
+    public function getPaginateVideoViewHistory()
     {
         $number = 5;
-        $allVideoViewHistory = $this->dateVideoRepository->paginate($number);
-        return $allVideoViewHistory;
+        $paginateVideoViewHistory = $this->dateVideoRepository->paginate($number);
+        return $paginateVideoViewHistory;
     }
 
     public function checkHaveDateInRequest($request)
@@ -106,7 +108,7 @@ class DateVideoService implements DateVideoServiceInterface
     {
         $viewDateVideo = $this->dateVideoRepository->getByDateVideoId($date, $videoId);
         if ($viewDateVideo->yesterday_views == 0) {
-            return $viewRate = 'have no view of the day before this day';
+            return $viewRate = 'not calculated';
         } else {
             return $viewRate = round(($viewDateVideo->today_views - $viewDateVideo->yesterday_views) / $viewDateVideo->yesterday_views * 100) . '%';
         }
@@ -116,5 +118,28 @@ class DateVideoService implements DateVideoServiceInterface
     {
         $viewRate = $this->calculateViewRate($date, $videoId);
         $this->dateVideoRepository->updateViewRate($date, $videoId, $viewRate);
+    }
+
+    public function getAllVideoViewHistory()
+    {
+        $allVideoViewHistory = $this->dateVideoRepository->getAll();
+        return $allVideoViewHistory;
+    }
+
+    public function getByDate($date)
+    {
+        $allVideoViewHistory = $this->dateVideoRepository->getByDate($date);
+        return $allVideoViewHistory;
+    }
+
+    public function exportToExcel($date)
+    {
+        if ($date == 'all') {
+            $allVideoViewHistory = DateVideo::all();
+            return Excel::download(new ViewRateExport($allVideoViewHistory), 'history.xlsx');
+        } else {
+            $allVideoViewHistory = $this->dateVideoRepository->getByDate($date);
+        }
+
     }
 }

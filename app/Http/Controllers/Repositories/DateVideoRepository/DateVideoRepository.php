@@ -55,4 +55,11 @@ class DateVideoRepository extends EloquentRepository implements DateVideoReposit
         $viewDateVideo->yesterday_views = $yesterdayViews;
         $viewDateVideo->save();
     }
+
+    public function getByDate($date)
+    {
+        $viewDate = $this->model->where('date', $date)
+                                ->get();
+        return $viewDate;
+    }
 }

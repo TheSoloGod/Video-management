@@ -12,17 +12,10 @@
 
         <div class="row">
             <!-- side bar -->
-            <div class="col-md-2">
-                @if(Auth::user())
-                    @include('layouts.sidebar-member')
-                @else
-                    @include('layouts.sidebar-public')
-                @endif
 
-            </div>
 
             <!-- content -->
-            <div class="col-md-10">
+            <div class="col-md-12">
 
                 <!-- Favorite video of user -->
                 <div class="card card-body mt-3 mb-5">
@@ -34,9 +27,15 @@
                             <div class="col-md-3">
                                 <div class="card">
                                     <div class="card-body text-center p-0">
-                                        <a href="{{ route('public.video.show', [Auth::user()->id, $value->id]) }}">
-                                            <img class="w-100" style="height: 110px" src="{{ asset('storage/preview/' . $value->image ) }}">
-                                        </a>
+                                        @if($userId)
+                                            <a href="{{ route('member.video.show', [$userId, $value->id]) }}">
+                                                <img class="w-100" style="height: 140px" src="{{ asset('storage/preview/' . $value->image ) }}">
+                                            </a>
+                                        @else
+                                            <a href="{{ route('public.video.show', $value->id) }}">
+                                                <img class="w-100" style="height: 140px" src="{{ asset('storage/preview/' . $value->image ) }}">
+                                            </a>
+                                        @endif
                                     </div>
                                 </div>
                                 <div class="ml-1">
@@ -54,9 +53,15 @@
                             <div class="col-md-3">
                                 <div class="card">
                                     <div class="card-body text-center p-0">
-                                        <a href="{{ route('public.video.show', [Auth::user()->id, $value->id]) }}">
-                                            <img class="w-100" style="height: 110px" src="{{ asset('storage/preview/' . $value->image ) }}">
-                                        </a>
+                                        @if($userId)
+                                            <a href="{{ route('member.video.show', [$userId, $value->id]) }}">
+                                                <img class="w-100" style="height: 140px" src="{{ asset('storage/preview/' . $value->image ) }}">
+                                            </a>
+                                        @else
+                                            <a href="{{ route('public.video.show', $value->id) }}">
+                                                <img class="w-100" style="height: 140px" src="{{ asset('storage/preview/' . $value->image ) }}">
+                                            </a>
+                                        @endif
                                     </div>
                                 </div>
                                 <div class="ml-1">

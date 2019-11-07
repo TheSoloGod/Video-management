@@ -2,21 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Controllers\Services\CategoryService\CategoryServiceInterface;
 use App\Http\Controllers\Services\VideoService\VideoServiceInterface;
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreVideoRequest;
+use Illuminate\Support\Facades\Auth;
 
 class VideoController extends Controller
 {
     protected $videoService;
-    protected $categoryService;
 
-    public function __construct(VideoServiceInterface $videoService,
-                                CategoryServiceInterface $categoryService)
+    public function __construct(VideoServiceInterface $videoService)
     {
         $this->videoService = $videoService;
-        $this->categoryService = $categoryService;
     }
 
     /**
@@ -113,7 +110,11 @@ class VideoController extends Controller
     public function search(Request $request)
     {
         $videos = $this->videoService->search($request);
-        $categories = $this->categoryService->getAll();
-        return view('public.search-result', compact('videos', 'categories'));
+        if (Auth::user() == null) {
+            $userId = false;
+        } else {
+            $userId = Auth::user()->id;
+        }
+        return view('public.search-result', compact('videos', 'userId'));
     }
 }

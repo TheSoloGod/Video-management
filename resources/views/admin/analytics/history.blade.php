@@ -79,7 +79,7 @@
                         <div>
                             <span class="float-left">
                                 <a class="btn btn-outline-primary"
-                                   href="#">Download</a>
+                                   href="{{ route('analytics.export.excel', $date) }}">Download</a>
                             </span>
                             <span class="float-right">
                                 {{ $allVideoViewHistory->appends(request()->query()) }}

@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\DateVideo;
 use App\Http\Controllers\Services\DateVideoService\DateVideoServiceInterface;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Exports\ViewRateExport;
 
 class DateVideoController extends Controller
 {
@@ -21,8 +24,9 @@ class DateVideoController extends Controller
      */
     public function index()
     {
-        $allVideoViewHistory = $this->dateVideoService->getAllVideoViewHistory();
-        return view('admin.analytics.history', compact('allVideoViewHistory'));
+        $date = 'all';
+        $allVideoViewHistory = $this->dateVideoService->getPaginateVideoViewHistory();
+        return view('admin.analytics.history', compact('allVideoViewHistory', 'date'));
     }
 
     /**
@@ -96,14 +100,23 @@ class DateVideoController extends Controller
         if($this->dateVideoService->checkHaveDateInRequest($request)){
             return redirect()->route('analytics.search.date.result', $request->date);
         }else{
-            return redirect()->route('analytics.index');
+            return redirect()->route('analytics.index', $date = 'all');
         }
     }
 
     public function resultSearchByDate($date)
     {
         $allVideoViewHistory = $this->dateVideoService->getResultSearchByDate($date);
-        return view('admin.analytics.history', compact('allVideoViewHistory'));
+        return view('admin.analytics.history', compact('allVideoViewHistory', 'date'));
     }
 
+    public function exportToExcel($date)
+    {
+        if ($date == 'all') {
+            $allVideoViewHistory = $this->dateVideoService->getAllVideoViewHistory();
+        } else {
+            $allVideoViewHistory = $this->dateVideoService->getByDate($date);
+        }
+        return Excel::download(new ViewRateExport($allVideoViewHistory), 'history.xlsx');
+    }
 }

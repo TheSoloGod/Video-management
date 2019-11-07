@@ -252,7 +252,7 @@ class VideoService implements VideoServiceInterface
     public function search($request)
     {
         $number = 8;
-        $keyWord = $request->navbar_search;
+        $keyWord = $request->key_word;
         $videos = $this->videoRepository->search($keyWord, $number);
         return $videos;
     }
