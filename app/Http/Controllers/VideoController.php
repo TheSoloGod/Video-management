@@ -3,9 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Services\VideoService\VideoServiceInterface;
+use App\User;
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreVideoRequest;
 use Illuminate\Support\Facades\Auth;
+use App\Notifications\NewVideoInGroup;
+use Illuminate\Support\Facades\Notification;
 
 class VideoController extends Controller
 {
@@ -48,6 +51,8 @@ class VideoController extends Controller
         $video = $this->videoService->store($request);
         if($video){
             $videoId = $video->id;
+            $user = User::find(6);
+            Notification::send($user, new NewVideoInGroup());
             return redirect()->route('videos.show', compact('videoId'));
         }else{
             return redirect()->back();

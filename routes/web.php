@@ -98,4 +98,9 @@ Route::group(['prefix' => 'admin/analytics', 'middleware' => 'check.admin.login'
 
 
 //route test
-Route::get('test', 'DateVideoController@test')->name('test');
+Route::get('test', function (){
+    $user = \App\User::find(6);
+    foreach ($user->unreadNotifications as $notification){
+        dd($notification->data['noti']);
+    }
+})->name('test');
