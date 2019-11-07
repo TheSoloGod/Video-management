@@ -131,15 +131,4 @@ class DateVideoService implements DateVideoServiceInterface
         $allVideoViewHistory = $this->dateVideoRepository->getByDate($date);
         return $allVideoViewHistory;
     }
-
-    public function exportToExcel($date)
-    {
-        if ($date == 'all') {
-            $allVideoViewHistory = DateVideo::all();
-            return Excel::download(new ViewRateExport($allVideoViewHistory), 'history.xlsx');
-        } else {
-            $allVideoViewHistory = $this->dateVideoRepository->getByDate($date);
-        }
-
-    }
 }

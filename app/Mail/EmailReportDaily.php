@@ -7,26 +7,22 @@ use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
-class EmailInvite extends Mailable
+class EmailReportDaily extends Mailable
 {
     use Queueable, SerializesModels;
 
-    public $groupId;
-    public $userId;
-    public $token;
+    public $date;
+    public $allVideoViewHistory;
 
     /**
      * Create a new message instance.
      *
-     * @param $groupId
-     * @param $userId
-     * @param $token
+     * @return void
      */
-    public function __construct($groupId, $userId, $token)
+    public function __construct($date, $allVideoViewHistory)
     {
-        $this->groupId = $groupId;
-        $this->userId = $userId;
-        $this->token = $token;
+        $this->date = $date;
+        $this->allVideoViewHistory = $allVideoViewHistory;
     }
 
     /**
@@ -36,6 +32,6 @@ class EmailInvite extends Mailable
      */
     public function build()
     {
-        return $this->view('mail.invite');
+        return $this->view('mail.report');
     }
 }
