@@ -18,6 +18,9 @@ Auth::routes(['verify' => true]);
 Route::get('/', function () {
     return redirect()->route('home.public.index');
 });
+Route::get('/home', function (){
+    return view('home-new');
+})->name('home.new');
 
 // route public
 Route::group(['prefix' => 'public'], function () {
