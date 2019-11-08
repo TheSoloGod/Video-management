@@ -64,9 +64,9 @@ class GroupUserController extends Controller
     {
         $verifyResult = $this->groupUserService->verifyInvitationEmail($groupId, $userId, $token);
         if ($verifyResult) {
-            dd('dieu huong den trang front end group');
+            return redirect()->route('member.group.video.all', [$userId, $groupId]);
         } else {
-            dd(' dieu huong den trang loi token');
+            return redirect()->route('home.member.index', compact('userId'));
         }
     }
 

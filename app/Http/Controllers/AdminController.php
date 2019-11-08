@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Services\AdminService\AdminServiceInterface;
+use App\Http\Requests\AdminLoginRequest;
 use Illuminate\Http\Request;
 use App\Admin;
 use Illuminate\Support\Facades\Auth;
@@ -21,13 +22,13 @@ class AdminController extends Controller
         return view('admin.auth.login');//return ra trang login để đăng nhập
     }
 
-    public function postLogin(Request $request)
+    public function postLogin(AdminLoginRequest $request)
     {
         $loginResult = $this->adminService->postLogin($request);
         if ($loginResult) {
             return redirect()->route('admin.over-view');
         } else {
-            dd('tài khoản và mật khẩu chưa chính xác');
+            return redirect()->route('admin.login');
         }
     }
 

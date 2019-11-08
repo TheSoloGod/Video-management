@@ -10,6 +10,7 @@ use App\Http\Controllers\Services\GroupService\GroupServiceInterface;
 use App\Http\Controllers\Services\UserService\UserServiceInterface;
 use App\Http\Controllers\Services\VideoService\VideoServiceInterface;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 
 class AdminService implements AdminServiceInterface
 {
@@ -50,6 +51,7 @@ class AdminService implements AdminServiceInterface
         if (Auth::guard('admin')->attempt($info)) {
             return true;
         } else {
+            Session::flash('status', 'Login failed, wrong username or password');
             return false;
         }
     }

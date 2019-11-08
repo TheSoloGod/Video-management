@@ -84,6 +84,7 @@ Route::group(['prefix' => 'admin/group/{group_id}', 'middleware' => 'check.admin
     Route::get('/add-addition/{video_id}', 'GroupVideoController@addVideoToAdditionList')->name('group.video.add-addition');
     Route::get('/remove-addition/{video_id}', 'GroupVideoController@removeVideoFromAdditionList')->name('group.video.remove-addition');
     Route::get('/add-confirm', 'GroupVideoController@addVideoConfirm')->name('group.video.add-confirm');
+//    Route::get('/add-video/notification', 'GroupVideoController@sendNotificationUser')->name('group.video.add.notification');
 });
 
 //route analytics by admin
@@ -101,6 +102,6 @@ Route::group(['prefix' => 'admin/analytics', 'middleware' => 'check.admin.login'
 Route::get('test', function (){
     $user = \App\User::find(6);
     foreach ($user->unreadNotifications as $notification){
-        dd($notification->data['noti']);
+        dd($notification->data);
     }
 })->name('test');

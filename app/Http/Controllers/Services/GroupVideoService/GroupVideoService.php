@@ -5,22 +5,29 @@ namespace App\Http\Controllers\Services\GroupVideoService;
 
 
 use App\AdditionVideoList;
+use App\Http\Controllers\Repositories\GroupUserRepository\GroupUserRepositoryInterface;
 use App\Http\Controllers\Repositories\GroupVideoRepository\GroupVideoRepositoryInterface;
 use App\Http\Controllers\Services\VideoService\VideoServiceInterface;
+use App\Notifications\NewVideoInGroup;
 use App\Services\SessionService;
+use App\User;
+use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Facades\Session;
 
 class GroupVideoService implements GroupVideoServiceInterface
 {
     protected $groupVideoRepository;
+    protected $groupUserRepository;
     protected $videoService;
     protected $sessionService;
 
     public function __construct(GroupVideoRepositoryInterface $groupVideoRepository,
+                                GroupUserRepositoryInterface $groupUserRepository,
                                 VideoServiceInterface $videoService,
                                 SessionService $sessionService)
     {
         $this->groupVideoRepository = $groupVideoRepository;
+        $this->groupUserRepository = $groupUserRepository;
         $this->videoService = $videoService;
         $this->sessionService = $sessionService;
     }
@@ -103,5 +110,13 @@ class GroupVideoService implements GroupVideoServiceInterface
     {
         $groups = $this->groupVideoRepository->getAllGroup($videoId);
         return $groups;
+    }
+
+    public function sendNotificationToUsers($groupId)
+    {
+        $userGroups = $this->groupUserRepository->getAllMember($groupId);
+        foreach ($userGroups as $key => $value) {
+            Notification::send($value->user, new NewVideoInGroup($groupId));
+        }
     }
 }

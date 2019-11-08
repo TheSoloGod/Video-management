@@ -56,6 +56,8 @@ class GroupVideoController extends Controller
     public function addVideoConfirm($groupId)
     {
         $this->groupVideoService->addVideoConfirm($groupId);
+        // send noti to users
+        $this->groupVideoService->sendNotificationToUsers($groupId);
         return redirect()->back();
     }
 }

@@ -9,42 +9,15 @@
                 </a>
             </div>
             <div class="modal-body">
-                <div class="alert alert-primary" role="alert">
-                    A simple primary alert with <a href="#" class="alert-link">an example link</a>. Give it a click if you like.
-                    <a class="close" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </a>
-                </div>
-                <div class="alert alert-secondary" role="alert">
-                    A simple secondary alert with <a href="#" class="alert-link">an example link</a>. Give it a click if you like.
-                    <a class="close" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </a>
-                </div>
-                <div class="alert alert-success" role="alert">
-                    A simple success alert with <a href="#" class="alert-link">an example link</a>. Give it a click if you like.
-                    <a class="close" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </a>
-                </div>
-                <div class="alert alert-danger" role="alert">
-                    A simple danger alert with <a href="#" class="alert-link">an example link</a>. Give it a click if you like.
-                    <a class="close" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </a>
-                </div>
-                <div class="alert alert-warning" role="alert">
-                    A simple warning alert with <a href="#" class="alert-link">an example link</a>. Give it a click if you like.
-                    <a class="close" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </a>
-                </div>
-                <div class="alert alert-info" role="alert">
-                    A simple info alert with <a href="#" class="alert-link">an example link</a>. Give it a click if you like.
-                    <a class="close" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </a>
-                </div>
+                @foreach(Auth::user()->unreadNotifications as $notification)
+                    <div class="alert alert-info" role="alert">
+                        Group {{ $notification->data['group_id'] }} has new video, click
+                        <a href="{{ route('member.group.video.all', [Auth::user()->id, $notification->data['group_id']]) }}" class="alert-link"> here</a> to view this one
+                        <a class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </a>
+                    </div>
+                @endforeach
             </div>
 {{--            <div class="modal-footer">--}}
 {{--                <a class="btn btn-secondary" data-dismiss="modal">Close</a>--}}

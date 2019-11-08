@@ -7,6 +7,7 @@ namespace App\Http\Controllers\Repositories\VideoRepository;
 use App\Http\Controllers\Repositories\Eloquent\EloquentRepository;
 use App\Video;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Auth;
 
 class VideoRepository extends EloquentRepository implements VideoRepositoryInterface
 {
@@ -64,7 +65,15 @@ class VideoRepository extends EloquentRepository implements VideoRepositoryInter
     {
         $videos = $this->model->where('type', 1)
                               ->where('is_display', 1)
-                              ->where('status', $this->uploadStatus[2])
+//                              ->where('is_in_group', 0)
+                              ->whereIn('id', function ($query) {
+                                    $query->whereIn('group_id', function ($query){
+                                        $query->where('user_id', Auth::user()->id)
+                                              ->select('group_id')
+                                              ->from('group_user');
+                                    })->select('video_id')
+                                      ->from('group_video');
+                            })->where('status', $this->uploadStatus[2])
                               ->orderBy('created_at', 'desc')
                               ->paginate($number);
         return $videos;
@@ -104,9 +113,9 @@ class VideoRepository extends EloquentRepository implements VideoRepositoryInter
         $groupVideos = $this->model->whereIn('id', function ($query) use ($groupId){
             $query->select('video_id')
                   ->where('group_id', $groupId)
+                  ->orderBy('created_at', 'desc')
                   ->from('group_video');
-        })->orderBy('created_at', 'desc')
-          ->paginate($number);
+        })->paginate($number);
         return $groupVideos;
     }
 

@@ -11,16 +11,16 @@ class NewVideoInGroup extends Notification
 {
     use Queueable;
 
-    public $post = 'hello';
+    protected $groupId;
 
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($groupId)
     {
-
+        $this->groupId = $groupId;
     }
 
     /**
@@ -57,7 +57,7 @@ class NewVideoInGroup extends Notification
     public function toArray($notifiable)
     {
         return [
-            'noti' => $this->post,
+            'group_id' => $this->groupId,
         ];
     }
 }

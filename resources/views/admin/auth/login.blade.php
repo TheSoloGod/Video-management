@@ -12,6 +12,11 @@
             <div class="col-md-8">
                 <div class="card">
                     <div class="card-header">Admin {{ __('Login') }}</div>
+                    @if (session('status'))
+                        <div class="alert alert-danger" role="alert">
+                            {{ session('status') }}
+                        </div>
+                    @endif
 
                     <div class="card-body">
                         <form method="POST" action="{{ route('admin.login') }}">
