@@ -25,6 +25,7 @@ RUN docker-php-ext-install gd && \
 RUN apt-get install -y gnupg2 && \
   curl -sL https://deb.nodesource.com/setup_6.x | bash - && \
   apt-get install -y nodejs && \
+
   a2enmod rewrite
 
 RUN apt-get install -y libxrender1 \
@@ -43,11 +44,14 @@ COPY php.ini-development $PHP_INI_DIR/php.ini
 RUN chmod 777 ./entry-point.sh
 
 WORKDIR /var/www/html/video-management
-#RUN composer require guzzlehttp/guzzle:~6.0 \
-#RUN composer require predis/predis
-# composer require phpoffice/phpspreadsheet \
+#RUN php artisan queue:work redis
+# composer require guzzlehttp/guzzle:~6.0
+# composer require predis/predis
+# composer require phpoffice/phpspreadsheet
 # composer require maatwebsite/excel
+# composer require barryvdh/laravel-debugbar --dev
 
 # CMD ["apache2-foreground"]
 
-
+#RUN apt-get install npm && \
+#RUN npm install bootstrap-fileinput

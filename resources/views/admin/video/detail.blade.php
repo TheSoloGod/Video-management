@@ -119,6 +119,11 @@
                                 <div class="card card-body">
                                     <table class="table">
                                         <tr>
+                                            <div class="progress mb-1">
+                                                <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 75%"></div>
+                                            </div>
+                                        </tr>
+                                        <tr>
                                             <td>Title:</td>
                                             <td>{{ $video->title }}</td>
                                         </tr>
@@ -148,7 +153,17 @@
                                         </tr>
                                         <tr>
                                             <td>Status:</td>
-                                            <td>{{ $video->status }}</td>
+                                            <td>
+                                                @if($video->status == 'upload success')
+                                                    <a class="btn btn-success disabled">{{ $video->status }}</a>
+                                                @elseif($video->status == 'upload fail')
+                                                    <a class="btn btn-danger disabled">{{ $video->status }}</a>
+                                                @elseif($video->status == 'uploading')
+                                                    <a class="btn btn-warning disabled">{{ $video->status }}</a>
+                                                @elseif($video->status == 'not upload')
+                                                    <a class="btn btn-info disabled">{{ $video->status }}</a>
+                                                @endif
+                                            </td>
                                         </tr>
                                         <tr>
                                             <td>Categories:</td>

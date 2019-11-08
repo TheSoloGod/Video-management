@@ -45,3 +45,12 @@ services:
     restart: always
     environment:
       - REDIS_URL=redis://redis:6379
+
+  nodejs:
+    container_name: video-nodejs
+    tty: true
+    stdin_open: true
+    build: ./docker/nodejs
+    #    command: bash /docker-entrypoint.sh
+    volumes:
+      - .:/home/node/app

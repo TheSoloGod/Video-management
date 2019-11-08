@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Services\VideoService\VideoServiceInterface;
-use App\User;
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreVideoRequest;
 use Illuminate\Support\Facades\Auth;
@@ -47,12 +46,13 @@ class VideoController extends Controller
     public function store(StoreVideoRequest $request)
     {
         $video = $this->videoService->store($request);
-        if($video){
-            $videoId = $video->id;
-            return redirect()->route('videos.show', compact('videoId'));
-        }else{
-            return redirect()->back();
-        }
+        return redirect()->back();
+//        if($video){
+//            $videoId = $video->id;
+//            return redirect()->route('videos.show', compact('videoId'));
+//        }else{
+//            return redirect()->back();
+//        }
     }
 
     /**

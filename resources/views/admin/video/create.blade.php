@@ -56,7 +56,7 @@
                                                 <tr>
                                                     <td>Video:</td>
                                                     <td>
-                                                        <input class="form-control" type="file" name="video">
+                                                        <input id="video-input" class="form-control" type="file" name="video">
                                                     </td>
                                                 </tr>
                                             </table>
@@ -146,6 +146,12 @@
                 preventDuplicates: true,
                 prePopulate: '',
             });
+
+            // initialize with defaults
+            $("#video-input").fileinput();
+
+            // with plugin options
+            $("#video-input").fileinput({'showUpload':true, 'previewFileType':'any'});
         });
     </script>
 @endsection

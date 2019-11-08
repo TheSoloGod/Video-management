@@ -61,7 +61,17 @@
                                             Public
                                         @endif
                                     </td>
-                                    <td>{{ $value->status }}</td>
+                                    <td>
+                                        @if($value->status == 'upload success')
+                                            <a class="btn btn-success disabled">{{ $value->status }}</a>
+                                        @elseif($value->status == 'upload fail')
+                                            <a class="btn btn-danger disabled">{{ $value->status }}</a>
+                                        @elseif($value->status == 'uploading')
+                                            <a class="btn btn-warning disabled">{{ $value->status }}</a>
+                                        @elseif($value->status == 'not upload')
+                                            <a class="btn btn-info disabled">{{ $value->status }}</a>
+                                        @endif
+                                    </td>
                                     <td>
                                         @if($value->is_display)
                                             Show
