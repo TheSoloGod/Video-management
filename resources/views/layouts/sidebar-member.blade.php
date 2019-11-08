@@ -30,7 +30,7 @@
             </div>
             <div>
                 <a class="btn btn-light w-100 mb-2"
-                   data-container="body" data-toggle="popover" data-placement="right" data-content="developing feature" href="{{ route('test') }}">
+                   data-container="body" data-toggle="popover" data-placement="right" data-content="developing feature" href="">
                     History
                 </a>
             </div>
