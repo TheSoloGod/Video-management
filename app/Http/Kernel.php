@@ -4,6 +4,8 @@ namespace App\Http;
 
 use App\Http\Middleware\CheckAdminLogin;
 use App\Http\Middleware\CheckUserLogin;
+use App\Http\Middleware\CheckVideoIsInGroup;
+use App\Http\Middleware\CheckVideoPublic;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
 class Kernel extends HttpKernel
@@ -64,6 +66,8 @@ class Kernel extends HttpKernel
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
         'check.user.login' => CheckUserLogin::class,
         'check.admin.login' => CheckAdminLogin::class,
+        'check.video.isPublic' => CheckVideoPublic::class,
+        'check.video.isInGroup' => CheckVideoIsInGroup::class,
     ];
 
     /**

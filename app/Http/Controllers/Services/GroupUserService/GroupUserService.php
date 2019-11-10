@@ -133,4 +133,10 @@ class GroupUserService implements GroupUserServiceInterface
         $groups = $this->groupUserRepository->getAllGroup($userId);
         return $groups;
     }
+
+    public function getByUserGroupId($userId, $groupId)
+    {
+        $groupUser = $this->groupUserRepository->getByUserGroupId($userId, $groupId);
+        return $groupUser;
+    }
 }

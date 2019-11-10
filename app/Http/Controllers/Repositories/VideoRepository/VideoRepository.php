@@ -65,15 +65,15 @@ class VideoRepository extends EloquentRepository implements VideoRepositoryInter
     {
         $videos = $this->model->where('type', 1)
                               ->where('is_display', 1)
-//                              ->where('is_in_group', 0)
-                              ->whereIn('id', function ($query) {
-                                    $query->whereIn('group_id', function ($query){
-                                        $query->where('user_id', Auth::user()->id)
-                                              ->select('group_id')
-                                              ->from('group_user');
-                                    })->select('video_id')
-                                      ->from('group_video');
-                            })->where('status', $this->uploadStatus[2])
+                              ->where('is_in_group', 0)
+//                              ->whereIn('id', function ($query) {
+//                                    $query->whereIn('group_id', function ($query){
+//                                        $query->where('user_id', Auth::user()->id)
+//                                              ->select('group_id')
+//                                              ->from('group_user');
+//                                    })->select('video_id')
+//                                      ->from('group_video');
+//                            })->where('status', $this->uploadStatus[2])
                               ->orderBy('created_at', 'desc')
                               ->paginate($number);
         return $videos;
@@ -82,6 +82,7 @@ class VideoRepository extends EloquentRepository implements VideoRepositoryInter
     public function getPaginateVideoDisplayShow($number)
     {
         $videos = $this->model->where('is_display',  1)
+                              ->where('is_in_group', 0)
                               ->where('status', $this->uploadStatus[2])
                               ->orderBy('created_at', 'desc')
                               ->paginate($number);
@@ -101,10 +102,11 @@ class VideoRepository extends EloquentRepository implements VideoRepositoryInter
     public function getRecommendedMemberVideos($number)
     {
         $recommendPublicVideos = $this->model->where('type', 1)
-            ->where('is_display', 1)
-            ->where('status', $this->uploadStatus[2])
-            ->limit($number)
-            ->get();
+                                             ->where('is_display', 1)
+                                             ->where('is_in_group', 0)
+                                             ->where('status', $this->uploadStatus[2])
+                                             ->limit($number)
+                                             ->get();
         return $recommendPublicVideos;
     }
 

@@ -19,6 +19,7 @@ class UsersTableSeeder extends Seeder
         $user->password = Hash::make('user1234');
         $user->address = 'address 1';
         $user->phone = '0123456789';
+        $user->is_in_group = '1';
         $user->save();
 
         $user = new User();
@@ -27,6 +28,7 @@ class UsersTableSeeder extends Seeder
         $user->password = Hash::make('user1234');
         $user->address = 'address 2';
         $user->phone = '0123456789';
+        $user->is_in_group = '1';
         $user->save();
 
         $user = new User();
@@ -35,6 +37,7 @@ class UsersTableSeeder extends Seeder
         $user->password = Hash::make('user1234');
         $user->address = 'address 3';
         $user->phone = '0123456789';
+        $user->is_in_group = '1';
         $user->save();
 
         $user = new User();
@@ -61,12 +64,12 @@ class UsersTableSeeder extends Seeder
         $user->phone = '0123456789';
         $user->save();
 
-//        $user = new User();
-//        $user->name = 'user test';
-//        $user->email = 'testlaravel20@gmail.com';
-//        $user->password = Hash::make('user1234');
-//        $user->address = 'address test';
-//        $user->phone = '0123456789';
-//        $user->save();
+        $user = new User();
+        $user->name = 'user test';
+        $user->email = 'testlaravel20@gmail.com';
+        $user->password = Hash::make('user1234');
+        $user->address = 'address test';
+        $user->phone = '0123456789';
+        $user->save();
     }
 }

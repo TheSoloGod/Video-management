@@ -22,6 +22,7 @@ class CreateUsersTable extends Migration
             $table->string('address')->nullable();
             $table->string('phone')->nullable();
             $table->string('image')->default('avatar-default.jpg');
+            $table->tinyInteger('is_in_group')->default(0);
             $table->rememberToken();
             $table->timestamps();
         });

@@ -119,4 +119,10 @@ class GroupVideoService implements GroupVideoServiceInterface
             Notification::send($value->user, new NewVideoInGroup($groupId));
         }
     }
+
+    public function getByGroupVideoId($groupId, $videoId)
+    {
+        $groupVideo = $this->groupVideoRepository->getByGroupVideoId($groupId, $videoId);
+        return $groupVideo;
+    }
 }

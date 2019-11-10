@@ -96,4 +96,14 @@ class MemberController extends Controller
         $video = $this->videoService->getById($videoId);
         return $video;
     }
+
+    public function showVideoInGroup($userId, $groupId, $videoId)
+    {
+        $this->dateVideoService->incrementVideoView($videoId);
+        $video = $this->videoService->getById($videoId);
+        $recommendedVideos = $this->videoService->getRecommendedMemberVideos();
+        $categories = $this->categoryService->getAll();
+        $favoriteStatus = $this->userVideoService->checkFavorited($userId, $videoId);
+        return view('public.show-video', compact('video', 'recommendedVideos', 'categories', 'favoriteStatus'));
+    }
 }

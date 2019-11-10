@@ -58,7 +58,7 @@
                         <div class="col-md-3">
                             <div class="card">
                                 <div class="card-body text-center p-0">
-                                    <a href="{{ route('member.video.show', [Auth::user()->id, $value->id]) }}">
+                                    <a href="{{ route('member.group.video.show', [Auth::user()->id, $group->id, $value->id]) }}">
                                         <img class="w-100" style="height: 140px"
                                              src="{{ asset('storage/preview/' . $value->image ) }}">
                                     </a>
@@ -79,7 +79,7 @@
                         <div class="col-md-3">
                             <div class="card">
                                 <div class="card-body text-center p-0">
-                                    <a href="{{ route('member.video.show', [Auth::user()->id, $value->id]) }}">
+                                    <a href="{{ route('member.group.video.show', [Auth::user()->id, $group->id, $value->id]) }}">
                                         <img class="w-100" style="height: 140px"
                                              src="{{ asset('storage/preview/' . $value->image ) }}">
                                     </a>
@@ -100,7 +100,7 @@
                         <div class="col-md-3">
                             <div class="card">
                                 <div class="card-body text-center p-0">
-                                    <a href="{{ route('member.video.show', [Auth::user()->id, $value->id]) }}">
+                                    <a href="{{ route('member.group.video.show', [Auth::user()->id, $group->id, $value->id]) }}">
                                         <img class="w-100" style="height: 140px"
                                              src="{{ asset('storage/preview/' . $value->image ) }}">
                                     </a>

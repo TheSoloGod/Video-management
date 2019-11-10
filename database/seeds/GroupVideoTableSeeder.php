@@ -14,27 +14,27 @@ class GroupVideoTableSeeder extends Seeder
     {
         $groupVideo = new GroupVideo();
         $groupVideo->group_id = '1';
-        $groupVideo->video_id = '1';
+        $groupVideo->video_id = '9';
         $groupVideo->save();
 
         $groupVideo = new GroupVideo();
         $groupVideo->group_id = '1';
-        $groupVideo->video_id = '2';
+        $groupVideo->video_id = '10';
         $groupVideo->save();
 
         $groupVideo = new GroupVideo();
         $groupVideo->group_id = '1';
-        $groupVideo->video_id = '3';
+        $groupVideo->video_id = '11';
         $groupVideo->save();
 
         $groupVideo = new GroupVideo();
         $groupVideo->group_id = '2';
-        $groupVideo->video_id = '2';
+        $groupVideo->video_id = '9';
         $groupVideo->save();
 
         $groupVideo = new GroupVideo();
         $groupVideo->group_id = '2';
-        $groupVideo->video_id = '3';
+        $groupVideo->video_id = '12';
         $groupVideo->save();
     }
 }

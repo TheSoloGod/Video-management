@@ -71,4 +71,12 @@ class GroupUserRepository extends EloquentRepository implements GroupUserReposit
                               ->get();
         return $groups;
     }
+
+    public function getByUserGroupId($userId, $groupId)
+    {
+        $userGroup = $this->model->where('user_id', $userId)
+                                 ->where('group_id', $groupId)
+                                 ->get();
+        return $userGroup;
+    }
 }

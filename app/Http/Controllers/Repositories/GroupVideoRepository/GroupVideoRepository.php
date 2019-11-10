@@ -42,4 +42,12 @@ class GroupVideoRepository extends EloquentRepository implements GroupVideoRepos
                               ->get();
         return $groups;
     }
+
+    public function getByGroupVideoId($groupId, $videoId)
+    {
+        $groupVideo = $this->model->where('group_id', $groupId)
+                                  ->where('video_id', $videoId)
+                                  ->get();
+        return $groupVideo;
+    }
 }
