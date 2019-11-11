@@ -3,7 +3,7 @@
 namespace App\Jobs;
 
 use App\Http\Controllers\Services\VideoService\VideoServiceInterface;
-use Illuminate \Bus\Queueable;
+use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Filesystem\FileNotFoundException;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Queue\InteractsWithQueue;

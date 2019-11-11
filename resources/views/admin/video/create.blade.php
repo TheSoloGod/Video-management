@@ -37,33 +37,58 @@
                         @endif
                     </div>
                     <div class="card-body">
-                        <form method="post" action="{{ route('videos.store') }}" enctype="multipart/form-data">
-                            @csrf
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="">
-                                        <div class="text-center">
-                                            <img src="{{ asset('storage/preview/preview-default.jpg') }}" class="mb-3 w-100">
-                                        </div>
-                                        <div class="card card-body">
-                                            <table class="table">
-                                                <tr>
-                                                    <td>Thumbnail:</td>
-                                                    <td>
-                                                        <input class="form-control" type="file" name="image">
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Video:</td>
-                                                    <td>
-                                                        <input id="video-input" class="form-control" type="file" name="video">
-                                                    </td>
-                                                </tr>
-                                            </table>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="">
+{{--                                    <div class="text-center">--}}
+{{--                                        <img src="{{ asset('storage/preview/preview-default.jpg') }}" class="mb-3 w-100">--}}
+{{--                                    </div>--}}
+{{--                                    <div>--}}
+{{--                                        <div class="progress">--}}
+{{--                                            <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow=""--}}
+{{--                                                 aria-valuemin="0" aria-valuemax="100" style="width: 0%">--}}
+{{--                                                0%--}}
+{{--                                            </div>--}}
+{{--                                        </div>--}}
+{{--                                        <br />--}}
+{{--                                        <div id="success">--}}
+
+{{--                                        </div>--}}
+{{--                                        <br />--}}
+{{--                                    </div>--}}
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <br>
+                                            <div class="progress">
+                                                <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow=""
+                                                     aria-valuemin="0" aria-valuemax="100" style="width: 0%">
+                                                    0%
+                                                </div>
+                                            </div>
+                                            <br>
+                                            <div id="success">
+
+                                            </div>
+                                            <br>
+                                            <form id="uploadForm" method="post" action="{{ route('admin.video.upload') }}" enctype="multipart/form-data">
+                                                @csrf
+                                                <div class="row">
+                                                    <div class="col-md-9">
+                                                        <input type="file" name="video" id="file" />
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <button type="submit" name="upload" class="btn btn-outline-primary">Upload</button>
+                                                    </div>
+                                                </div>
+                                            </form>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-6">
+                            </div>
+
+                            <div class="col-md-6">
+                                <form method="post" action="{{ route('videos.store') }}" enctype="multipart/form-data">
+                                    @csrf
                                     <div class="card card-body">
                                         <table class="table">
                                             <tr>
@@ -109,15 +134,21 @@
                                                 </td>
                                             </tr>
                                             <tr>
+                                                <td>Thumbnail:</td>
+                                                <td>
+                                                    <input class="form-control" type="file" name="image">
+                                                </td>
+                                            </tr>
+                                            <tr>
                                                 <td colspan="2" class="text-center">
-                                                    <button class="btn btn-primary" type="submit">Upload</button>
+                                                    <button class="btn btn-outline-info" type="submit" name="create">Upload Info</button>
                                                 </td>
                                             </tr>
                                         </table>
                                     </div>
-                                </div>
+                                </form>
                             </div>
-                        </form>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -126,6 +157,7 @@
 @endsection
 
 @section('script')
+    <script src="http://malsup.github.com/jquery.form.js"></script>
     <script src="{{ asset('js/tokenInput/jquery.tokeninput.js') }}"></script>
     <script>
         $(document).ready(function ($) {
@@ -146,12 +178,38 @@
                 preventDuplicates: true,
                 prePopulate: '',
             });
+        });
+    </script>
+    <script>
+        $(document).ready(function(){
 
-            // initialize with defaults
-            $("#video-input").fileinput();
+            $('#uploadForm').ajaxForm({
+                beforeSend:function(){
+                    $('#success').empty();
+                },
+                uploadProgress:function(event, position, total, percentComplete)
+                {
+                    $('.progress-bar').text(percentComplete + '%');
+                    $('.progress-bar').css('width', percentComplete + '%');
+                },
+                success:function(data)
+                {
+                    if(data.errors)
+                    {
+                        $('.progress-bar').text('0%');
+                        $('.progress-bar').css('width', '0%');
+                        $('#success').html('<span class="text-danger"><b>'+data.errors+'</b></span>');
+                    }
+                    if(data.success)
+                    {
+                        $('.progress-bar').text('Uploaded');
+                        $('.progress-bar').css('width', '100%');
+                        $('#success').html('<span class="text-success"><b>'+data.success+'</b></span><br /><br />');
+                        $('#success').append(data.image);
+                    }
+                }
+            });
 
-            // with plugin options
-            $("#video-input").fileinput({'showUpload':true, 'previewFileType':'any'});
         });
     </script>
 @endsection

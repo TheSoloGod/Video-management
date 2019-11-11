@@ -10,8 +10,10 @@ use App\Http\Controllers\Repositories\VideoRepository\VideoRepositoryInterface;
 use App\Jobs\SetPathVideo;
 use App\Jobs\UploadFile;
 use App\Services\StoreImageService;
+use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Validator;
 
 class VideoService implements VideoServiceInterface
 {
@@ -82,6 +84,32 @@ class VideoService implements VideoServiceInterface
             return false;
         }
     }
+
+//    public function uploadVideoProgressBar($request)
+//    {
+//        $rules = array(
+//            'video' => 'required|mimes:mp4|max:2048000'
+//        );
+//
+//        $error = Validator::make($request->all(), $rules);
+//
+//        if ($error->fails()) {
+//            return response()->json(['errors' => $error->errors()->all()]);
+//        }
+//
+//        $video = $request->file('video');
+//
+//        $new_name = rand() . '.' . $video->getClientOriginalExtension();
+//        $video->move(public_path('storage/video'), $new_name);
+//
+//        $output = array(
+//            'success' => 'Video uploaded successfully',
+//            'image' => '<video width="100%" height="auto" controls src="/storage/video/' . $new_name . '" ></video>'
+//        );
+//
+//        sleep(5);
+//        return response()->json($output);
+//    }
 
     public function storeVideoOnPublic($request, $videoFullName)
     {

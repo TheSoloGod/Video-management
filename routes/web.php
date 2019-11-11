@@ -33,7 +33,7 @@ Route::group(['prefix' => 'member/{user_id?}', 'middleware' => 'verified'], func
     Route::get('/', 'MemberController@index')->name('home.member.index');
     Route::get('/group', 'MemberController@getGroup')->name('member.group.all');
     Route::get('/group/{group_id}/video', 'MemberController@getVideoOfGroup')->name('member.group.video.all');
-    Route::get('/group/{group_id}/video/{video_id}', 'MemberController@showVideo')->name('member.group.video.show')->middleware('check.video.isInGroup');
+    Route::get('/group/{group_id}/video/{video_id}', 'MemberController@showVideoInGroup')->name('member.group.video.show')->middleware('check.user.video.isInGroup');
     Route::get('/video/{video_id}', 'MemberController@showVideo')->name('member.video.show')->middleware('check.video.isInGroup');
     Route::get('/info', 'MemberController@info')->name('member.info');
     Route::get('/favorite', 'MemberController@favorite')->name('member.favorite');
@@ -60,6 +60,9 @@ Route::group(['prefix' => 'admin', 'middleware' => 'check.admin.login'], functio
     Route::resource('groups', 'GroupController');
     Route::resource('categories', 'CategoryController');
 });
+
+//route upload video
+Route::post('admin/video/upload', 'VideoController@uploadVideoProgressBar')->name('admin.video.upload');
 
 //route group member management by admin
 Route::group(['prefix' => 'admin/group/{group_id}', 'middleware' => 'check.admin.login'], function () {
@@ -101,8 +104,8 @@ Route::group(['prefix' => 'admin/analytics', 'middleware' => 'check.admin.login'
 
 //route test
 Route::get('test', function (){
-    $user = \App\User::find(6);
-    foreach ($user->unreadNotifications as $notification){
-        dd($notification->data);
-    }
+    return view('upload');
 })->name('test');
+
+
+

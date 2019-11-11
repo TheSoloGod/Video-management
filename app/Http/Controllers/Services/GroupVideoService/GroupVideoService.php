@@ -120,9 +120,9 @@ class GroupVideoService implements GroupVideoServiceInterface
         }
     }
 
-    public function getByGroupVideoId($groupId, $videoId)
+    public function getByGroupVideoId($videoId, $groupId)
     {
-        $groupVideo = $this->groupVideoRepository->getByGroupVideoId($groupId, $videoId);
+        $groupVideo = $this->groupVideoRepository->getByGroupVideoId($videoId, $groupId);
         return $groupVideo;
     }
 }

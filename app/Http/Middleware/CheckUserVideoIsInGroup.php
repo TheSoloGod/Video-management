@@ -7,7 +7,7 @@ use App\Http\Controllers\Services\GroupVideoService\GroupVideoServiceInterface;
 use App\Http\Controllers\Services\VideoService\VideoServiceInterface;
 use Closure;
 
-class CheckVideoIsInGroup
+class CheckUserVideoIsInGroup
 {
     protected $videoService;
     protected $groupUserService;
@@ -34,9 +34,35 @@ class CheckVideoIsInGroup
         $videoId = $request->video_id;
         $video = $this->videoService->getById($videoId);
         if ($video->is_in_group == 1) {
-            return redirect()->back();
+            if ($this->checkUserIsInGroup($request->user_id, $request->group_id)
+                && $this->checkVideoIsInGroup($request->video_id, $request->group_id)) {
+                return $next($request);
+            } else {
+                return redirect()->back();
+            }
         } else {
             return $next($request);
+        }
+    }
+
+
+    public function checkUserIsInGroup($userId, $groupId)
+    {
+        $groupUser = $this->groupUserService->getByUserGroupId($userId, $groupId);
+        if ($groupUser == null) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    public function checkVideoIsInGroup($videoId, $groupId)
+    {
+        $groupVideo = $this->groupVideoService->getByGroupVideoId($videoId, $groupId);
+        if ($groupVideo == null) {
+            return false;
+        } else {
+            return true;
         }
     }
 }

@@ -3,9 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Services\VideoService\VideoServiceInterface;
+use App\Jobs\StoreVideoStorage;
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreVideoRequest;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Validator;
 
 class VideoController extends Controller
 {
@@ -46,13 +49,13 @@ class VideoController extends Controller
     public function store(StoreVideoRequest $request)
     {
         $video = $this->videoService->store($request);
-        return redirect()->back();
-//        if($video){
-//            $videoId = $video->id;
-//            return redirect()->route('videos.show', compact('videoId'));
-//        }else{
-//            return redirect()->back();
-//        }
+//        return redirect()->back();
+        if($video){
+            $videoId = $video->id;
+            return redirect()->route('videos.show', compact('videoId'));
+        }else{
+            return redirect()->back();
+        }
     }
 
     /**
@@ -117,5 +120,31 @@ class VideoController extends Controller
             $userId = Auth::user()->id;
         }
         return view('public.search-result', compact('videos', 'userId'));
+    }
+
+    public function uploadVideoProgressBar(Request $request)
+    {
+        $rules = array(
+            'video' => 'required|mimes:mp4|max:2048000'
+        );
+        $error = Validator::make($request->all(), $rules);
+        if ($error->fails()) {
+            return response()->json(['errors' => $error->errors()->all()]);
+        }
+
+        $video = $request->file('video');
+        $newName = rand() . '.' . $video->getClientOriginalExtension();
+
+//        StoreVideoStorage::dispatch($video, $newName);
+        $video->move(public_path('storage/video'), $newName);
+        Session::put('video_name', $newName);
+
+        $output = array(
+            'success' => 'Video uploaded successfully',
+            'image' => '<video width="100%" height="auto" controls src="/storage/video/' . $newName . '" ></video>'
+        );
+
+//        sleep(5);
+        return response()->json($output);
     }
 }

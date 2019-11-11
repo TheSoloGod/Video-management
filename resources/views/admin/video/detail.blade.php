@@ -32,6 +32,16 @@
                                 <div>
                                     <div class="">
                                         <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="progress mb-3">
+                                                    <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow=""
+                                                         aria-valuemin="0" aria-valuemax="100" style="width: 0%">
+                                                        0%
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
                                             <div class="col-md-3">
                                                 <div class="mb-3">
                                                     <img src="{{ asset('storage/preview/' . $video->image) }}"
@@ -57,6 +67,9 @@
                                                 </div>
                                             </div>
                                             <div class="col-md-9">
+{{--                                                <div id="success">--}}
+
+{{--                                                </div>--}}
                                                 <video width="100%" height="auto" controls>
                                                     <source src="{{ 'https://docs.google.com/uc?id=' . $video->path}}" type="video/mp4">
                                                 </video>
@@ -119,9 +132,7 @@
                                 <div class="card card-body">
                                     <table class="table">
                                         <tr>
-                                            <div class="progress mb-1">
-                                                <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 75%"></div>
-                                            </div>
+
                                         </tr>
                                         <tr>
                                             <td>Title:</td>
