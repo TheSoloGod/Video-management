@@ -19,7 +19,7 @@ class VideosTableSeeder extends Seeder
         $video->status = 'upload success';
         $video->views = '10';
         $video->is_display = '1';
-        $video->name = 'video1';
+        $video->name = 'video-default.mp4';
         $video->path = '1on5uJG4_tTbP_K3fYf6KjfAL72oyF6Oi';
         $video->save();
 
@@ -30,7 +30,7 @@ class VideosTableSeeder extends Seeder
         $video->status = 'upload success';
         $video->views = '20';
         $video->is_display = '1';
-        $video->name = 'video2';
+        $video->name = 'video-default.mp4';
         $video->path = '1on5uJG4_tTbP_K3fYf6KjfAL72oyF6Oi';
         $video->save();
 
@@ -41,7 +41,7 @@ class VideosTableSeeder extends Seeder
         $video->status = 'upload success';
         $video->views = '30';
         $video->is_display = '1';
-        $video->name = 'video3';
+        $video->name = 'video-default.mp4';
         $video->path = '1on5uJG4_tTbP_K3fYf6KjfAL72oyF6Oi';
         $video->save();
 
@@ -53,7 +53,7 @@ class VideosTableSeeder extends Seeder
         $video->views = '10';
         $video->is_display = '1';
         $video->is_in_group = '0';
-        $video->name = 'video4';
+        $video->name = 'video-default.mp4';
         $video->path = '1on5uJG4_tTbP_K3fYf6KjfAL72oyF6Oi';
         $video->save();
 
@@ -65,7 +65,7 @@ class VideosTableSeeder extends Seeder
         $video->views = '15';
         $video->is_display = '1';
         $video->is_in_group = '0';
-        $video->name = 'video5';
+        $video->name = 'video-default.mp4';
         $video->path = '1on5uJG4_tTbP_K3fYf6KjfAL72oyF6Oi';
         $video->save();
 
@@ -77,7 +77,7 @@ class VideosTableSeeder extends Seeder
         $video->views = '12';
         $video->is_display = '1';
         $video->is_in_group = '0';
-        $video->name = 'video6';
+        $video->name = 'video-default.mp4';
         $video->path = '1on5uJG4_tTbP_K3fYf6KjfAL72oyF6Oi';
         $video->save();
 
@@ -89,7 +89,7 @@ class VideosTableSeeder extends Seeder
         $video->views = '22';
         $video->is_display = '1';
         $video->is_in_group = '0';
-        $video->name = 'video7';
+        $video->name = 'video-default.mp4';
         $video->path = '1on5uJG4_tTbP_K3fYf6KjfAL72oyF6Oi';
         $video->save();
 
@@ -101,7 +101,7 @@ class VideosTableSeeder extends Seeder
         $video->views = '32';
         $video->is_display = '1';
         $video->is_in_group = '0';
-        $video->name = 'video8';
+        $video->name = 'video-default.mp4';
         $video->path = '1on5uJG4_tTbP_K3fYf6KjfAL72oyF6Oi';
         $video->save();
 
@@ -113,7 +113,7 @@ class VideosTableSeeder extends Seeder
         $video->views = '150';
         $video->is_display = '1';
         $video->is_in_group = '1';
-        $video->name = 'video9';
+        $video->name = 'video-default.mp4';
         $video->path = '1on5uJG4_tTbP_K3fYf6KjfAL72oyF6Oi';
         $video->save();
 
@@ -125,7 +125,7 @@ class VideosTableSeeder extends Seeder
         $video->views = '35';
         $video->is_display = '1';
         $video->is_in_group = '1';
-        $video->name = 'video10';
+        $video->name = 'video-default.mp4';
         $video->path = '1on5uJG4_tTbP_K3fYf6KjfAL72oyF6Oi';
         $video->save();
 
@@ -137,7 +137,7 @@ class VideosTableSeeder extends Seeder
         $video->views = '67';
         $video->is_display = '1';
         $video->is_in_group = '1';
-        $video->name = 'video11';
+        $video->name = 'video-default.mp4';
         $video->path = '1on5uJG4_tTbP_K3fYf6KjfAL72oyF6Oi';
         $video->save();
 
@@ -149,7 +149,7 @@ class VideosTableSeeder extends Seeder
         $video->views = '177';
         $video->is_display = '1';
         $video->is_in_group = '1';
-        $video->name = 'video12';
+        $video->name = 'video-default.mp4';
         $video->path = '1on5uJG4_tTbP_K3fYf6KjfAL72oyF6Oi';
         $video->save();
     }

@@ -9,6 +9,7 @@ use App\Http\Controllers\Repositories\GroupVideoRepository\GroupVideoRepositoryI
 use App\Http\Controllers\Repositories\VideoRepository\VideoRepositoryInterface;
 use App\Jobs\SetPathVideo;
 use App\Jobs\UploadFile;
+use App\Services\SessionService;
 use App\Services\StoreImageService;
 use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\Session;
@@ -21,16 +22,19 @@ class VideoService implements VideoServiceInterface
     protected $categoryVideoRepository;
     protected $groupVideoRepository;
     protected $storeImageService;
+    protected $sessionService;
 
     public function __construct(VideoRepositoryInterface $videoRepository,
                                 CategoryVideoRepositoryInterface $categoryVideoRepository,
                                 GroupVideoRepositoryInterface $groupVideoRepository,
-                                StoreImageService $storeImageService)
+                                StoreImageService $storeImageService,
+                                SessionService $sessionService)
     {
         $this->videoRepository = $videoRepository;
         $this->categoryVideoRepository = $categoryVideoRepository;
         $this->groupVideoRepository = $groupVideoRepository;
         $this->storeImageService = $storeImageService;
+        $this->sessionService = $sessionService;
     }
 
     public function getAll()
@@ -54,6 +58,7 @@ class VideoService implements VideoServiceInterface
 
     public function store($request)
     {
+        //upload to google drive
 //        if ($request->hasFile('video')) {
 //
 //            //store image
@@ -84,6 +89,7 @@ class VideoService implements VideoServiceInterface
 //            return false;
 //        }
 
+        //upload to storage
         //store image & build data
         $folder = 'preview';
         $imageDefault = 'preview-default.jpg';
@@ -100,32 +106,6 @@ class VideoService implements VideoServiceInterface
         return $this->videoRepository->create($data);
 
     }
-
-//    public function uploadVideoProgressBar($request)
-//    {
-//        $rules = array(
-//            'video' => 'required|mimes:mp4|max:2048000'
-//        );
-//
-//        $error = Validator::make($request->all(), $rules);
-//
-//        if ($error->fails()) {
-//            return response()->json(['errors' => $error->errors()->all()]);
-//        }
-//
-//        $video = $request->file('video');
-//
-//        $new_name = rand() . '.' . $video->getClientOriginalExtension();
-//        $video->move(public_path('storage/video'), $new_name);
-//
-//        $output = array(
-//            'success' => 'Video uploaded successfully',
-//            'image' => '<video width="100%" height="auto" controls src="/storage/video/' . $new_name . '" ></video>'
-//        );
-//
-//        sleep(5);
-//        return response()->json($output);
-//    }
 
     public function storeVideoOnPublic($request, $videoFullName)
     {
@@ -305,5 +285,14 @@ class VideoService implements VideoServiceInterface
     {
         $video = $this->videoRepository->getByName($name);
         return $video;
+    }
+
+    public function clearSessionCreateVideo()
+    {
+//        \SessionService::forgetSession('uploadStatus');
+//        \SessionService::forgetSession('video_name');
+
+        $this->sessionService->forgetSession('uploadStatus');
+        $this->sessionService->forgetSession('video_name');
     }
 }

@@ -18,7 +18,8 @@
             <div class="col-md-7 mt-5">
                 <div>
                     <video width="100%" height="auto" controls>
-                        <source src="{{ 'https://docs.google.com/uc?id=' . $video->path}}" type="video/mp4">
+{{--                        <source src="{{ 'https://docs.google.com/uc?id=' . $video->path}}" type="video/mp4">--}}
+                        <source src="{{ asset('storage/video/' . $video->name) }}" type="video/mp4">
                     </video>
                 </div>
                 <div class="card card-body mt-1 mb-3">

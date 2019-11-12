@@ -42,6 +42,7 @@ use App\Http\Controllers\Services\UserVideoService\UserVideoService;
 use App\Http\Controllers\Services\UserVideoService\UserVideoServiceInterface;
 use App\Http\Controllers\Services\VideoService\VideoService;
 use App\Http\Controllers\Services\VideoService\VideoServiceInterface;
+use App\Services\SessionService;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider

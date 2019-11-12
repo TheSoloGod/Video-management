@@ -31,16 +31,16 @@
                             <div class="col-md-6 text-center">
                                 <div>
                                     <div class="">
-                                        <div class="row">
-                                            <div class="col-md-12">
-                                                <div class="progress mb-3">
-                                                    <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow=""
-                                                         aria-valuemin="0" aria-valuemax="100" style="width: 0%">
-                                                        0%
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
+{{--                                        <div class="row">--}}
+{{--                                            <div class="col-md-12">--}}
+{{--                                                <div class="progress mb-3">--}}
+{{--                                                    <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow=""--}}
+{{--                                                         aria-valuemin="0" aria-valuemax="100" style="width: 0%">--}}
+{{--                                                        0%--}}
+{{--                                                    </div>--}}
+{{--                                                </div>--}}
+{{--                                            </div>--}}
+{{--                                        </div>--}}
                                         <div class="row">
                                             <div class="col-md-3">
                                                 <div class="mb-3">

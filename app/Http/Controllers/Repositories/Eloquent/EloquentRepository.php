@@ -34,7 +34,7 @@ abstract class EloquentRepository implements RepositoryInterface
 
     public function paginate($number)
     {
-        $results = $this->model->paginate($number);
+        $results = $this->model->orderBy('created_at', 'desc')->paginate($number);
         return $results;
     }
 

@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Services\VideoService\VideoServiceInterface;
-use App\Jobs\StoreVideoStorage;
+use App\Services\SessionService;
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreVideoRequest;
 use Illuminate\Support\Facades\Auth;
@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Validator;
 class VideoController extends Controller
 {
     protected $videoService;
+
 
     public function __construct(VideoServiceInterface $videoService)
     {
@@ -37,6 +38,7 @@ class VideoController extends Controller
      */
     public function create()
     {
+        $this->videoService->clearSessionCreateVideo();
         return view('admin.video.create');
     }
 
@@ -132,6 +134,7 @@ class VideoController extends Controller
             Session::put('uploadStatus', 'upload fail');
             return response()->json(['errors' => $error->errors()->all()]);
         }
+
         Session::put('uploadStatus', 'uploading');
         $video = $request->file('video');
         $newName = time() . '.' . $video->getClientOriginalExtension();
@@ -139,16 +142,15 @@ class VideoController extends Controller
         $video->move(public_path('storage/video'), $newName);
         Session::put('uploadStatus', 'upload success');
         $newVideo = $this->videoService->getByName($newName);
-//        if ($newVideo) {
-//            $newName->
-//        }
+        if ($newVideo) {
+            $newVideo->name = $newName;
+            $newVideo->save();
+        }
 
         $output = array(
             'success' => 'Video uploaded successfully',
             'image' => '<video width="100%" height="auto" controls src="/storage/video/' . $newName . '" ></video>'
         );
-        sleep(10);
-        Session::put('test', 'ok');
         return response()->json($output);
     }
 }

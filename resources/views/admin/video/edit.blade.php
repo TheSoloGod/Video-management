@@ -130,7 +130,15 @@
                                                 <tr>
                                                     <td>Status:</td>
                                                     <td>
-                                                        {{ $video->status }}
+                                                        @if($video->status == 'upload success')
+                                                            <a class="btn btn-success disabled">{{ $video->status }}</a>
+                                                        @elseif($video->status == 'upload fail')
+                                                            <a class="btn btn-danger disabled">{{ $video->status }}</a>
+                                                        @elseif($video->status == 'uploading')
+                                                            <a class="btn btn-warning disabled">{{ $video->status }}</a>
+                                                        @elseif($video->status == 'not upload')
+                                                            <a class="btn btn-info disabled">{{ $video->status }}</a>
+                                                        @endif
                                                     </td>
                                                 </tr>
                                             </div>
