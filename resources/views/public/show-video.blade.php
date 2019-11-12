@@ -5,6 +5,8 @@
 @endsection
 
 @section('content')
+    <div id="fb-root"></div>
+    <script async defer crossorigin="anonymous" src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v5.0&appId=504468856807224&autoLogAppEvents=1"></script>
     <div class="container">
 
         <!-- navbar -->
@@ -69,7 +71,7 @@
                     </div>
                 </div>
                 <div class="mb-5">
-                    <textarea class="form-control" style="height: 200px" placeholder="View comments here"></textarea>
+                    <div class="fb-comments" data-href="http://thesologod.tk/video-{{$video->id}}" data-width="100%" data-order-by="reverse_time" data-numposts="5"></div>
                 </div>
             </div>
 
