@@ -33,7 +33,7 @@ Route::group(['prefix' => 'member/{user_id?}', 'middleware' => 'verified'], func
     Route::get('/', 'MemberController@index')->name('home.member.index');
     Route::get('/group', 'MemberController@getGroup')->name('member.group.all');
     Route::get('/group/{group_id}/video', 'MemberController@getVideoOfGroup')->name('member.group.video.all');
-    Route::get('/group/{group_id}/video/{video_id}', 'MemberController@showVideoInGroup')->name('member.group.video.show')->middleware('check.user.video.isInGroup');
+    Route::get('/group/{group_id}/video/{video_id}', 'MemberController@showVideo    InGroup')->name('member.group.video.show')->middleware('check.user.video.isInGroup');
     Route::get('/video/{video_id}', 'MemberController@showVideo')->name('member.video.show')->middleware('check.video.isInGroup');
     Route::get('/info', 'MemberController@info')->name('member.info');
     Route::get('/favorite', 'MemberController@favorite')->name('member.favorite');
