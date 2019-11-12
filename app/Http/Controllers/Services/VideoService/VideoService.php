@@ -54,35 +54,51 @@ class VideoService implements VideoServiceInterface
 
     public function store($request)
     {
-        if ($request->hasFile('video')) {
+//        if ($request->hasFile('video')) {
+//
+//            //store image
+//            $folder = 'preview';
+//            $imageDefault = 'preview-default.jpg';
+//            $data = $this->storeImageService->buildData($request, $folder, $imageDefault);
+//
+//            //store video
+//            $video = $request->video;
+//            $videoFullName = $video->getClientOriginalName();
+//            $videoExtension = $video->getClientOriginalExtension();
+//
+//            if ($this->checkVideoExtension($videoExtension)) {
+//                $videoName = str_replace('.' . $videoExtension, '', $videoFullName);
+//                $data['name'] = $videoName;
+//
+//                $this->storeVideoOnPublic($request, $videoFullName);
+//                $newVideo = $this->storeVideoOnCloud($data, $videoName, $videoFullName);
+//                $this->storeNewVideoCategory($request, $newVideo);
+//                $this->storeNewVideoGroup($request, $newVideo);
+//                return $newVideo;
+//            } else {
+//                Session::flash('error', 'Video+ only support mp4 file');
+//                return false;
+//            }
+//        } else {
+//            Session::flash('error', 'Choose video to upload');
+//            return false;
+//        }
 
-            //store image
-            $folder = 'preview';
-            $imageDefault = 'preview-default.jpg';
-            $data = $this->storeImageService->buildData($request, $folder, $imageDefault);
-
-            //store video
-            $video = $request->video;
-            $videoFullName = $video->getClientOriginalName();
-            $videoExtension = $video->getClientOriginalExtension();
-
-            if ($this->checkVideoExtension($videoExtension)) {
-                $videoName = str_replace('.' . $videoExtension, '', $videoFullName);
-                $data['name'] = $videoName;
-
-                $this->storeVideoOnPublic($request, $videoFullName);
-                $newVideo = $this->storeVideoOnCloud($data, $videoName, $videoFullName);
-                $this->storeNewVideoCategory($request, $newVideo);
-                $this->storeNewVideoGroup($request, $newVideo);
-                return $newVideo;
-            } else {
-                Session::flash('error', 'Video+ only support mp4 file');
-                return false;
-            }
-        } else {
-            Session::flash('error', 'Choose video to upload');
-            return false;
+        //store image & build data
+        $folder = 'preview';
+        $imageDefault = 'preview-default.jpg';
+        $data = $this->storeImageService->buildData($request, $folder, $imageDefault);
+        $data['status'] = Session::get('uploadStatus', 'not upload');
+        // clear session
+        if (Session::get('uploadStatus') == 'upload success') {
+            Session::forget('uploadStatus');
         }
+        if (Session::has('video_name')) {
+            $data['name'] = Session::get('video_name');
+            Session::forget('video_name');
+        }
+        return $this->videoRepository->create($data);
+
     }
 
 //    public function uploadVideoProgressBar($request)
@@ -283,5 +299,11 @@ class VideoService implements VideoServiceInterface
         $keyWord = $request->key_word;
         $videos = $this->videoRepository->search($keyWord, $number);
         return $videos;
+    }
+
+    public function getByName($name)
+    {
+        $video = $this->videoRepository->getByName($name);
+        return $video;
     }
 }

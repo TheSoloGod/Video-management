@@ -104,7 +104,7 @@ Route::group(['prefix' => 'admin/analytics', 'middleware' => 'check.admin.login'
 
 //route test
 Route::get('test', function (){
-    return view('upload');
+    dd(\Illuminate\Support\Facades\Session::get('test'));
 })->name('test');
 
 

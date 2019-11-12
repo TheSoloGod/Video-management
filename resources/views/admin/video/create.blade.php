@@ -57,6 +57,9 @@
 {{--                                        <br />--}}
 {{--                                    </div>--}}
                                     <div class="card">
+                                        <div>
+                                            <a class="btn btn-outline-danger" href="{{ route('test') }}">test</a>
+                                        </div>
                                         <div class="card-body">
                                             <br>
                                             <div class="progress">

@@ -71,7 +71,8 @@
 
 {{--                                                </div>--}}
                                                 <video width="100%" height="auto" controls>
-                                                    <source src="{{ 'https://docs.google.com/uc?id=' . $video->path}}" type="video/mp4">
+{{--                                                    <source src="{{ 'https://docs.google.com/uc?id=' . $video->path}}" type="video/mp4">--}}
+                                                    <source src="{{ asset('storage/video/' . $video->name) }}" type="video/mp4">
                                                 </video>
                                             </div>
                                         </div>

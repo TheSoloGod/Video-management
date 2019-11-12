@@ -149,4 +149,11 @@ class VideoRepository extends EloquentRepository implements VideoRepositoryInter
                               ->paginate($number);
         return $videos;
     }
+
+    public function getByName($name)
+    {
+        $video = $this->model->where('name', $name)
+                             ->first();
+        return $video;
+    }
 }

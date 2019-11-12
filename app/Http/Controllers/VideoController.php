@@ -129,22 +129,26 @@ class VideoController extends Controller
         );
         $error = Validator::make($request->all(), $rules);
         if ($error->fails()) {
+            Session::put('uploadStatus', 'upload fail');
             return response()->json(['errors' => $error->errors()->all()]);
         }
-
+        Session::put('uploadStatus', 'uploading');
         $video = $request->file('video');
-        $newName = rand() . '.' . $video->getClientOriginalExtension();
-
-//        StoreVideoStorage::dispatch($video, $newName);
-        $video->move(public_path('storage/video'), $newName);
+        $newName = time() . '.' . $video->getClientOriginalExtension();
         Session::put('video_name', $newName);
+        $video->move(public_path('storage/video'), $newName);
+        Session::put('uploadStatus', 'upload success');
+        $newVideo = $this->videoService->getByName($newName);
+//        if ($newVideo) {
+//            $newName->
+//        }
 
         $output = array(
             'success' => 'Video uploaded successfully',
             'image' => '<video width="100%" height="auto" controls src="/storage/video/' . $newName . '" ></video>'
         );
-
-//        sleep(5);
+        sleep(10);
+        Session::put('test', 'ok');
         return response()->json($output);
     }
 }
