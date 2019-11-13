@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Services\DateVideoService;
 
 
 use App\DateVideo;
+use App\Exceptions\ReportFutureDateException;
 use App\Http\Controllers\Repositories\DateVideoRepository\DateVideoRepositoryInterface;
 use App\Http\Controllers\Repositories\VideoRepository\VideoRepositoryInterface;
 use Carbon\Carbon;
@@ -52,7 +53,7 @@ class DateVideoService implements DateVideoServiceInterface
         if ($date <= $today) {
             return true;
         } else {
-            return false;
+            throw new ReportFutureDateException();
         }
     }
 

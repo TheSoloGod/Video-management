@@ -58,7 +58,6 @@
                                     {{--                                    </div>--}}
                                     <div class="card">
                                         <div class="card-body">
-                                            <br>
                                             <div class="progress">
                                                 <div class="progress-bar progress-bar-striped progress-bar-animated"
                                                      role="progressbar" aria-valuenow=""
@@ -79,7 +78,7 @@
                                                   enctype="multipart/form-data">
                                                 @csrf
                                                 <div class="row">
-                                                    <div class="col-md-12 mb-5">
+                                                    <div class="col-md-12 mb-3">
                                                         <input type="file" name="video" id="file" class="form-control">
                                                     </div>
                                                 </div>

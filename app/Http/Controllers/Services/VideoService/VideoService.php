@@ -11,9 +11,9 @@ use App\Jobs\SetPathVideo;
 use App\Jobs\UploadFile;
 use App\Services\SessionService;
 use App\Services\StoreImageService;
-use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\Validator;
 
 class VideoService implements VideoServiceInterface
