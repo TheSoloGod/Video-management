@@ -76,6 +76,7 @@ class GroupUserRepository extends EloquentRepository implements GroupUserReposit
     {
         $userGroup = $this->model->where('user_id', $userId)
                                  ->where('group_id', $groupId)
+                                 ->whereNotNull('verify_at')
                                  ->first();
         return $userGroup;
     }

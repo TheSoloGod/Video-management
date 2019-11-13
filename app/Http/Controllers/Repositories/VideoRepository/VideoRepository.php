@@ -156,4 +156,16 @@ class VideoRepository extends EloquentRepository implements VideoRepositoryInter
                              ->first();
         return $video;
     }
+
+    public function markVideoInGroup($videoId)
+    {
+        $this->model->where('id', $videoId)
+                    ->update(['is_in_group' => '1']);
+    }
+
+    public function unmarkVideoInGroup($videoId)
+    {
+        $this->model->where('id', $videoId)
+                    ->update(['is_in_group' => '0']);
+    }
 }

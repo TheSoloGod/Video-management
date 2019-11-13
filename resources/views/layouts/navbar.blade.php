@@ -28,10 +28,17 @@
                     </li>
                 @endif
             @else
+                @if (count(Auth::user()->unreadNotifications) == 0)
                 <a class="nav-link" data-toggle="modal" data-target="#notificationModal">
                     <i class="far fa-bell"></i>
                     Notification
                 </a>
+                @else
+                    <a class="nav-link" data-toggle="modal" data-target="#notificationModal">
+                        <i class="far fa-bell"></i>
+                        Notification <span class="badge badge-pill badge-primary">{{ count(Auth::user()->unreadNotifications) }}</span>
+                    </a>
+                    @endif
                 @include('member.modal.notification')
                 <li class="nav-item dropdown">
                     <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"

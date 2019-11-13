@@ -34,4 +34,16 @@ class UserRepository extends EloquentRepository implements UserRepositoryInterfa
           ->get();
         return $users;
     }
+
+    public function markUserInGroup($userId)
+    {
+        $this->model->where('id', $userId)
+            ->update(['is_in_group' => '1']);
+    }
+
+    public function unmarkUserInGroup($userId)
+    {
+        $this->model->where('id', $userId)
+            ->update(['is_in_group' => '0']);
+    }
 }

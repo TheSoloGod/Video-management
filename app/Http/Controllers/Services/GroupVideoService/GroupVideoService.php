@@ -7,10 +7,9 @@ namespace App\Http\Controllers\Services\GroupVideoService;
 use App\AdditionVideoList;
 use App\Http\Controllers\Repositories\GroupUserRepository\GroupUserRepositoryInterface;
 use App\Http\Controllers\Repositories\GroupVideoRepository\GroupVideoRepositoryInterface;
-use App\Http\Controllers\Services\VideoService\VideoServiceInterface;
+use App\Http\Controllers\Repositories\VideoRepository\VideoRepositoryInterface;
 use App\Notifications\NewVideoInGroup;
 use App\Services\SessionService;
-use App\User;
 use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Facades\Session;
 
@@ -18,17 +17,17 @@ class GroupVideoService implements GroupVideoServiceInterface
 {
     protected $groupVideoRepository;
     protected $groupUserRepository;
-    protected $videoService;
+    protected $videoRepository;
     protected $sessionService;
 
     public function __construct(GroupVideoRepositoryInterface $groupVideoRepository,
                                 GroupUserRepositoryInterface $groupUserRepository,
-                                VideoServiceInterface $videoService,
+                                VideoRepositoryInterface $videoRepository,
                                 SessionService $sessionService)
     {
         $this->groupVideoRepository = $groupVideoRepository;
         $this->groupUserRepository = $groupUserRepository;
-        $this->videoService = $videoService;
+        $this->videoRepository = $videoRepository;
         $this->sessionService = $sessionService;
     }
 
@@ -42,13 +41,17 @@ class GroupVideoService implements GroupVideoServiceInterface
     public function removeVideo($groupId, $videoId)
     {
         $this->groupVideoRepository->removeVideo($groupId, $videoId);
+        $groups = $this->groupVideoRepository->getAllGroup($videoId);
+        if (count($groups) == 0) {
+            $this->videoRepository->unmarkVideoInGroup($videoId);
+        }
         Session::flash('status', 'Remove video success');
     }
 
     public function getVideoNotInGroup($groupId)
     {
         $number = 5;
-        $users = $this->videoService->getVideoNotInGroup($groupId, $number);
+        $users = $this->videoRepository->getPaginateVideoNotInGroup($groupId, $number);
         return $users;
     }
 
@@ -59,7 +62,7 @@ class GroupVideoService implements GroupVideoServiceInterface
         } else {
             $oldAdditionVideoList = null;
         }
-        $user = $this->videoService->getById($videoId);
+        $user = $this->videoRepository->getById($videoId);
         $additionVideoList = new AdditionVideoList($oldAdditionVideoList);
         $additionVideoList->addVideoToAdditionVideoList($groupId, $user);
 

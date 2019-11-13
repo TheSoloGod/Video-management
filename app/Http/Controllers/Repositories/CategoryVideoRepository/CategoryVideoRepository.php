@@ -15,9 +15,9 @@ class CategoryVideoRepository extends EloquentRepository implements CategoryVide
         return CategoryVideo::class;
     }
 
-    public function getAllCategory($video_id)
+    public function getAllCategory($videoId)
     {
-        $categories = $this->model->where('video_id', $video_id)
+        $categories = $this->model->where('video_id', $videoId)
                                   ->get();
         return $categories;
     }

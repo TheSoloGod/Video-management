@@ -19,7 +19,8 @@
             <div class="col-md-10">
                 <div class="card mt-3">
                     <div class="card-header">
-                        Upload new video <a class="btn btn-outline-danger" href="{{ route('test') }}">test</a>
+                        Upload new video
+{{--                        <a class="btn btn-outline-danger" href="{{ route('test') }}">test</a>--}}
                         @if (Session::has('error'))
                             <div class="alert alert-warning alert-block">
                                 <button type="button" class="close" data-dismiss="alert">×</button>
@@ -40,22 +41,6 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="">
-                                    {{--                                    <div class="text-center">--}}
-                                    {{--                                        <img src="{{ asset('storage/preview/preview-default.jpg') }}" class="mb-3 w-100">--}}
-                                    {{--                                    </div>--}}
-                                    {{--                                    <div>--}}
-                                    {{--                                        <div class="progress">--}}
-                                    {{--                                            <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow=""--}}
-                                    {{--                                                 aria-valuemin="0" aria-valuemax="100" style="width: 0%">--}}
-                                    {{--                                                0%--}}
-                                    {{--                                            </div>--}}
-                                    {{--                                        </div>--}}
-                                    {{--                                        <br />--}}
-                                    {{--                                        <div id="success">--}}
-
-                                    {{--                                        </div>--}}
-                                    {{--                                        <br />--}}
-                                    {{--                                    </div>--}}
                                     <div class="card">
                                         <div class="card-body">
                                             <div class="progress">
@@ -170,12 +155,13 @@
             </div>
         </div>
     </div>
+
 @endsection
 
 @section('script')
-{{--    <script src="http://malsup.github.com/jquery.form.js"></script>--}}
     <script src="{{ asset('js/upload/jquery.form.js') }}"></script>
     <script src="{{ asset('js/tokenInput/jquery.tokeninput.js') }}"></script>
+    <script src="{{ asset('admin/video/js/video.create.upload.js') }}"></script>
     <script>
         $(document).ready(function ($) {
             $("#category").tokenInput("{{asset('api/categories?q=categories')}}", {
@@ -197,39 +183,5 @@
             });
         });
     </script>
-    <script>
-        $(document).ready(function () {
 
-            $('#uploadForm').ajaxForm({
-                beforeSend: function () {
-                    $('#status').empty();
-                },
-                uploadProgress: function (event, position, total, percentComplete) {
-                    $('.progress-bar').text(percentComplete + '%');
-                    $('.progress-bar').css('width', percentComplete + '%');
-                },
-                success: function (data) {
-                    if (data.errors) {
-                        $('.progress-bar').text('0%');
-                        $('.progress-bar').css('width', '0%');
-                        $('#status').html('<span class="text-danger"><b>' + data.errors + '</b></span>');
-                    }
-                    if (data.success) {
-                        $('.progress-bar').text('Uploaded');
-                        $('.progress-bar').css('width', '100%');
-                        $('#status').html('<span class="text-success"><b>' + data.success + '</b></span><br /><br />');
-                        $('#status').append(data.image);
-                    }
-                },
-                // complete: function (xhr) {
-                // }
-            });
-
-            $('#cancel').click(function () {
-                $('#uploadForm').removeEventListener('progress');
-                // $('#uploadForm').abort();
-            })
-
-        });
-    </script>
 @endsection

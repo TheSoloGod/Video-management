@@ -103,7 +103,10 @@ class VideoService implements VideoServiceInterface
             $data['name'] = Session::get('video_name');
             Session::forget('video_name');
         }
-        return $this->videoRepository->create($data);
+        $newVideo = $this->videoRepository->create($data);
+        $this->storeNewVideoCategory($request, $newVideo);
+        $this->storeNewVideoGroup($request, $newVideo);
+        return $newVideo;
 
     }
 
@@ -213,6 +216,7 @@ class VideoService implements VideoServiceInterface
     {
         if ($newVideo) {
             if ($request->group != null) {
+                $this->videoRepository->markVideoInGroup($newVideo->id);
                 $arrayGroup = explode(',', $request->group);
                 foreach ($arrayGroup as $key => $value) {
                     $data = [];

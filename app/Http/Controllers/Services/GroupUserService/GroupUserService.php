@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Services\GroupUserService;
 
 
 use App\Http\Controllers\Repositories\GroupUserRepository\GroupUserRepositoryInterface;
+use App\Http\Controllers\Repositories\UserRepository\UserRepositoryInterface;
 use App\Http\Controllers\Services\UserService\UserServiceInterface;
 use App\InvitationList;
 use App\Services\SessionService;
@@ -21,14 +22,17 @@ class GroupUserService implements GroupUserServiceInterface
 
     protected $groupUserRepository;
     protected $userService;
+    protected $userRepository;
     protected $sessionService;
 
     public function __construct(GroupUserRepositoryInterface $groupUserRepository,
                                 UserServiceInterface $userService,
+                                UserRepositoryInterface $userRepository,
                                 SessionService $sessionService)
     {
         $this->groupUserRepository = $groupUserRepository;
         $this->userService = $userService;
+        $this->userRepository = $userRepository;
         $this->sessionService = $sessionService;
     }
 
@@ -42,6 +46,10 @@ class GroupUserService implements GroupUserServiceInterface
     public function removeMember($groupId, $userId)
     {
         $this->groupUserRepository->removeMember($groupId, $userId);
+        $groups = $this->groupUserRepository->getAllGroup($userId);
+        if (count($groups) == 0) {
+            $this->unmarkUserInGroup($userId);
+        }
         Session::flash('status', 'Remove member success');
     }
 
@@ -108,6 +116,7 @@ class GroupUserService implements GroupUserServiceInterface
         $tokenDB = $this->groupUserRepository->getToken($groupId, $userId)->token;
         if ($tokenDB == $token) {
             $this->groupUserRepository->verifyMember($groupId, $userId);
+            $this->markUserInGroup($userId);
             return true;
         } else {
             return false;
@@ -138,5 +147,15 @@ class GroupUserService implements GroupUserServiceInterface
     {
         $groupUser = $this->groupUserRepository->getByUserGroupId($userId, $groupId);
         return $groupUser;
+    }
+
+    public function markUserInGroup($userId)
+    {
+        $this->userRepository->markUserInGroup($userId);
+    }
+
+    public function unmarkUserInGroup($userId)
+    {
+        $this->userRepository->unmarkUserInGroup($userId);
     }
 }
