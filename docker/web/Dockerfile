@@ -54,6 +54,7 @@ WORKDIR /var/www/html/video-management
 # composer require phpoffice/phpspreadsheet
 # composer require maatwebsite/excel
 # composer require barryvdh/laravel-debugbar --dev
+# composer require barryvdh/laravel-cors
 
 # CMD ["apache2-foreground"]
 

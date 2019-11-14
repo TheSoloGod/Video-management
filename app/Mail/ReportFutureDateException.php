@@ -28,6 +28,6 @@ class ReportFutureDateException extends Mailable
      */
     public function build()
     {
-        return $this->view('mail.report-future-date-exception');
+        return $this->view('back_end.mail.report-future-date-exception');
     }
 }

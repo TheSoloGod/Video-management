@@ -19,7 +19,7 @@ class GroupUserController extends Controller
     {
         $invited = false;
         $members = $this->groupUserService->getAllMemberPaginate($groupId);
-        return view('admin.group..member.member-management', compact('members', 'groupId', 'invited'));
+        return view('back_end.group..member.member-management', compact('members', 'groupId', 'invited'));
     }
 
     public function removeMember($groupId, $userId)
@@ -31,12 +31,12 @@ class GroupUserController extends Controller
     public function addMember($groupId)
     {
         $users = $this->groupUserService->getUserNotInGroup($groupId);
-        return view('admin.group.member.add-member', compact('groupId', 'users'));
+        return view('back_end.group.member.add-member', compact('groupId', 'users'));
     }
 
     public function showInvitationList($groupId)
     {
-        return view('admin.group.member.invitation-list', compact('groupId'));
+        return view('back_end.group.member.invitation-list', compact('groupId'));
     }
 
     public function addUserToInvitationList($groupId, $userId)
@@ -75,6 +75,6 @@ class GroupUserController extends Controller
     {
         $invited = true;
         $members = $this->groupUserService->getInvitedUser($groupId);
-        return view('admin.group.member.member-management', compact('members', 'groupId', 'invited'));
+        return view('back_end.group.member.member-management', compact('members', 'groupId', 'invited'));
     }
 }

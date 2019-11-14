@@ -36,7 +36,7 @@ class GroupController extends Controller
     public function index()
     {
         $groups = $this->groupService->paginate();
-        return view('admin.group.list', compact('groups'));
+        return view('back_end.group.list', compact('groups'));
     }
 
     /**
@@ -46,7 +46,7 @@ class GroupController extends Controller
      */
     public function create()
     {
-        return view('admin.group.create');
+        return view('back_end.group.create');
     }
 
     /**
@@ -74,7 +74,7 @@ class GroupController extends Controller
         $group = $this->groupService->getById($id);
         $totalMembers = $this->groupUserService->countMember($id);
         $totalVideos = $this->groupVideoService->countVideo($id);
-        return view('admin.group.detail', compact('group', 'totalMembers', 'totalVideos'));
+        return view('back_end.group.detail', compact('group', 'totalMembers', 'totalVideos'));
     }
 
     /**
@@ -86,7 +86,7 @@ class GroupController extends Controller
     public function edit($id)
     {
         $group = $this->groupService->getById($id);
-        return view('admin.group.edit', compact('group'));
+        return view('back_end.group.edit', compact('group'));
     }
 
     /**

@@ -21,7 +21,7 @@ Route::get('/', function () {
     return redirect()->route('home.public.index');
 });
 Route::get('/home', function (){
-    return view('home-new');
+    return view('front_end.member.home-new');
 })->name('home.new');
 
 // route public
@@ -35,7 +35,7 @@ Route::group(['prefix' => 'member/{user_id?}', 'middleware' => 'verified'], func
     Route::get('/', 'Frontend\Member\MemberController@index')->name('home.member.index');
     Route::get('/group', 'Frontend\Member\MemberController@getGroup')->name('member.group.all');
     Route::get('/group/{group_id}/video', 'Frontend\Member\MemberController@getVideoOfGroup')->name('member.group.video.all');
-    Route::get('/group/{group_id}/video/{video_id}', 'Frontend\Member\MemberController@showVideo    InGroup')->name('member.group.video.show')->middleware('check.user.video.isInGroup');
+    Route::get('/group/{group_id}/video/{video_id}', 'Frontend\Member\MemberController@showVideoInGroup')->name('member.group.video.show')->middleware('check.user.video.isInGroup');
     Route::get('/video/{video_id}', 'Frontend\Member\MemberController@showVideo')->name('member.video.show')->middleware('check.video.isInGroup');
     Route::get('/info', 'Frontend\Member\MemberController@info')->name('member.info');
     Route::get('/favorite', 'Frontend\Member\MemberController@favorite')->name('member.favorite');

@@ -40,7 +40,7 @@ class MemberController extends Controller
         $memberVideos = $this->videoService->getPaginateAllVideoMember();
         $allVideos = $this->videoService->getPaginateVideoDisplayShow();
         $categories = $this->categoryService->getAll();
-        return view('home', compact('memberVideos', 'allVideos', 'categories'));
+        return view('front_end.member.home', compact('memberVideos', 'allVideos', 'categories'));
     }
 
     public function getGroup($userId)
@@ -48,7 +48,7 @@ class MemberController extends Controller
         $groups = $this->groupService->getPaginateGroupMember($userId);
         $otherGroups = $this->groupService->getPaginateOtherGroup($userId);
         $categories = $this->categoryService->getAll();
-        return view('member.group.group-list', compact('groups', 'otherGroups', 'categories'));
+        return view('front_end.member.group.group-list', compact('groups', 'otherGroups', 'categories'));
     }
 
     public function getVideoOfGroup($userId, $groupId)
@@ -57,7 +57,7 @@ class MemberController extends Controller
         $group = $this->groupService->getById($groupId);
         $members = $this->userService->getUserOfGroup($groupId);
         $categories = $this->categoryService->getAll();
-        return view('member.group.video-list', compact('groupVideos','group', 'members', 'categories'));
+        return view('front_end.member.group.video-list', compact('groupVideos','group', 'members', 'categories'));
     }
 
     public function showVideo($userId, $videoId)
@@ -67,7 +67,7 @@ class MemberController extends Controller
         $recommendedVideos = $this->videoService->getRecommendedMemberVideos();
         $categories = $this->categoryService->getAll();
         $favoriteStatus = $this->userVideoService->checkFavorited($userId, $videoId);
-        return view('public.show-video', compact('video', 'recommendedVideos', 'categories', 'favoriteStatus'));
+        return view('front_end.public.show-video', compact('video', 'recommendedVideos', 'categories', 'favoriteStatus'));
     }
 
     public function info($userId)
@@ -75,7 +75,7 @@ class MemberController extends Controller
         $user = $this->userService->getById($userId);
         $groups = $this->groupService->getAllGroupOfUser($userId);
         $categories = $this->categoryService->getAll();
-        return view('member.user.info', compact('user', 'groups', 'categories'));
+        return view('front_end.member.user.info', compact('user', 'groups', 'categories'));
     }
 
     public function favorite(Request $request)
@@ -89,7 +89,7 @@ class MemberController extends Controller
     {
         $videos = $this->videoService->getPaginateVideoFavorite($userId);
         $categories = $this->categoryService->getAll();
-        return view('member.favorite.video-favorite', compact('videos', 'categories'));
+        return view('front_end.member.favorite.video-favorite', compact('videos', 'categories'));
     }
 
     public function showVideoFavorite($userId, $videoId)
@@ -105,6 +105,6 @@ class MemberController extends Controller
         $recommendedVideos = $this->videoService->getRecommendedMemberVideos();
         $categories = $this->categoryService->getAll();
         $favoriteStatus = $this->userVideoService->checkFavorited($userId, $videoId);
-        return view('public.show-video', compact('video', 'recommendedVideos', 'categories', 'favoriteStatus'));
+        return view('front_end.public.show-video', compact('video', 'recommendedVideos', 'categories', 'favoriteStatus'));
     }
 }

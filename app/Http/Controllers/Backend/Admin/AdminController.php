@@ -23,7 +23,7 @@ class AdminController extends Controller
         if (Auth::guard('admin')->check()) {
             return redirect()->route('admin.over-view');
         } else {
-            return view('admin.auth.login');
+            return view('back_end.auth.login');
         }
     }
 
@@ -40,7 +40,7 @@ class AdminController extends Controller
     public function overView()
     {
         $totalArray = $this->adminService->getQuantityInfomation();
-        return view('admin.over-view', compact('totalArray'));
+        return view('back_end.over-view', compact('totalArray'));
     }
 
     public function getLogout()

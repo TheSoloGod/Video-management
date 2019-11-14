@@ -18,7 +18,7 @@ class GroupVideoController extends Controller
     public function showAllVideo($groupId)
     {
         $videos = $this->groupVideoService->getAllVideoPaginate($groupId);
-        return view('admin.group.video.video-management', compact('videos', 'groupId'));
+        return view('back_end.group.video.video-management', compact('videos', 'groupId'));
     }
 
     public function removeVideo($groupId, $videoId)
@@ -30,12 +30,12 @@ class GroupVideoController extends Controller
     public function addVideo($groupId)
     {
         $videos = $this->groupVideoService->getVideoNotInGroup($groupId);
-        return view('admin.group.video.add-video', compact('groupId', 'videos'));
+        return view('back_end.group.video.add-video', compact('groupId', 'videos'));
     }
 
     public function showAdditionVideoList($groupId)
     {
-        return view('admin.group.video.addition-list', compact('groupId'));
+        return view('back_end.group.video.addition-list', compact('groupId'));
     }
 
     public function addVideoToAdditionList($groupId, $videoId)
@@ -57,7 +57,6 @@ class GroupVideoController extends Controller
     public function addVideoConfirm($groupId)
     {
         $this->groupVideoService->addVideoConfirm($groupId);
-        // send noti to users
         $this->groupVideoService->sendNotificationToUsers($groupId);
         return redirect()->back();
     }

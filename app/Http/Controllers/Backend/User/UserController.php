@@ -24,7 +24,7 @@ class UserController extends Controller
     public function index()
     {
         $users = $this->userService->paginate();
-        return view('admin.user.list', compact('users'));
+        return view('back_end.user.list', compact('users'));
     }
 
     /**
@@ -58,7 +58,7 @@ class UserController extends Controller
     {
         $user = $this->userService->getById($id);
         $groups = $this->userService->getAllGroup($id);
-        return view('admin.user.detail', compact('user', 'groups'));
+        return view('back_end.user.detail', compact('user', 'groups'));
     }
 
     /**
@@ -71,7 +71,7 @@ class UserController extends Controller
     {
         $user = $this->userService->getById($id);
         $groups = $this->userService->getAllGroup($id);
-        return view('admin.user.edit', compact('user', 'groups'));
+        return view('back_end.user.edit', compact('user', 'groups'));
     }
 
     /**

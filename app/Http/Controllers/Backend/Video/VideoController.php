@@ -29,7 +29,7 @@ class VideoController extends Controller
     public function index()
     {
         $videos = $this->videoService->paginate();
-        return view('admin.video.list', compact('videos'));
+        return view('back_end.video.list', compact('videos'));
     }
 
     /**
@@ -40,7 +40,7 @@ class VideoController extends Controller
     public function create()
     {
         $this->videoService->clearSessionCreateVideo();
-        return view('admin.video.create');
+        return view('back_end.video.create');
     }
 
     /**
@@ -71,7 +71,7 @@ class VideoController extends Controller
         $video = $this->videoService->getById($id);
         $categories = $this->videoService->getAllCategory($id);
         $groups = $this->videoService->getAllGroup($id);
-        return view('admin.video.detail', compact('video', 'categories', 'groups'));
+        return view('back_end.video.detail', compact('video', 'categories', 'groups'));
     }
 
     /**
@@ -85,7 +85,7 @@ class VideoController extends Controller
         $video = $this->videoService->getById($id);
         $categories = $this->videoService->getAllCategory($id);
         $groups = $this->videoService->getAllGroup($id);
-        return view('admin.video.edit', compact('video', 'categories', 'groups'));
+        return view('back_end.video.edit', compact('video', 'categories', 'groups'));
     }
 
     /**

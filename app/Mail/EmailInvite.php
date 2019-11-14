@@ -36,6 +36,6 @@ class EmailInvite extends Mailable
      */
     public function build()
     {
-        return $this->view('mail.invite');
+        return $this->view('back_end.mail.invite');
     }
 }

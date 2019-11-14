@@ -27,7 +27,7 @@ class DateVideoController extends Controller
     {
         $date = 'all';
         $allVideoViewHistory = $this->dateVideoService->getPaginateVideoViewHistory();
-        return view('admin.analytics.history', compact('allVideoViewHistory', 'date'));
+        return view('back_end.analytics.statistic', compact('allVideoViewHistory', 'date'));
     }
 
     /**
@@ -108,7 +108,7 @@ class DateVideoController extends Controller
     public function resultSearchByDate($date)
     {
         $allVideoViewHistory = $this->dateVideoService->getResultSearchByDate($date);
-        return view('admin.analytics.history', compact('allVideoViewHistory', 'date'));
+        return view('back_end.analytics.statistic', compact('allVideoViewHistory', 'date'));
     }
 
     public function exportToExcel($date)

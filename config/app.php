@@ -167,7 +167,7 @@ return [
          * Package Service Providers...
          */
         Maatwebsite\Excel\ExcelServiceProvider::class,
-
+        Barryvdh\Cors\ServiceProvider::class,
 
 
 
@@ -181,6 +181,7 @@ return [
         App\Providers\RouteServiceProvider::class,
         App\Providers\GoogleDriveServiceProvider::class,
         App\Providers\SessionServiceProvider::class,
+
 
     ],
 

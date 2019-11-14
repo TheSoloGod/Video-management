@@ -26,7 +26,7 @@ class CategoryController extends Controller
     public function index()
     {
         $categories = $this->categoryService->paginate();
-        return view('admin.category.list', compact('categories'));
+        return view('back_end.category.list', compact('categories'));
     }
 
     /**
@@ -36,7 +36,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        return view('admin.category.create');
+        return view('back_end.category.create');
     }
 
     /**
@@ -62,7 +62,7 @@ class CategoryController extends Controller
     {
         $category = $this->categoryService->getById($id);
         $totalVideos = $this->categoryService->countAllVideo($id);
-        return view('admin.category.detail', compact('category', 'totalVideos'));
+        return view('back_end.category.detail', compact('category', 'totalVideos'));
     }
 
     /**
@@ -74,7 +74,7 @@ class CategoryController extends Controller
     public function edit($id)
     {
         $category = $this->categoryService->getById($id);
-        return view('admin.category.edit', compact('category'));
+        return view('back_end.category.edit', compact('category'));
     }
 
     /**

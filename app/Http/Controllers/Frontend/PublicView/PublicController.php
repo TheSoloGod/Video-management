@@ -28,7 +28,7 @@ class PublicController extends Controller
     {
         $publicVideos = $this->videoService->getPaginateAllVideoPublic();
         $categories = $this->categoryService->getAll();
-        return view('welcome', compact('publicVideos', 'categories'));
+        return view('front_end.public.welcome', compact('publicVideos', 'categories'));
     }
 
     public function showVideo($videoId)
@@ -38,6 +38,6 @@ class PublicController extends Controller
         $recommendedVideos = $this->videoService->getRecommendedPublicVideos();
         $categories = $this->categoryService->getAll();
         $favoriteStatus = false;
-        return view('public.show-video', compact('video', 'recommendedVideos', 'categories', 'favoriteStatus'));
+        return view('front_end.public.show-video', compact('video', 'recommendedVideos', 'categories', 'favoriteStatus'));
     }
 }
