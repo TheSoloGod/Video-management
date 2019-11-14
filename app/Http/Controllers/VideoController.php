@@ -141,6 +141,7 @@ class VideoController extends Controller
         Session::put('video_name', $newName);
         $video->move(public_path('storage/video'), $newName);
         Session::put('uploadStatus', 'upload success');
+
         $newVideo = $this->videoService->getByName($newName);
         if ($newVideo) {
             $newVideo->name = $newName;

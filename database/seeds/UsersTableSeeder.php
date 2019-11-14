@@ -70,7 +70,7 @@ class UsersTableSeeder extends Seeder
         $user->password = Hash::make('user1234');
         $user->address = 'address test';
         $user->phone = '0123456789';
-        $user->is_in_group = '1';
+        $user->is_in_group = '0';
         $user->save();
     }
 }
