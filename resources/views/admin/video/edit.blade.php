@@ -63,7 +63,7 @@
                                                     <td>Categories:</td>
                                                     <td>
                                                         <span>
-                                                            <a class="btn btn-outline-secondary btn-sm">Change</a>
+                                                            <a class="btn btn-outline-secondary btn-sm" href="{{ route('categories.index') }}">Change</a>
                                                         </span>
                                                         @foreach($categories as $key => $value)
                                                             <span>
@@ -78,7 +78,7 @@
                                                     <td>Groups:</td>
                                                     <td>
                                                         <span>
-                                                            <a class="btn btn-outline-secondary btn-sm">Change</a>
+                                                            <a class="btn btn-outline-secondary btn-sm" href="{{ route('groups.index') }}">Change</a>
                                                         </span>
                                                         @foreach($groups as $key => $value)
                                                         <span>

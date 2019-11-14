@@ -70,7 +70,7 @@
                                                 <div class="row">
                                                     <div class="col-md-12 text-center">
                                                         <span>
-                                                            <button type="submit" name="upload"
+                                                            <button type="submit" name="upload" id="upload"
                                                                     class="btn btn-outline-primary">Upload</button>
                                                         </span>
                                                         <span>
@@ -82,11 +82,22 @@
                                             </form>
                                         </div>
                                     </div>
+                                    <div id="uploadInfoVideoSuccess" class="text-center" hidden>
+                                        <div class="alert alert-success alert-block mt-3">
+                                            Upload video infomation success
+                                        </div>
+                                        <a class="btn btn-outline-success" href="{{ route('videos.index') }}" target="_blank">Show videos list</a>
+                                    </div>
+                                    <div id="uploadInfoVideoError" class="text-center" hidden>
+                                        <div class="alert alert-danger alert-block mt-3">
+                                            Title and description are required
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
 
                             <div class="col-md-6">
-                                <form method="post" action="{{ route('videos.store') }}" enctype="multipart/form-data">
+                                <form id="formInfoVideo" method="post" action="" enctype="multipart/form-data">
                                     @csrf
                                     <div class="card card-body">
                                         <table class="table">
@@ -140,7 +151,7 @@
                                             </tr>
                                             <tr>
                                                 <td colspan="2" class="text-center">
-                                                    <button class="btn btn-outline-info" type="submit" name="create">
+                                                    <button id="formInfoVideoSubmit" class="btn btn-outline-info" type="submit" name="create">
                                                         Upload Info
                                                     </button>
                                                 </td>
@@ -183,5 +194,4 @@
             });
         });
     </script>
-
 @endsection

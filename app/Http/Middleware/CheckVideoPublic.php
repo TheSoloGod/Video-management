@@ -26,7 +26,7 @@ class CheckVideoPublic
         $videoId = $request->video_id;
         $video = $this->videoService->getById($videoId);
         if ($video->type == 1) {
-            return redirect()->back();
+            return redirect()->back()->with('error', 'Please register to see this video');
         }
         return $next($request);
     }

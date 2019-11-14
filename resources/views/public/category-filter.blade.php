@@ -12,26 +12,36 @@
 
         <div class="row">
             <!-- side bar -->
-            <div class="col-md-2">
-                @include('layouts.sidebar-member')
-            </div>
+
 
             <!-- content -->
-            <div class="col-md-10">
+            <div class="col-md-12">
 
                 <!-- Favorite video of user -->
                 <div class="card card-body mt-3 mb-5">
                     <div class="mb-3">
-                        <strong>Your favorite videos</strong>
+                        <strong>Category name</strong>
+                        @if (Session::has('error'))
+                            <div class="alert alert-warning alert-block">
+                                <button type="button" class="close" data-dismiss="alert">×</button>
+                                <strong>{{ Session::get('error') }}</strong>
+                            </div>
+                        @endif
                     </div>
                     <div class="row">
                         @foreach($videos as $key => $value)
                             <div class="col-md-3">
                                 <div class="card">
                                     <div class="card-body text-center p-0">
-                                        <a href="{{ route('member.video.show', [Auth::user()->id, $value->id]) }}">
-                                            <img class="w-100" style="height: 110px" src="{{ asset('storage/preview/' . $value->image ) }}">
-                                        </a>
+                                        @guest
+                                            <a href="{{ route('public.video.show', $value->id) }}">
+                                                <img class="w-100" style="height: 140px" src="{{ asset('storage/preview/' . $value->image ) }}">
+                                            </a>
+                                        @else
+                                            <a href="{{ route('member.video.show', [Auth::user()->id, $value->id]) }}">
+                                                <img class="w-100" style="height: 140px" src="{{ asset('storage/preview/' . $value->image ) }}">
+                                            </a>
+                                        @endguest
                                     </div>
                                 </div>
                                 <div class="ml-1">

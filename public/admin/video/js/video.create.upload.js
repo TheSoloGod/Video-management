@@ -1,5 +1,6 @@
 $(document).ready(function () {
 
+    //upload video
     $('#uploadForm').ajaxForm({
         beforeSend: function () {
             $('#status').empty();
@@ -21,13 +22,41 @@ $(document).ready(function () {
                 $('#status').append(data.image);
             }
         },
-        // complete: function (xhr) {
-        // }
+        complete: function () {
+            $('#upload').attr('hidden', 'hidden');
+            $('#file').attr('hidden', 'hidden');
+        }
     });
 
     $('#cancel').click(function () {
         $('#uploadForm').removeEventListener('progress');
         // $('#uploadForm').abort();
-    })
+    });
 
+
+    //upload info video
+    $('#formInfoVideo').submit(function(event) {
+        event.preventDefault();
+        let formData = new FormData($(this)[0]);
+        $.ajax({
+            url: 'http://video.local/admin/video/store',
+            data: formData,
+            type: 'POST',
+            contentType: false,
+            processData: false,
+            success: function (result) {
+                console.log(result['status']);
+                if (result['status']) {
+                    $('#formInfoVideoSubmit').attr('hidden', 'hidden');
+                    $('#upload').attr('hidden', 'hidden');
+                    $('#file').attr('hidden', 'hidden');
+                    $('#cancel').attr('hidden', 'hidden');
+                    $('#uploadInfoVideoError').attr('hidden', 'hidden');
+                    $('#uploadInfoVideoSuccess').removeAttr('hidden');
+                } else {
+                    $('#uploadInfoVideoError').removeAttr('hidden');
+                }
+            }
+        });
+    });
 });

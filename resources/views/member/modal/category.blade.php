@@ -12,7 +12,7 @@
                 <div class="row">
                     @foreach($categories as $key => $value)
                         <div class="col-2 text-center">
-                            <a class="btn btn-outline-info" href="">{{ $value->name }}</a>
+                            <a class="btn btn-outline-info" href="{{ route('category.filter', $value->id) }}">{{ $value->name }}</a>
                         </div>
                     @endforeach
                 </div>

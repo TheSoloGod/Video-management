@@ -37,6 +37,7 @@ class VideoRepository extends EloquentRepository implements VideoRepositoryInter
     public function softDelete($videoId)
     {
         $video = $this->getById($videoId);
+        $video->is_display = '0';
         $video->delete_at = Carbon::now();
         $video->save();
     }
@@ -47,7 +48,8 @@ class VideoRepository extends EloquentRepository implements VideoRepositoryInter
             $query->select('video_id')
                   ->where('group_id', $groupId)
                   ->from('group_video');
-        })->paginate($number);
+        })->orderBy('created_at', 'desc')
+          ->paginate($number);
         return $videos;
     }
 
@@ -115,10 +117,21 @@ class VideoRepository extends EloquentRepository implements VideoRepositoryInter
         $groupVideos = $this->model->whereIn('id', function ($query) use ($groupId){
             $query->select('video_id')
                   ->where('group_id', $groupId)
-                  ->orderBy('created_at', 'desc')
                   ->from('group_video');
-        })->paginate($number);
+        })->orderBy('created_at', 'desc')
+          ->paginate($number);
         return $groupVideos;
+    }
+
+    public function getPaginateVideoOfCategory($categoryId, $number)
+    {
+        $categoryVideos = $this->model->whereIn('id', function ($query) use ($categoryId){
+            $query->select('video_id')
+                  ->where('category_id', $categoryId)
+                  ->from('category_video');
+        })->orderBy('created_at', 'desc')
+          ->paginate($number);
+        return $categoryVideos;
     }
 
     public function incrementVideoTotalView($videoId)
@@ -133,7 +146,8 @@ class VideoRepository extends EloquentRepository implements VideoRepositoryInter
             $query->select('video_id')
                   ->where('user_id', $userId)
                   ->from('user_video');
-        })->paginate($number);
+        })->orderBy('created_at', 'desc')
+          ->paginate($number);
         return $videos;
     }
 
@@ -146,6 +160,8 @@ class VideoRepository extends EloquentRepository implements VideoRepositoryInter
     public function search($keyWord, $number)
     {
         $videos = $this->model->where('title', 'LIKE', '%' . $keyWord . '%')
+                              ->where('is_display', '1')
+                              ->orderBy('created_at', 'desc')
                               ->paginate($number);
         return $videos;
     }
@@ -167,5 +183,11 @@ class VideoRepository extends EloquentRepository implements VideoRepositoryInter
     {
         $this->model->where('id', $videoId)
                     ->update(['is_in_group' => '0']);
+    }
+
+    public function markVideoMember($videoId)
+    {
+        $this->model->where('id', $videoId)
+                    ->update(['type' => '1']);
     }
 }

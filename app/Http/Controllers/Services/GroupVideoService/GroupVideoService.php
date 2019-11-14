@@ -97,6 +97,8 @@ class GroupVideoService implements GroupVideoServiceInterface
             $data['group_id'] = $groupId;
             $data['video_id'] = $value->id;
             $this->groupVideoRepository->create($data);
+            $this->videoRepository->markVideoMember($value->id);
+            $this->videoRepository->markVideoInGroup($value->id);
         }
         $this->sessionService->forgetSession('additionVideoList');
         Session::flash('status', 'Add video to group success');

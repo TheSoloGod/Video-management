@@ -20,48 +20,28 @@
                 <!-- Favorite video of user -->
                 <div class="card card-body mt-3 mb-5">
                     <div class="mb-3">
-                        <strong>Results</strong>
+                        <strong>Have {{ count($videos) }} results</strong>
+                        @if (Session::has('error'))
+                            <div class="alert alert-warning alert-block">
+                                <button type="button" class="close" data-dismiss="alert">×</button>
+                                <strong>{{ Session::get('error') }}</strong>
+                            </div>
+                        @endif
                     </div>
                     <div class="row">
                         @foreach($videos as $key => $value)
                             <div class="col-md-3">
                                 <div class="card">
                                     <div class="card-body text-center p-0">
-                                        @if($userId)
-                                            <a href="{{ route('member.video.show', [$userId, $value->id]) }}">
-                                                <img class="w-100" style="height: 140px" src="{{ asset('storage/preview/' . $value->image ) }}">
-                                            </a>
-                                        @else
+                                        @guest
                                             <a href="{{ route('public.video.show', $value->id) }}">
                                                 <img class="w-100" style="height: 140px" src="{{ asset('storage/preview/' . $value->image ) }}">
                                             </a>
-                                        @endif
-                                    </div>
-                                </div>
-                                <div class="ml-1">
-                                    <p class="mb-0">
-                                        <strong>{{ $value->title }}</strong>
-                                    </p>
-                                </div>
-                                <div class="ml-1">
-                                    <p style="color: gray">{{ $value->description }}</p>
-                                </div>
-                            </div>
-                        @endforeach
-
-                        @foreach($videos as $key => $value)
-                            <div class="col-md-3">
-                                <div class="card">
-                                    <div class="card-body text-center p-0">
-                                        @if($userId)
-                                            <a href="{{ route('member.video.show', [$userId, $value->id]) }}">
-                                                <img class="w-100" style="height: 140px" src="{{ asset('storage/preview/' . $value->image ) }}">
-                                            </a>
                                         @else
-                                            <a href="{{ route('public.video.show', $value->id) }}">
+                                            <a href="{{ route('member.video.show', [Auth::user()->id, $value->id]) }}">
                                                 <img class="w-100" style="height: 140px" src="{{ asset('storage/preview/' . $value->image ) }}">
                                             </a>
-                                        @endif
+                                        @endguest
                                     </div>
                                 </div>
                                 <div class="ml-1">

@@ -45,7 +45,7 @@ class VideoService implements VideoServiceInterface
 
     public function paginate()
     {
-        $number = 5;
+        $number = 10;
         $videos = $this->videoRepository->paginate($number);
         return $videos;
     }
@@ -89,7 +89,19 @@ class VideoService implements VideoServiceInterface
 //            return false;
 //        }
 
+
         //upload to storage
+        //validation
+        $rules = array(
+            'title' => 'required|alpha_num',
+            'description' => 'required|alpha_num'
+        );
+        $error = Validator::make($request->all(), $rules);
+        if ($error->fails()) {
+            $data = ['status' => false];
+            return $data;
+        }
+
         //store image & build data
         $folder = 'preview';
         $imageDefault = 'preview-default.jpg';
@@ -104,9 +116,14 @@ class VideoService implements VideoServiceInterface
             Session::forget('video_name');
         }
         $newVideo = $this->videoRepository->create($data);
-        $this->storeNewVideoCategory($request, $newVideo);
-        $this->storeNewVideoGroup($request, $newVideo);
-        return $newVideo;
+        if ($newVideo) {
+            $this->storeNewVideoCategory($request, $newVideo);
+            $this->storeNewVideoGroup($request, $newVideo);
+            $data = ['status' => true];
+        } else {
+            $data = ['status' => false];
+        }
+        return $data;
 
     }
 
@@ -216,6 +233,7 @@ class VideoService implements VideoServiceInterface
     {
         if ($newVideo) {
             if ($request->group != null) {
+                $this->videoRepository->markVideoMember($newVideo->id);
                 $this->videoRepository->markVideoInGroup($newVideo->id);
                 $arrayGroup = explode(',', $request->group);
                 foreach ($arrayGroup as $key => $value) {
@@ -230,14 +248,14 @@ class VideoService implements VideoServiceInterface
 
     public function getPaginateAllVideoPublic()
     {
-        $number = 4;
+        $number = 8;
         $publicVideos = $this->videoRepository->getPaginateAllVideoPublic($number);
         return $publicVideos;
     }
 
     public function getPaginateAllVideoMember()
     {
-        $number = 4;
+        $number = 8;
         $memberVideos = $this->videoRepository->getPaginateAllVideoMember($number);
         return $memberVideos;
     }
@@ -258,21 +276,29 @@ class VideoService implements VideoServiceInterface
 
     public function getPaginateVideoDisplayShow()
     {
-        $number = 4;
+        $number = 8;
         $allVideos = $this->videoRepository->getPaginateVideoDisplayShow($number);
         return $allVideos;
     }
 
     public function getPaginateVideoOfGroup($groupId)
     {
-        $number = 6;
+        $number = 12;
         $groupVideos = $this->videoRepository->getPaginateVideoOfGroup($groupId, $number);
         return $groupVideos;
     }
 
+    public function getPaginateVideoOfCategory($categoryId)
+    {
+        $number = 8;
+        $videos = $this->videoRepository->getPaginateVideoOfCategory($categoryId, $number);
+        return $videos;
+
+    }
+
     public function getPaginateVideoFavorite($userId)
     {
-        $number = 4;
+        $number = 8;
         $videos = $this->videoRepository->getPaginateVideoFavorite($userId, $number);
         return $videos;
     }

@@ -38,7 +38,7 @@ class CheckUserVideoIsInGroup
                 && $this->checkVideoIsInGroup($request->video_id, $request->group_id)) {
                 return $next($request);
             } else {
-                return redirect()->back();
+                return redirect()->back()->with('error', 'Please join other group to see this video');
             }
         } else {
             return $next($request);

@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Backend\Admin;
 
+use App\Http\Controllers\Controller;
 use App\Http\Controllers\Services\AdminService\AdminServiceInterface;
 use App\Http\Requests\AdminLoginRequest;
 use Illuminate\Http\Request;
@@ -19,7 +20,11 @@ class AdminController extends Controller
 
     public function getLogin()
     {
-        return view('admin.auth.login');//return ra trang login để đăng nhập
+        if (Auth::guard('admin')->check()) {
+            return redirect()->route('admin.over-view');
+        } else {
+            return view('admin.auth.login');
+        }
     }
 
     public function postLogin(AdminLoginRequest $request)

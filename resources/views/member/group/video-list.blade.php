@@ -74,49 +74,6 @@
                             </div>
                         </div>
                     @endforeach
-
-                    @foreach($groupVideos as $key => $value)
-                        <div class="col-md-3">
-                            <div class="card">
-                                <div class="card-body text-center p-0">
-                                    <a href="{{ route('member.group.video.show', [Auth::user()->id, $group->id, $value->id]) }}">
-                                        <img class="w-100" style="height: 140px"
-                                             src="{{ asset('storage/preview/' . $value->image ) }}">
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="ml-1">
-                                <p class="mb-0">
-                                    <strong>{{ $value->title }}</strong>
-                                </p>
-                            </div>
-                            <div class="ml-1">
-                                <p style="color: gray">{{ $value->description }}</p>
-                            </div>
-                        </div>
-                    @endforeach
-
-                    @foreach($groupVideos as $key => $value)
-                        <div class="col-md-3">
-                            <div class="card">
-                                <div class="card-body text-center p-0">
-                                    <a href="{{ route('member.group.video.show', [Auth::user()->id, $group->id, $value->id]) }}">
-                                        <img class="w-100" style="height: 140px"
-                                             src="{{ asset('storage/preview/' . $value->image ) }}">
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="ml-1">
-                                <p class="mb-0">
-                                    <strong>{{ $value->title }}</strong>
-                                </p>
-                            </div>
-                            <div class="ml-1">
-                                <p style="color: gray">{{ $value->description }}</p>
-                            </div>
-                        </div>
-                    @endforeach
-
                     <div>
                         <span class="float-right">
                             {{ $groupVideos->appends(request()->query()) }}

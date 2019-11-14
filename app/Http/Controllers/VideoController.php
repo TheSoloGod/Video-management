@@ -45,17 +45,16 @@ class VideoController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(StoreVideoRequest $request)
     {
         $video = $this->videoService->store($request);
-//        return redirect()->back();
-        if($video){
+        if ($video) {
             $videoId = $video->id;
             return redirect()->route('videos.show', compact('videoId'));
-        }else{
+        } else {
             return redirect()->back();
         }
     }
@@ -63,7 +62,7 @@ class VideoController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -77,7 +76,7 @@ class VideoController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -91,8 +90,8 @@ class VideoController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param \Illuminate\Http\Request $request
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function update(StoreVideoRequest $request, $id)
@@ -104,7 +103,7 @@ class VideoController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
@@ -116,12 +115,13 @@ class VideoController extends Controller
     public function search(Request $request)
     {
         $videos = $this->videoService->search($request);
-        if (Auth::user() == null) {
-            $userId = false;
-        } else {
-            $userId = Auth::user()->id;
-        }
         return view('public.search-result', compact('videos', 'userId'));
+    }
+
+    public function getPaginateVideoOfCategory($categoryId)
+    {
+        $videos = $this->videoService->getPaginateVideoOfCategory($categoryId);
+        return view('public.category-filter', compact('videos'));
     }
 
     public function uploadVideoProgressBar(Request $request)
@@ -153,5 +153,11 @@ class VideoController extends Controller
             'image' => '<video width="100%" height="auto" controls src="/storage/video/' . $newName . '" ></video>'
         );
         return response()->json($output);
+    }
+
+    public function storeVideoInfo(Request $request)
+    {
+        $data = $this->videoService->store($request);
+        return response()->json($data);
     }
 }

@@ -44,26 +44,6 @@
                                 </div>
                             </div>
                         @endforeach
-
-                            @foreach($publicVideos as $key => $value)
-                                <div class="col-md-3">
-                                    <div class="card">
-                                        <div class="card-body text-center p-0">
-                                            <a href="{{ route('public.video.show', $value->id) }}">
-                                                <img class="w-100" style="height: 110px" src="{{ asset('storage/preview/' . $value->image ) }}">
-                                            </a>
-                                        </div>
-                                    </div>
-                                    <div class="ml-1">
-                                        <p class="mb-0">
-                                            <strong>{{ $value->title }}</strong>
-                                        </p>
-                                    </div>
-                                    <div class="ml-1">
-                                        <p style="color: gray">{{ $value->description }}</p>
-                                    </div>
-                                </div>
-                            @endforeach
                     </div>
                     <div>
                         <div class="float-right">
@@ -97,26 +77,6 @@
                                 </div>
                             </div>
                         @endforeach
-
-                            @foreach($publicVideos as $key => $value)
-                                <div class="col-md-3">
-                                    <div class="card">
-                                        <div class="card-body text-center p-0">
-                                            <a href="{{ route('public.video.show', $value->id) }}">
-                                                <img class="w-100" style="height: 110px" src="{{ asset('storage/preview/' . $value->image ) }}">
-                                            </a>
-                                        </div>
-                                    </div>
-                                    <div class="ml-1">
-                                        <p class="mb-0">
-                                            <strong>{{ $value->title }}</strong>
-                                        </p>
-                                    </div>
-                                    <div class="ml-1">
-                                        <p style="color: gray">{{ $value->description }}</p>
-                                    </div>
-                                </div>
-                            @endforeach
                     </div>
                     <div>
                         <div class="float-right">

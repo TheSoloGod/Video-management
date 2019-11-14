@@ -34,7 +34,7 @@ class CheckVideoIsInGroup
         $videoId = $request->video_id;
         $video = $this->videoService->getById($videoId);
         if ($video->is_in_group == 1) {
-            return redirect()->back();
+            return redirect()->back()->with('error', 'Please join group to see this video');
         } else {
             return $next($request);
         }
