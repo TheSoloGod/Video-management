@@ -16,10 +16,12 @@ services:
     image: mysql:5.7
     container_name: video-database
     hostname: video-db
+    restart: always
     volumes:
       - ./data/mysql:/var/lib/mysql
     environment:
       - MYSQL_ROOT_PASSWORD=1
+      - MYSQL_DATABASE=video-management
     ports:
       - 3306:3306
 
