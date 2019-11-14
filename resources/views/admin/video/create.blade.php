@@ -20,6 +20,7 @@
                 <div class="card mt-3">
                     <div class="card-header">
                         Upload new video
+                        <a class="btn btn-outline-info" href="{{ route('test') }}">test</a>
 {{--                        <a class="btn btn-outline-danger" href="{{ route('test') }}">test</a>--}}
                         @if (Session::has('error'))
                             <div class="alert alert-warning alert-block">

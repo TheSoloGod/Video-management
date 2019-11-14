@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Frontend\Member;
 
+use App\Http\Controllers\Controller;
 use App\Http\Controllers\Services\CategoryService\CategoryServiceInterface;
 use App\Http\Controllers\Services\DateVideoService\DateVideoServiceInterface;
 use App\Http\Controllers\Services\GroupService\GroupServiceInterface;

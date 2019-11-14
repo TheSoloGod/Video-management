@@ -26,26 +26,26 @@ Route::get('/home', function (){
 
 // route public
 Route::group(['prefix' => 'public'], function () {
-    Route::get('/', 'PublicController@index')->name('home.public.index')->middleware('check.user.login');
-    Route::get('/video/{video_id}', 'PublicController@showVideo')->name('public.video.show')->middleware('check.video.isPublic');
+    Route::get('/', 'Frontend\PublicView\PublicController@index')->name('home.public.index')->middleware('check.user.login');
+    Route::get('/video/{video_id}', 'Frontend\PublicView\PublicController@showVideo')->name('public.video.show')->middleware('check.video.isPublic');
 });
 
 // route member
 Route::group(['prefix' => 'member/{user_id?}', 'middleware' => 'verified'], function () {
-    Route::get('/', 'MemberController@index')->name('home.member.index');
-    Route::get('/group', 'MemberController@getGroup')->name('member.group.all');
-    Route::get('/group/{group_id}/video', 'MemberController@getVideoOfGroup')->name('member.group.video.all');
-    Route::get('/group/{group_id}/video/{video_id}', 'MemberController@showVideo    InGroup')->name('member.group.video.show')->middleware('check.user.video.isInGroup');
-    Route::get('/video/{video_id}', 'MemberController@showVideo')->name('member.video.show')->middleware('check.video.isInGroup');
-    Route::get('/info', 'MemberController@info')->name('member.info');
-    Route::get('/favorite', 'MemberController@favorite')->name('member.favorite');
-    Route::get('favorite/video', 'MemberController@getPaginateVideoFavorite')->name('member.video.favorite.all');
-    Route::get('favorite/video/{video_id}', 'MemberController@showVideoFavorite')->name('member.video.favorite.show');
+    Route::get('/', 'Frontend\Member\MemberController@index')->name('home.member.index');
+    Route::get('/group', 'Frontend\Member\MemberController@getGroup')->name('member.group.all');
+    Route::get('/group/{group_id}/video', 'Frontend\Member\MemberController@getVideoOfGroup')->name('member.group.video.all');
+    Route::get('/group/{group_id}/video/{video_id}', 'Frontend\Member\MemberController@showVideo    InGroup')->name('member.group.video.show')->middleware('check.user.video.isInGroup');
+    Route::get('/video/{video_id}', 'Frontend\Member\MemberController@showVideo')->name('member.video.show')->middleware('check.video.isInGroup');
+    Route::get('/info', 'Frontend\Member\MemberController@info')->name('member.info');
+    Route::get('/favorite', 'Frontend\Member\MemberController@favorite')->name('member.favorite');
+    Route::get('favorite/video', 'Frontend\Member\MemberController@getPaginateVideoFavorite')->name('member.video.favorite.all');
+    Route::get('favorite/video/{video_id}', 'Frontend\Member\MemberController@showVideoFavorite')->name('member.video.favorite.show');
 });
 
 // route search both public & member
-Route::get('/search', 'VideoController@search')->name('navbar.search');
-Route::get('/category/{category_id}', 'VideoController@getPaginateVideoOfCategory')->name('category.filter');
+Route::get('/search', 'Backend\Video\VideoController@search')->name('navbar.search');
+Route::get('/category/{category_id}', 'Backend\Video\VideoController@getPaginateVideoOfCategory')->name('category.filter');
 
 
 
@@ -55,10 +55,10 @@ Route::get('/category/{category_id}', 'VideoController@getPaginateVideoOfCategor
 //ROUTE TEST
 
 //route test
-//Route::post('test', function (){
-//    $data = ['status' => true];
-//    return $data;
-//})->name('test');
+Route::get('test', function (){
+    dd(\Illuminate\Support\Facades\Session::get('uploadStatus'));
+
+})->name('test');
 
 
 

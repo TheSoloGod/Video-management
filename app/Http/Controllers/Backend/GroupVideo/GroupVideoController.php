@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Backend\GroupVideo;
 
+use App\Http\Controllers\Controller;
 use App\Http\Controllers\Services\GroupVideoService\GroupVideoServiceInterface;
 use Illuminate\Http\Request;
 

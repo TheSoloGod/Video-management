@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Backend\Category;
 
+use App\Http\Controllers\Controller;
 use App\Http\Controllers\Services\CategoryService\CategoryServiceInterface;
 use App\Http\Controllers\Services\CategoryVideoService\CategoryVideoServiceInterface;
 use Illuminate\Http\Request;

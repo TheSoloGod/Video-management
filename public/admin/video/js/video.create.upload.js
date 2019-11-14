@@ -39,13 +39,12 @@ $(document).ready(function () {
         event.preventDefault();
         let formData = new FormData($(this)[0]);
         $.ajax({
-            url: 'http://video.local/admin/video/store',
+            url: 'http://localhost/admin/video/store',
             data: formData,
             type: 'POST',
             contentType: false,
             processData: false,
             success: function (result) {
-                console.log(result['status']);
                 if (result['status']) {
                     $('#formInfoVideoSubmit').attr('hidden', 'hidden');
                     $('#upload').attr('hidden', 'hidden');

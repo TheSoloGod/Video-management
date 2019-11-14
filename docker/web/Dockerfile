@@ -42,8 +42,12 @@ COPY ./entry-point.sh /
 COPY ./000-default.conf /etc/apache2/sites-available/
 COPY php.ini-development $PHP_INI_DIR/php.ini
 RUN chmod 777 ./entry-point.sh
+#RUN chmod 775 /var/www/html/video-management/storage
+#RUN chown -R .: /var/www/html/video-management
+#RUN chmod -R 755 /var/www/html/video-management/storage
 
 WORKDIR /var/www/html/video-management
+#RUN chmod 777 storage
 #RUN php artisan queue:work redis
 # composer require guzzlehttp/guzzle:~6.0
 # composer require predis/predis

@@ -1,8 +1,9 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Backend\DateVideo;
 
 use App\DateVideo;
+use App\Http\Controllers\Controller;
 use App\Http\Controllers\Services\DateVideoService\DateVideoServiceInterface;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;

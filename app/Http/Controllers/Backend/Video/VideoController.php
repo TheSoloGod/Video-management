@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Backend\Video;
 
+use App\Http\Controllers\Controller;
 use App\Http\Controllers\Services\VideoService\VideoServiceInterface;
 use App\Services\SessionService;
 use Illuminate\Http\Request;

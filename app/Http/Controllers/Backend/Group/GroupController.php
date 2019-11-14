@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Backend\Group;
 
+use App\Http\Controllers\Controller;
 use App\Http\Controllers\Services\GroupService\GroupServiceInterface;
 use App\Http\Controllers\Services\GroupUserService\GroupUserServiceInterface;
 use App\Http\Controllers\Services\GroupVideoService\GroupVideoServiceInterface;
