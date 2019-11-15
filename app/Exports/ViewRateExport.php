@@ -18,8 +18,8 @@ class ViewRateExport implements FromCollection, WithHeadings
     }
 
     /**
-    * @return \Illuminate\Support\Collection
-    */
+     * @return \Illuminate\Support\Collection
+     */
     public function collection()
     {
         foreach ($this->allVideoViewHistory as $key => $row) {

@@ -57,7 +57,7 @@ class MemberController extends Controller
         $group = $this->groupService->getById($groupId);
         $members = $this->userService->getUserOfGroup($groupId);
         $categories = $this->categoryService->getAll();
-        return view('front_end.member.group.video-list', compact('groupVideos','group', 'members', 'categories'));
+        return view('front_end.member.group.video-list', compact('groupVideos', 'group', 'members', 'categories'));
     }
 
     public function showVideo($userId, $videoId)
@@ -80,7 +80,7 @@ class MemberController extends Controller
 
     public function favorite(Request $request)
     {
-        $status =  $this->userVideoService->favorite($request);
+        $status = $this->userVideoService->favorite($request);
         $data = ['status' => $status];
         return $data;
     }

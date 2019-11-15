@@ -20,7 +20,7 @@ Auth::routes(['verify' => true]);
 Route::get('/', function () {
     return redirect()->route('home.public.index');
 });
-Route::get('/home', function (){
+Route::get('/home', function () {
     return view('front_end.member.home-new');
 })->name('home.new');
 
@@ -48,16 +48,12 @@ Route::get('/search', 'Backend\Video\VideoController@search')->name('navbar.sear
 Route::get('/category/{category_id}', 'Backend\Video\VideoController@getPaginateVideoOfCategory')->name('category.filter');
 
 
-
-
-
-
 //ROUTE TEST
 
 //route test
-Route::get('test', function (){
-    dd(\Illuminate\Support\Facades\Session::get('uploadStatus'));
-})->name('test');
+//Route::get('test', function () {
+//    dd(\Illuminate\Support\Facades\Session::get('uploadStatus'));
+//})->name('test');
 
 
 

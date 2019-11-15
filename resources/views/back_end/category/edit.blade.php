@@ -37,7 +37,8 @@
                         @endif
                     </div>
                     <div class="card-body">
-                        <form method="post" action="{{ route('categories.update', $category->id) }}" enctype="multipart/form-data">
+                        <form method="post" action="{{ route('categories.update', $category->id) }}"
+                              enctype="multipart/form-data">
                             @csrf
                             @method('PUT')
                             <div class="row">
@@ -47,7 +48,8 @@
                                             <tr class="">
                                                 <td class="text-center">Name:</td>
                                                 <td>
-                                                    <input type="text" name="name" class="form-control" value="{{ $category->name }}">
+                                                    <input type="text" name="name" class="form-control"
+                                                           value="{{ $category->name }}">
                                                 </td>
                                             </tr>
                                         </table>

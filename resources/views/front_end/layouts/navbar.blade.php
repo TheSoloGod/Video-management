@@ -1,6 +1,7 @@
 <nav class="navbar navbar-expand-lg navbar-light border rounded" style="background-color: #EEEEEE">
     <a class="navbar-brand" href="{{ route('home.new') }}">Video+</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
 
@@ -11,7 +12,8 @@
             </li>
         </ul>
         <form class="form-inline my-2 my-lg-0" method="get" action="{{ route('navbar.search') }}">
-            <input class="form-control mr-sm-2" type="search" placeholder="Search video" aria-label="Search" name="key_word">
+            <input class="form-control mr-sm-2" type="search" placeholder="Search video" aria-label="Search"
+                   name="key_word">
             <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
         </form>
 
@@ -29,16 +31,17 @@
                 @endif
             @else
                 @if (count(Auth::user()->unreadNotifications) == 0)
-                <a class="nav-link" data-toggle="modal" data-target="#notificationModal">
-                    <i class="far fa-bell"></i>
-                    Notification
-                </a>
+                    <a class="nav-link" data-toggle="modal" data-target="#notificationModal">
+                        <i class="far fa-bell"></i>
+                        Notification
+                    </a>
                 @else
                     <a class="nav-link" data-toggle="modal" data-target="#notificationModal">
                         <i class="far fa-bell"></i>
-                        Notification <span class="badge badge-pill badge-primary">{{ count(Auth::user()->unreadNotifications) }}</span>
+                        Notification <span
+                            class="badge badge-pill badge-primary">{{ count(Auth::user()->unreadNotifications) }}</span>
                     </a>
-                    @endif
+                @endif
                 @include('front_end.member.modal.notification')
                 <li class="nav-item dropdown">
                     <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
@@ -55,7 +58,7 @@
                             <a class="dropdown-item" href="{{ '/email/verify' }}">
                                 Verify email
                             </a>
-                            @else
+                        @else
                             <a class="dropdown-item" href="{{ route('member.info', Auth::user()->id) }}">
                                 Profile
                             </a>

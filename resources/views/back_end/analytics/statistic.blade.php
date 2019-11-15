@@ -27,13 +27,15 @@
                             <span class="input-group">
                                 <span><input type="date" name="date" class="form-control"></span>
                                 <span>
-                                    <button type="submit" class="btn btn-outline-info" style="border-radius: 0px 25px 25px 0px">
+                                    <button type="submit" class="btn btn-outline-info"
+                                            style="border-radius: 0px 25px 25px 0px">
                                         <i class="fas fa-search"></i>
                                     </button>
                                 </span>
                             </span>
                         </form>
-                        <span class="float-right"><a class="btn btn-outline-info" href="{{ route('analytics.index') }}" style="border-radius: 25px 0px 0px 25px">View all</a></span>
+                        <span class="float-right"><a class="btn btn-outline-info" href="{{ route('analytics.index') }}"
+                                                     style="border-radius: 25px 0px 0px 25px">View all</a></span>
                         @if (session('status'))
                             <div class="alert alert-success mt-4" role="alert">
                                 {{ session('status') }}
@@ -59,19 +61,23 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @if(count($allVideoViewHistory) == 0)
-                                        <tr class="text-center"><td colspan="6"><p>No body saw any video in this day!</p></td></tr>
-                                    @endif
-                                    @foreach($allVideoViewHistory as $key => $value)
-                                        <tr class="text-center">
-                                            <th>{{ ++$key }}</th>
-                                            <td>{{ $value->date }}</td>
-                                            <td><a href="{{ route('videos.show', $value->video->id) }}">{{ $value->video->title }}</a></td>
-                                            <td>{{ $value->today_views }}</td>
-                                            <td>{{ $value->yesterday_views }}</td>
-                                            <td>{{ $value->view_rate }}</td>
-                                        </tr>
-                                    @endforeach
+                                @if(count($allVideoViewHistory) == 0)
+                                    <tr class="text-center">
+                                        <td colspan="6"><p>No body saw any video in this day!</p></td>
+                                    </tr>
+                                @endif
+                                @foreach($allVideoViewHistory as $key => $value)
+                                    <tr class="text-center">
+                                        <th>{{ ++$key }}</th>
+                                        <td>{{ $value->date }}</td>
+                                        <td>
+                                            <a href="{{ route('videos.show', $value->video->id) }}">{{ $value->video->title }}</a>
+                                        </td>
+                                        <td>{{ $value->today_views }}</td>
+                                        <td>{{ $value->yesterday_views }}</td>
+                                        <td>{{ $value->view_rate }}</td>
+                                    </tr>
+                                @endforeach
                                 </tbody>
                             </table>
                         </div>

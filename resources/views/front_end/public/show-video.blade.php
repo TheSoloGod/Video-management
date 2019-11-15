@@ -6,7 +6,8 @@
 
 @section('content')
     <div id="fb-root"></div>
-    <script async defer crossorigin="anonymous" src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v5.0&appId=504468856807224&autoLogAppEvents=1"></script>
+    <script async defer crossorigin="anonymous"
+            src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v5.0&appId=504468856807224&autoLogAppEvents=1"></script>
     <div class="container">
 
         <!-- navbar -->
@@ -60,7 +61,8 @@
                                 </div>
                                 <div class="col-6">
                                     @if(Auth::user())
-                                        <a class="text-danger" id="favorite" video_id="{{ $video->id }}" user_id="{{ Auth::user()->id }}">
+                                        <a class="text-danger" id="favorite" video_id="{{ $video->id }}"
+                                           user_id="{{ Auth::user()->id }}">
                                             @if($favoriteStatus)
                                                 <i class="fas fa-heart" style="font-size: 40px"></i>
                                             @else
@@ -68,7 +70,8 @@
                                             @endif
                                         </a>
                                     @else
-                                        <a class="text-danger" data-container="body" data-toggle="popover" data-placement="bottom" data-content="You must login to favorite this video">
+                                        <a class="text-danger" data-container="body" data-toggle="popover"
+                                           data-placement="bottom" data-content="You must login to favorite this video">
                                             <i class="far fa-heart" style="font-size: 40px"></i>
                                         </a>
                                     @endif
@@ -78,7 +81,8 @@
                     </div>
                 </div>
                 <div class="mb-5">
-                    <div class="fb-comments" data-href="http://thesologod.tk/video-{{$video->id}}" data-width="100%" data-order-by="reverse_time" data-numposts="5"></div>
+                    <div class="fb-comments" data-href="http://thesologod.tk/video-{{$video->id}}" data-width="100%"
+                         data-order-by="reverse_time" data-numposts="5"></div>
                 </div>
             </div>
 
@@ -92,7 +96,8 @@
                         <div class="col-6">
                             <div class="card card-body p-0 w-100 ">
                                 <a href="{{ route('public.video.show', $video->id) }}">
-                                    <img class="w-100" style="height: 110px" src="{{ asset('storage/preview/' . $video->image ) }}">
+                                    <img class="w-100" style="height: 110px"
+                                         src="{{ asset('storage/preview/' . $video->image ) }}">
                                 </a>
                             </div>
                         </div>
@@ -113,26 +118,27 @@
                         <strong>Recommended</strong>
                     </div>
                     @foreach($recommendedVideos as $key => $value)
-                    <div class="row mb-3">
-                        <div class="col-6">
-                            <div class="card card-body p-0 w-100 ">
-                                <a href="{{ route('public.video.show', $value->id) }}">
-                                    <img class="w-100" style="height: 110px" src="{{ asset('storage/preview/' . $value->image ) }}">
-                                </a>
+                        <div class="row mb-3">
+                            <div class="col-6">
+                                <div class="card card-body p-0 w-100 ">
+                                    <a href="{{ route('public.video.show', $value->id) }}">
+                                        <img class="w-100" style="height: 110px"
+                                             src="{{ asset('storage/preview/' . $value->image ) }}">
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="col-6 p-0">
+                                <div>
+                                    <p class="mb-0">
+                                        <strong>{{ $value->title }}</strong>
+                                    </p>
+                                </div>
+                                <div>
+                                    <p style="color: gray">{{ $value->description }}</p>
+                                </div>
                             </div>
                         </div>
-                        <div class="col-6 p-0">
-                            <div>
-                                <p class="mb-0">
-                                    <strong>{{ $value->title }}</strong>
-                                </p>
-                            </div>
-                            <div>
-                                <p style="color: gray">{{ $value->description }}</p>
-                            </div>
-                        </div>
-                    </div>
-                @endforeach
+                    @endforeach
                 </div>
             </div>
         </div>

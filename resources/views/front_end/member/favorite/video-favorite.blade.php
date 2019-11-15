@@ -30,7 +30,8 @@
                                 <div class="card">
                                     <div class="card-body text-center p-0">
                                         <a href="{{ route('member.video.show', [Auth::user()->id, $value->id]) }}">
-                                            <img class="w-100" style="height: 110px" src="{{ asset('storage/preview/' . $value->image ) }}">
+                                            <img class="w-100" style="height: 110px"
+                                                 src="{{ asset('storage/preview/' . $value->image ) }}">
                                         </a>
                                     </div>
                                 </div>

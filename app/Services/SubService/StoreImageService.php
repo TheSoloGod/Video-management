@@ -11,7 +11,7 @@ class StoreImageService
     public function buildData($request, $folder, $imageDefault)
     {
         $data = $request->all();
-        if ($request->hasFile($this->inputName)){
+        if ($request->hasFile($this->inputName)) {
             $image = $request->file($this->inputName);
             $imageName = $image->getClientOriginalName();
             $imageExtension = $image->getClientOriginalExtension();

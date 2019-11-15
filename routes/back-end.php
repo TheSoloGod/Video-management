@@ -12,7 +12,7 @@ Route::group(['prefix' => 'admin'], function () {
 });
 
 //route resource admin with middleware
-Route::group(['prefix' => 'admin', 'middleware' => 'check.admin.login'], function (){
+Route::group(['prefix' => 'admin', 'middleware' => 'check.admin.login'], function () {
     Route::get('overview', 'Backend\Admin\AdminController@overView')->name('admin.over-view');
     Route::resource('users', 'Backend\User\UserController')->except(['create', 'store']);
     Route::resource('videos', 'Backend\Video\VideoController')->except(['store']);
@@ -21,7 +21,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'check.admin.login'], functio
 });
 
 //route upload video
-Route::group(['prefix' => 'admin/video'], function (){
+Route::group(['prefix' => 'admin/video'], function () {
     Route::post('/upload', 'Backend\Video\VideoController@uploadVideoProgressBar')->name('admin.video.upload');
     Route::post('/store', 'Backend\Video\VideoController@storeVideoInfo')->name('admin.video.store');
 });

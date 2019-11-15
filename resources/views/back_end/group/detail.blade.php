@@ -49,7 +49,8 @@
                                         <h1><strong>{{ $totalVideos }}</strong></h1>
                                     </div>
                                     <div>
-                                        <a class="btn btn-outline-info" href="{{ route('group.video.all', $group->id) }}">Videos management</a>
+                                        <a class="btn btn-outline-info"
+                                           href="{{ route('group.video.all', $group->id) }}">Videos management</a>
                                     </div>
                                 </div>
                             </div>

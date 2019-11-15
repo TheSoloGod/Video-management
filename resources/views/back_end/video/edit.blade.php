@@ -63,11 +63,13 @@
                                                     <td>Categories:</td>
                                                     <td>
                                                         <span>
-                                                            <a class="btn btn-outline-secondary btn-sm" href="{{ route('categories.index') }}">Change</a>
+                                                            <a class="btn btn-outline-secondary btn-sm"
+                                                               href="{{ route('categories.index') }}">Change</a>
                                                         </span>
                                                         @foreach($categories as $key => $value)
                                                             <span>
-                                                                <a class="badge badge-info" href="{{ route('categories.show', $value->category->id) }}">
+                                                                <a class="badge badge-info"
+                                                                   href="{{ route('categories.show', $value->category->id) }}">
                                                                     {{ $value->category->name }}
                                                                 </a>
                                                             </span>
@@ -78,11 +80,13 @@
                                                     <td>Groups:</td>
                                                     <td>
                                                         <span>
-                                                            <a class="btn btn-outline-secondary btn-sm" href="{{ route('groups.index') }}">Change</a>
+                                                            <a class="btn btn-outline-secondary btn-sm"
+                                                               href="{{ route('groups.index') }}">Change</a>
                                                         </span>
                                                         @foreach($groups as $key => $value)
-                                                        <span>
-                                                            <a class="badge badge-info" href="{{ route('groups.show', $value->group->id) }}">
+                                                            <span>
+                                                            <a class="badge badge-info"
+                                                               href="{{ route('groups.show', $value->group->id) }}">
                                                                 {{ $value->group->name }}
                                                             </a>
                                                         </span>

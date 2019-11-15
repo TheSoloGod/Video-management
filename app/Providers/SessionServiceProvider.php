@@ -26,7 +26,7 @@ class SessionServiceProvider extends ServiceProvider
         $this->app->singleton(
             'SessionService',
             function () {
-                return new \App\Services\SessionService;
+                return new \App\Services\SubService\SessionService;
             }
         );
     }

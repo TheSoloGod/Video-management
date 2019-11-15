@@ -35,7 +35,7 @@ $(document).ready(function () {
 
 
     // upload info video
-    $('#formInfoVideo').submit(function(event) {
+    $('#formInfoVideo').submit(function (event) {
         event.preventDefault();
         let formData = new FormData($(this)[0]);
         formData.append('csrfmiddlewaretoken', '{{ csrf_token }}');

@@ -46,7 +46,8 @@
                                             <tr class="">
                                                 <td class="text-center">Name:</td>
                                                 <td>
-                                                    <input type="text" name="name" class="form-control" placeholder="Input new category">
+                                                    <input type="text" name="name" class="form-control"
+                                                           placeholder="Input new category">
                                                 </td>
                                             </tr>
                                         </table>

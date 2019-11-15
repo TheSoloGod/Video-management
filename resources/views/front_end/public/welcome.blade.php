@@ -2,7 +2,7 @@
 
 @section('title')
     Video+
-    @endsection
+@endsection
 
 @section('content')
     <div class="container">
@@ -30,7 +30,8 @@
                                 <div class="card">
                                     <div class="card-body text-center p-0">
                                         <a href="{{ route('public.video.show', $value->id) }}">
-                                            <img class="w-100" style="height: 110px" src="{{ asset('storage/preview/' . $value->image ) }}">
+                                            <img class="w-100" style="height: 110px"
+                                                 src="{{ asset('storage/preview/' . $value->image ) }}">
                                         </a>
                                     </div>
                                 </div>
@@ -63,7 +64,8 @@
                                 <div class="card">
                                     <div class="card-body text-center p-0">
                                         <a href="{{ route('public.video.show', $value->id) }}">
-                                            <img class="w-100" style="height: 110px" src="{{ asset('storage/preview/' . $value->image ) }}">
+                                            <img class="w-100" style="height: 110px"
+                                                 src="{{ asset('storage/preview/' . $value->image ) }}">
                                         </a>
                                     </div>
                                 </div>

@@ -31,16 +31,6 @@
                             <div class="col-md-6 text-center">
                                 <div>
                                     <div class="">
-{{--                                        <div class="row">--}}
-{{--                                            <div class="col-md-12">--}}
-{{--                                                <div class="progress mb-3">--}}
-{{--                                                    <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow=""--}}
-{{--                                                         aria-valuemin="0" aria-valuemax="100" style="width: 0%">--}}
-{{--                                                        0%--}}
-{{--                                                    </div>--}}
-{{--                                                </div>--}}
-{{--                                            </div>--}}
-{{--                                        </div>--}}
                                         <div class="row">
                                             <div class="col-md-3">
                                                 <div class="mb-3">
@@ -67,17 +57,19 @@
                                                 </div>
                                             </div>
                                             <div class="col-md-9">
-{{--                                                <div id="success">--}}
+                                                {{--                                                <div id="success">--}}
 
-{{--                                                </div>--}}
+                                                {{--                                                </div>--}}
                                                 <video width="100%" height="auto" controls>
-{{--                                                    <source src="{{ 'https://docs.google.com/uc?id=' . $video->path}}" type="video/mp4">--}}
-                                                    <source src="{{ asset('storage/video/' . $video->name) }}" type="video/mp4">
+                                                    {{--                                                    <source src="{{ 'https://docs.google.com/uc?id=' . $video->path}}" type="video/mp4">--}}
+                                                    <source src="{{ asset('storage/video/' . $video->name) }}"
+                                                            type="video/mp4">
                                                 </video>
                                             </div>
                                         </div>
                                         <div>
-                                            <textarea class="form-control mb-3" style="height: 100px" placeholder="View comments here"></textarea>
+                                            <textarea class="form-control mb-3" style="height: 100px"
+                                                      placeholder="View comments here"></textarea>
                                         </div>
 
                                         @if(!$video->delete_at)
@@ -182,7 +174,8 @@
                                             <td>
                                                 @foreach($categories as $key => $value)
                                                     <span>
-                                                        <a class="badge badge-info" href="{{ route('categories.show', $value->category->id) }}">
+                                                        <a class="badge badge-info"
+                                                           href="{{ route('categories.show', $value->category->id) }}">
                                                             {{ $value->category->name }}
                                                         </a>
                                                     </span>
@@ -194,7 +187,8 @@
                                             <td>
                                                 @foreach($groups as $key => $value)
                                                     <span>
-                                                        <a class="badge badge-info" href="{{ route('groups.show', $value->group->id) }}">
+                                                        <a class="badge badge-info"
+                                                           href="{{ route('groups.show', $value->group->id) }}">
                                                             {{ $value->group->name }}
                                                         </a>
                                                     </span>

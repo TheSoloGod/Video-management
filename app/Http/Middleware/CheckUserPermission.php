@@ -18,8 +18,8 @@ class CheckUserPermission
     /**
      * Handle an incoming request.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \Closure  $next
+     * @param \Illuminate\Http\Request $request
+     * @param \Closure $next
      * @return mixed
      */
     public function handle($request, Closure $next)
@@ -46,7 +46,8 @@ class CheckUserPermission
         }
     }
 
-    public function checkUserPermission($user) {
+    public function checkUserPermission($user)
+    {
         if ($user == null) {
             return $userPermission = 0;
         } elseif ($user->email_verified_at == null) {

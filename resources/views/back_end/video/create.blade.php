@@ -20,7 +20,6 @@
                 <div class="card mt-3">
                     <div class="card-header">
                         Upload new video
-{{--                        <a class="btn btn-outline-danger" href="{{ route('test') }}">test</a>--}}
                         @if (Session::has('error'))
                             <div class="alert alert-warning alert-block">
                                 <button type="button" class="close" data-dismiss="alert">×</button>
@@ -53,7 +52,8 @@
                                             <div class="row">
                                                 <div class="col-md-12">
                                                     <div id="status" class="w-100 text-center">
-                                                        <img src="{{ asset('storage/preview/preview-default.jpg') }}" class="w-100">
+                                                        <img src="{{ asset('storage/preview/preview-default.jpg') }}"
+                                                             class="w-100">
                                                     </div>
                                                 </div>
                                             </div>
@@ -86,7 +86,8 @@
                                         <div class="alert alert-success alert-block mt-3">
                                             Upload video infomation success
                                         </div>
-                                        <a class="btn btn-outline-success" href="{{ route('videos.index') }}" target="_blank">Show videos list</a>
+                                        <a class="btn btn-outline-success" href="{{ route('videos.index') }}"
+                                           target="_blank">Show videos list</a>
                                     </div>
                                     <div id="uploadInfoVideoError" class="text-center" hidden>
                                         <div class="alert alert-danger alert-block mt-3">
@@ -152,7 +153,8 @@
                                             </tr>
                                             <tr>
                                                 <td colspan="2" class="text-center">
-                                                    <button id="formInfoVideoSubmit" class="btn btn-outline-info" type="submit" name="create">
+                                                    <button id="formInfoVideoSubmit" class="btn btn-outline-info"
+                                                            type="submit" name="create">
                                                         Upload Info
                                                     </button>
                                                 </td>
@@ -173,7 +175,7 @@
 @section('script')
     <script>
         $.ajaxSetup({
-            headers: { 'X-CSRF-Token' : $('meta[name=_token]').attr('content') }
+            headers: {'X-CSRF-Token': $('meta[name=_token]').attr('content')}
         });
     </script>
     <script src="{{ asset('js/upload/jquery.form.js') }}"></script>

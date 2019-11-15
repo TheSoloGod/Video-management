@@ -35,11 +35,13 @@
                                     <div class="card-body text-center p-0">
                                         @guest
                                             <a href="{{ route('public.video.show', $value->id) }}">
-                                                <img class="w-100" style="height: 140px" src="{{ asset('storage/preview/' . $value->image ) }}">
+                                                <img class="w-100" style="height: 140px"
+                                                     src="{{ asset('storage/preview/' . $value->image ) }}">
                                             </a>
                                         @else
                                             <a href="{{ route('member.video.show', [Auth::user()->id, $value->id]) }}">
-                                                <img class="w-100" style="height: 140px" src="{{ asset('storage/preview/' . $value->image ) }}">
+                                                <img class="w-100" style="height: 140px"
+                                                     src="{{ asset('storage/preview/' . $value->image ) }}">
                                             </a>
                                         @endguest
                                     </div>

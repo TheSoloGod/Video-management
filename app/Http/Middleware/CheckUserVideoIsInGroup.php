@@ -7,7 +7,8 @@ use App\Services\GroupVideoService\GroupVideoServiceInterface;
 use App\Services\VideoService\VideoServiceInterface;
 use Closure;
 
-class CheckUserVideoIsInGroup
+class
+CheckUserVideoIsInGroup
 {
     protected $videoService;
     protected $groupUserService;
@@ -25,8 +26,8 @@ class CheckUserVideoIsInGroup
     /**
      * Handle an incoming request.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \Closure  $next
+     * @param \Illuminate\Http\Request $request
+     * @param \Closure $next
      * @return mixed
      */
     public function handle($request, Closure $next)

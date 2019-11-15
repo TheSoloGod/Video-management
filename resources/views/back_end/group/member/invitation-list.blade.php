@@ -92,7 +92,8 @@
                                 There are no user in this invitation list! Please add someone
                             </div>
                             <div class="text-center">
-                                <a class="btn btn-outline-primary" href="{{ route('group.member.add', $groupId) }}">Back</a>
+                                <a class="btn btn-outline-primary"
+                                   href="{{ route('group.member.add', $groupId) }}">Back</a>
                             </div>
                         @endif
                     </div>

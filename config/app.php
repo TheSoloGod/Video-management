@@ -170,7 +170,6 @@ return [
         Barryvdh\Cors\ServiceProvider::class,
 
 
-
         /*
          * Application Service Providers...
          */

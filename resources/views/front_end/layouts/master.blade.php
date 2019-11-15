@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
 {{--    <link href="{{ asset('css/bootstrap/bootstrap.css') }}" rel="stylesheet">--}}
 
-    <!-- Booostrap JS -->
+<!-- Booostrap JS -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
@@ -25,7 +25,7 @@
 {{--    <script src="{{ asset('js/bootstrap/popper.min.js') }}"></script>--}}
 {{--    <script src="{{ asset('js/fontawesome/all.js') }}"></script>--}}
 
-    <!-- CSS -->
+<!-- CSS -->
     <link href="{{asset('css/home.css')}}" rel="stylesheet">
     <link href="{{asset('css/tokenInput/token-input.css')}}" rel="stylesheet">
     <link href="{{asset('css/tokenInput/token-input-facebook.css')}}" rel="stylesheet">
@@ -34,13 +34,12 @@
     <script src="{{ asset('front_end/home/home.js') }}"></script>
 
 
-
 </head>
 <body>
-    <div>
-        @yield('content')
-    </div>
-    @yield('script')
+<div>
+    @yield('content')
+</div>
+@yield('script')
 </body>
 </html>
 

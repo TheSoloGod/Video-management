@@ -32,7 +32,7 @@
                                         <div class="card-body">
                                             <a href="{{ route('member.group.video.all', [Auth::user()->id, $value->id]) }}">
                                                 <img style="width: 150px; height: 150px"
-                                                    src="{{ asset('storage/group/' . $value->image) }}">
+                                                     src="{{ asset('storage/group/' . $value->image) }}">
                                             </a>
                                         </div>
                                         <div class="card-footer">

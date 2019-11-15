@@ -8,14 +8,15 @@
     <div class="container">
 
         <!-- navbar -->
-        @include('front_end.layouts.navbar')
+    @include('front_end.layouts.navbar')
 
-        <!-- group info -->
+    <!-- group info -->
         <div class="card card-body">
             <div class="row text-center">
                 <div class="col-md-3">
                     <span>
-                        <img class="border rounded-circle" style="width: 30px; height: 30px" src="{{ asset('storage/group/' . $group->image) }}">
+                        <img class="border rounded-circle" style="width: 30px; height: 30px"
+                             src="{{ asset('storage/group/' . $group->image) }}">
                     </span>
                     <span>
                         <strong>{{ $group->name }}</strong>
@@ -33,7 +34,8 @@
                 </div>
                 <div class="col-md-3">
                     <div class="dropdown mr-1">
-                        <a class="btn btn-outline-secondary dropdown-toggle" id="dropdownMenuOffset" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-offset="10,20">
+                        <a class="btn btn-outline-secondary dropdown-toggle" id="dropdownMenuOffset"
+                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-offset="10,20">
                             Option
                             <i class="fas fa-sliders-h"></i>
                         </a>
@@ -94,7 +96,8 @@
                 <div class="row">
                     @foreach($members as $key => $value)
                         <div class="col-3 text-center">
-                            <img class="w-75 border rounded-circle" src="{{ asset('storage/avatar/' . $value->image) }}">
+                            <img class="w-75 border rounded-circle"
+                                 src="{{ asset('storage/avatar/' . $value->image) }}">
                             <p class="text-center mt-2">{{ $value->name }}</p>
                         </div>
                     @endforeach

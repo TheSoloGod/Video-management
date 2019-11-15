@@ -29,6 +29,7 @@ class GoogleDriveServiceProvider extends ServiceProvider
             return new \League\Flysystem\Filesystem($adapter);
         });
     }
+
     /**
      * Register the application services.
      *

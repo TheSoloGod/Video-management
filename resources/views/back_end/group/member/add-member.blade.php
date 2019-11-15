@@ -56,7 +56,8 @@
                                     @if(Session::has('invitationList'))
                                         @if(array_key_exists($value->id, Session::get('invitationList')->users))
                                             <td>
-                                                <div class="btn btn-outline-danger disabled">Add to invitation list</div>
+                                                <div class="btn btn-outline-danger disabled">Add to invitation list
+                                                </div>
                                             </td>
                                         @else
                                             <td>
@@ -78,7 +79,8 @@
                         </table>
                         <div>
                             <span>
-                                <a class="btn btn-outline-primary" href="{{ route('group.member.all', $groupId) }}">Back</a>
+                                <a class="btn btn-outline-primary"
+                                   href="{{ route('group.member.all', $groupId) }}">Back</a>
                             </span>
                             <span>
                                 <a class="btn btn-outline-info"

@@ -11,6 +11,5 @@
     <h2>This is your invitation</h2>
     <p>This is your link to group:</p>
     http://localhost/group/invite/verify/{{ $groupId }}/{{ $userId }}/{{ $token }}
-
 </body>
 </html>
