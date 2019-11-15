@@ -31,7 +31,7 @@
     <link href="{{asset('css/tokenInput/token-input-facebook.css')}}" rel="stylesheet">
 
     <!-- SCRIPT -->
-    <script src="{{ asset('js/home.js') }}"></script>
+    <script src="{{ asset('front_end/home/home.js') }}"></script>
 
 
 

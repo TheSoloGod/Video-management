@@ -2,7 +2,6 @@
 
 use Illuminate\Database\Seeder;
 use App\Models\Video;
-//use App\Video;
 
 class VideosTableSeeder extends Seeder
 {
@@ -148,6 +147,98 @@ class VideosTableSeeder extends Seeder
         $video->type = '1';
         $video->status = 'upload success';
         $video->views = '177';
+        $video->is_display = '1';
+        $video->is_in_group = '1';
+        $video->name = 'video-default.mp4';
+        $video->path = '1on5uJG4_tTbP_K3fYf6KjfAL72oyF6Oi';
+        $video->save();
+
+        $video = new Video();
+        $video->title = 'video 13';
+        $video->description = 'this is video 13';
+        $video->type = '0';
+        $video->status = 'upload success';
+        $video->views = '45';
+        $video->is_display = '1';
+        $video->name = 'video-default.mp4';
+        $video->path = '1on5uJG4_tTbP_K3fYf6KjfAL72oyF6Oi';
+        $video->save();
+
+        $video = new Video();
+        $video->title = 'video 14';
+        $video->description = 'this is video 14';
+        $video->type = '0';
+        $video->status = 'upload success';
+        $video->views = '120';
+        $video->is_display = '1';
+        $video->name = 'video-default.mp4';
+        $video->path = '1on5uJG4_tTbP_K3fYf6KjfAL72oyF6Oi';
+        $video->save();
+
+        $video = new Video();
+        $video->title = 'video 15';
+        $video->description = 'this is video 15';
+        $video->type = '0';
+        $video->status = 'upload success';
+        $video->views = '19';
+        $video->is_display = '1';
+        $video->name = 'video-default.mp4';
+        $video->path = '1on5uJG4_tTbP_K3fYf6KjfAL72oyF6Oi';
+        $video->save();
+
+        $video = new Video();
+        $video->title = 'video 16';
+        $video->description = 'this is video 16';
+        $video->type = '0';
+        $video->status = 'upload success';
+        $video->views = '231';
+        $video->is_display = '1';
+        $video->name = 'video-default.mp4';
+        $video->path = '1on5uJG4_tTbP_K3fYf6KjfAL72oyF6Oi';
+        $video->save();
+
+        $video = new Video();
+        $video->title = 'video 17';
+        $video->description = 'this is video 17';
+        $video->type = '1';
+        $video->status = 'upload success';
+        $video->views = '123';
+        $video->is_display = '1';
+        $video->is_in_group = '0';
+        $video->name = 'video-default.mp4';
+        $video->path = '1on5uJG4_tTbP_K3fYf6KjfAL72oyF6Oi';
+        $video->save();
+
+        $video = new Video();
+        $video->title = 'video 18';
+        $video->description = 'this is video 18';
+        $video->type = '1';
+        $video->status = 'upload success';
+        $video->views = '69';
+        $video->is_display = '1';
+        $video->is_in_group = '1';
+        $video->name = 'video-default.mp4';
+        $video->path = '1on5uJG4_tTbP_K3fYf6KjfAL72oyF6Oi';
+        $video->save();
+
+        $video = new Video();
+        $video->title = 'video 19';
+        $video->description = 'this is video 19';
+        $video->type = '1';
+        $video->status = 'upload success';
+        $video->views = '321';
+        $video->is_display = '1';
+        $video->is_in_group = '1';
+        $video->name = 'video-default.mp4';
+        $video->path = '1on5uJG4_tTbP_K3fYf6KjfAL72oyF6Oi';
+        $video->save();
+
+        $video = new Video();
+        $video->title = 'video 20';
+        $video->description = 'this is video 20';
+        $video->type = '1';
+        $video->status = 'upload success';
+        $video->views = '99';
         $video->is_display = '1';
         $video->is_in_group = '1';
         $video->name = 'video-default.mp4';

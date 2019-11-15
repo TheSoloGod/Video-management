@@ -2,7 +2,6 @@
 
 use Illuminate\Database\Seeder;
 use App\Models\DateVideo;
-//use App\DateVideo;
 
 class DateVideoTableSeeder extends Seeder
 {

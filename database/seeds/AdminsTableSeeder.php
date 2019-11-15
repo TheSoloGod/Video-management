@@ -2,7 +2,6 @@
 
 use Illuminate\Database\Seeder;
 use App\Models\Admin;
-//use App\Admin;
 use Illuminate\Support\Facades\Hash;
 
 class AdminsTableSeeder extends Seeder

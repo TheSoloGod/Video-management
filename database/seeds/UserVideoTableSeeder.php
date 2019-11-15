@@ -2,7 +2,6 @@
 
 use Illuminate\Database\Seeder;
 use App\Models\UserVideo;
-//use App\UserVideo;
 
 class UserVideoTableSeeder extends Seeder
 {

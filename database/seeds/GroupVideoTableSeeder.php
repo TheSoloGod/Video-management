@@ -2,7 +2,6 @@
 
 use Illuminate\Database\Seeder;
 use App\Models\GroupVideo;
-//use App\GroupVideo;
 
 class GroupVideoTableSeeder extends Seeder
 {
@@ -36,6 +35,21 @@ class GroupVideoTableSeeder extends Seeder
         $groupVideo = new GroupVideo();
         $groupVideo->group_id = '2';
         $groupVideo->video_id = '12';
+        $groupVideo->save();
+
+        $groupVideo = new GroupVideo();
+        $groupVideo->group_id = '1';
+        $groupVideo->video_id = '18';
+        $groupVideo->save();
+
+        $groupVideo = new GroupVideo();
+        $groupVideo->group_id = '2';
+        $groupVideo->video_id = '19';
+        $groupVideo->save();
+
+        $groupVideo = new GroupVideo();
+        $groupVideo->group_id = '2';
+        $groupVideo->video_id = '20';
         $groupVideo->save();
     }
 }

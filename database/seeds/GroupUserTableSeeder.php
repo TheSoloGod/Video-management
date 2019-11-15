@@ -2,7 +2,6 @@
 
 use Illuminate\Database\Seeder;
 use App\Models\GroupUser;
-//use App\GroupUser;
 use Carbon\Carbon;
 use Illuminate\Support\Str;
 

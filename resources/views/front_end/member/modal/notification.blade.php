@@ -3,7 +3,7 @@
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="notificationModallLabel">Your notifications (Demo)</h5>
+                <h5 class="modal-title" id="notificationModallLabel">Your notifications</h5>
                 <a class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </a>
