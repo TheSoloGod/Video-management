@@ -5,7 +5,8 @@ namespace App\Http\Controllers\Repositories\VideoRepository;
 
 
 use App\Http\Controllers\Repositories\Eloquent\EloquentRepository;
-use App\Video;
+use App\Models\Video;
+//use App\Video;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 

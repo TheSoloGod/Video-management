@@ -4,7 +4,8 @@
 namespace App\Http\Controllers\Repositories\GroupVideoRepository;
 
 
-use App\GroupVideo;
+use App\Models\GroupVideo;
+//use App\GroupVideo;
 use App\Http\Controllers\Repositories\Eloquent\EloquentRepository;
 
 class GroupVideoRepository extends EloquentRepository implements GroupVideoRepositoryInterface

@@ -4,7 +4,8 @@
 namespace App\Http\Controllers\Repositories\DateVideoRepository;
 
 
-use App\DateVideo;
+use App\Models\DateVideo;
+//use App\DateVideo;
 use App\Http\Controllers\Repositories\Eloquent\EloquentRepository;
 
 class DateVideoRepository extends EloquentRepository implements DateVideoRepositoryInterface

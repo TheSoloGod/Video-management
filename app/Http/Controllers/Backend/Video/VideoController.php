@@ -116,13 +116,13 @@ class VideoController extends Controller
     public function search(Request $request)
     {
         $videos = $this->videoService->search($request);
-        return view('public.search-result', compact('videos', 'userId'));
+        return view('front_end.public.search-result', compact('videos', 'userId'));
     }
 
     public function getPaginateVideoOfCategory($categoryId)
     {
         $videos = $this->videoService->getPaginateVideoOfCategory($categoryId);
-        return view('public.category-filter', compact('videos'));
+        return view('front_end.public.category-filter', compact('videos'));
     }
 
     public function uploadVideoProgressBar(Request $request)

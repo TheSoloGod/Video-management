@@ -1,15 +1,13 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use App\User;
-use App\Video;
-use App\GroupVideo;
-use App\GroupUser;
 
 class Group extends Model
 {
+    protected $table = 'groups';
+
     protected $fillable = ['name', 'image'];
 
     public function user()

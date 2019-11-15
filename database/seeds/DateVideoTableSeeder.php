@@ -1,7 +1,8 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use App\DateVideo;
+use App\Models\DateVideo;
+//use App\DateVideo;
 
 class DateVideoTableSeeder extends Seeder
 {

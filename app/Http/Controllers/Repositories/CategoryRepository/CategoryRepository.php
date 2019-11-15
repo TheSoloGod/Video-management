@@ -4,7 +4,8 @@
 namespace App\Http\Controllers\Repositories\CategoryRepository;
 
 
-use App\Category;
+use App\Models\Category;
+//use App\Category;
 use App\Http\Controllers\Repositories\Eloquent\EloquentRepository;
 
 class CategoryRepository extends EloquentRepository implements CategoryRepositoryInterface

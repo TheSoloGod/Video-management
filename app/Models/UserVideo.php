@@ -1,10 +1,8 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use App\User;
-use App\Video;
 
 class UserVideo extends Model
 {

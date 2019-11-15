@@ -23,6 +23,11 @@
                         @method('PUT')
                         <div class="card-header">
                             Update user infomation
+                            @if (session('status'))
+                                <div class="alert alert-success" role="alert">
+                                    {{ session('status') }}
+                                </div>
+                            @endif
                             @if($errors->any())
                                 <div>
                                     <ul>

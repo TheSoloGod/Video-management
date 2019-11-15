@@ -4,7 +4,8 @@ namespace App\Exceptions;
 
 use App\Jobs\SendStatiticsExceptionMail;
 use App\Notifications\StatiticsException;
-use App\User;
+use App\Models\User;
+//use App\User;
 use Exception;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Notification;

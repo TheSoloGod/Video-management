@@ -7,7 +7,7 @@ namespace App\Http\Controllers\Services\GroupUserService;
 use App\Http\Controllers\Repositories\GroupUserRepository\GroupUserRepositoryInterface;
 use App\Http\Controllers\Repositories\UserRepository\UserRepositoryInterface;
 use App\Http\Controllers\Services\UserService\UserServiceInterface;
-use App\InvitationList;
+use App\Models\SubModel\InvitationList;
 use App\Services\SessionService;
 use Illuminate\Support\Facades\Session;
 use App\Jobs\SendInviteEmail;

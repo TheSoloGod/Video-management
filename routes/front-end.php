@@ -57,7 +57,6 @@ Route::get('/category/{category_id}', 'Backend\Video\VideoController@getPaginate
 //route test
 Route::get('test', function (){
     dd(\Illuminate\Support\Facades\Session::get('uploadStatus'));
-
 })->name('test');
 
 

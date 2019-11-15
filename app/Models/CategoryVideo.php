@@ -1,10 +1,8 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use App\Category;
-use App\Video;
 
 class CategoryVideo extends Model
 {

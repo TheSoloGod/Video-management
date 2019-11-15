@@ -1,7 +1,8 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use App\GroupUser;
+use App\Models\GroupUser;
+//use App\GroupUser;
 use Carbon\Carbon;
 use Illuminate\Support\Str;
 

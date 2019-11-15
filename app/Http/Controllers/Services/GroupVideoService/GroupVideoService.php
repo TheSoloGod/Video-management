@@ -4,7 +4,7 @@
 namespace App\Http\Controllers\Services\GroupVideoService;
 
 
-use App\AdditionVideoList;
+use App\Models\SubModel\AdditionVideoList;
 use App\Http\Controllers\Repositories\GroupUserRepository\GroupUserRepositoryInterface;
 use App\Http\Controllers\Repositories\GroupVideoRepository\GroupVideoRepositoryInterface;
 use App\Http\Controllers\Repositories\VideoRepository\VideoRepositoryInterface;

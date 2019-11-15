@@ -1,14 +1,10 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use App\Group;
-use App\Video;
-use App\GroupUser;
-use App\UserVideo;
 
 class User extends Authenticatable implements MustVerifyEmail
 {
@@ -40,6 +36,8 @@ class User extends Authenticatable implements MustVerifyEmail
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    protected $table = 'users';
 
     public function group()
     {

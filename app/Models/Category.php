@@ -1,13 +1,13 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use App\Video;
-use App\CategoryVideo;
 
 class Category extends Model
 {
+    protected $table = 'categories';
+
     protected $fillable = ['name', 'image'];
 
     public function video()

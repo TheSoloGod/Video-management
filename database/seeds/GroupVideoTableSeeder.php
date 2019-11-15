@@ -1,7 +1,8 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use App\GroupVideo;
+use App\Models\GroupVideo;
+//use App\GroupVideo;
 
 class GroupVideoTableSeeder extends Seeder
 {

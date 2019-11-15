@@ -19,12 +19,12 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::get('/categories', function (Request $request)
 {
-    $categories = \App\Category::where('name', 'like', '%' . $request->get('q') . '%')->get();
+    $categories = \App\Models\Category::where('name', 'like', '%' . $request->get('q') . '%')->get();
     return response()->json($categories);
 });
 
 Route::get('/groups', function (Request $request)
 {
-    $groups = \App\Group::where('name', 'like', '%' . $request->get('q') . '%')->get();
+    $groups = \App\Models\Group::where('name', 'like', '%' . $request->get('q') . '%')->get();
     return response()->json($groups);
 });

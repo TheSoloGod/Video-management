@@ -4,7 +4,8 @@
 namespace App\Http\Controllers\Repositories\AdminRepository;
 
 
-use App\Admin;
+use App\Models\Admin;
+//use App\Admin;
 use App\Http\Controllers\Repositories\Eloquent\EloquentRepository;
 
 

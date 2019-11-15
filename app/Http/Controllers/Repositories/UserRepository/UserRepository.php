@@ -3,9 +3,9 @@
 
 namespace App\Http\Controllers\Repositories\UserRepository;
 
-
+use App\Models\User;
+//use App\User;
 use App\Http\Controllers\Repositories\Eloquent\EloquentRepository;
-use App\User;
 
 class UserRepository extends EloquentRepository implements UserRepositoryInterface
 {

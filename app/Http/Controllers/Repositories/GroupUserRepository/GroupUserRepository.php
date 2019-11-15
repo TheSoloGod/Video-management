@@ -4,7 +4,8 @@
 namespace App\Http\Controllers\Repositories\GroupUserRepository;
 
 
-use App\GroupUser;
+use App\Models\GroupUser;
+//use App\GroupUser;
 use App\Http\Controllers\Repositories\Eloquent\EloquentRepository;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
