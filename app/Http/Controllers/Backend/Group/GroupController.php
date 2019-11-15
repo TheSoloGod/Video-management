@@ -3,12 +3,12 @@
 namespace App\Http\Controllers\Backend\Group;
 
 use App\Http\Controllers\Controller;
-use App\Http\Controllers\Services\GroupService\GroupServiceInterface;
-use App\Http\Controllers\Services\GroupUserService\GroupUserServiceInterface;
-use App\Http\Controllers\Services\GroupVideoService\GroupVideoServiceInterface;
+use App\Services\GroupService\GroupServiceInterface;
+use App\Services\GroupUserService\GroupUserServiceInterface;
+use App\Services\GroupVideoService\GroupVideoServiceInterface;
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreNameRequest;
-use App\Services\SessionService;
+use App\Services\SubService\SessionService;
 
 class GroupController extends Controller
 {

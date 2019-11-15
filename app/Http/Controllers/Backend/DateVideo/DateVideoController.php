@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers\Backend\DateVideo;
 
-use App\DateVideo;
+use App\Models\DateVideo;
 use App\Http\Controllers\Controller;
-use App\Http\Controllers\Services\DateVideoService\DateVideoServiceInterface;
+use App\Services\DateVideoService\DateVideoServiceInterface;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Exports\ViewRateExport;

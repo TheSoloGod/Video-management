@@ -2,9 +2,9 @@
 
 namespace App\Http\Middleware;
 
-use App\Http\Controllers\Services\GroupUserService\GroupUserServiceInterface;
-use App\Http\Controllers\Services\GroupVideoService\GroupVideoServiceInterface;
-use App\Http\Controllers\Services\VideoService\VideoServiceInterface;
+use App\Services\GroupUserService\GroupUserServiceInterface;
+use App\Services\GroupVideoService\GroupVideoServiceInterface;
+use App\Services\VideoService\VideoServiceInterface;
 use Closure;
 
 class CheckUserVideoIsInGroup

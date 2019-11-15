@@ -2,7 +2,7 @@
 
 namespace App\Http\Middleware;
 
-use App\Http\Controllers\Services\VideoService\VideoServiceInterface;
+use App\Services\VideoService\VideoServiceInterface;
 use Closure;
 
 class CheckVideoPublic

@@ -3,12 +3,12 @@
 namespace App\Http\Controllers\Frontend\Member;
 
 use App\Http\Controllers\Controller;
-use App\Http\Controllers\Services\CategoryService\CategoryServiceInterface;
-use App\Http\Controllers\Services\DateVideoService\DateVideoServiceInterface;
-use App\Http\Controllers\Services\GroupService\GroupServiceInterface;
-use App\Http\Controllers\Services\UserService\UserServiceInterface;
-use App\Http\Controllers\Services\UserVideoService\UserVideoService;
-use App\Http\Controllers\Services\VideoService\VideoServiceInterface;
+use App\Services\CategoryService\CategoryServiceInterface;
+use App\Services\DateVideoService\DateVideoServiceInterface;
+use App\Services\GroupService\GroupServiceInterface;
+use App\Services\UserService\UserServiceInterface;
+use App\Services\UserVideoService\UserVideoService;
+use App\Services\VideoService\VideoServiceInterface;
 use Illuminate\Http\Request;
 
 class MemberController extends Controller

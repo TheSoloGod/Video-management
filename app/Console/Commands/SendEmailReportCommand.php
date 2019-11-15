@@ -2,7 +2,7 @@
 
 namespace App\Console\Commands;
 
-use App\Http\Controllers\Services\DateVideoService\DateVideoServiceInterface;
+use App\Services\DateVideoService\DateVideoServiceInterface;
 use App\Mail\EmailReportDaily;
 use Carbon\Carbon;
 use Illuminate\Console\Command;

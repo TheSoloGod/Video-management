@@ -4,7 +4,7 @@ namespace App\Jobs;
 
 use App\Mail\ReportFutureDateException;
 use App\Notifications\StatiticsException;
-use App\User;
+use App\Models\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Queue\InteractsWithQueue;

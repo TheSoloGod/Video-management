@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Backend\GroupUser;
 
 use App\Http\Controllers\Controller;
-use App\Http\Controllers\Services\GroupUserService\GroupUserServiceInterface;
+use App\Services\GroupUserService\GroupUserServiceInterface;
 use Illuminate\Http\Request;
 
 class GroupUserController extends Controller

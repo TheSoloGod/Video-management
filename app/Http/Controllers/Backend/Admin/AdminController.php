@@ -3,10 +3,10 @@
 namespace App\Http\Controllers\Backend\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Controllers\Services\AdminService\AdminServiceInterface;
+use App\Services\AdminService\AdminServiceInterface;
 use App\Http\Requests\AdminLoginRequest;
 use Illuminate\Http\Request;
-use App\Admin;
+use App\Models\Admin;
 use Illuminate\Support\Facades\Auth;
 
 class AdminController extends Controller
