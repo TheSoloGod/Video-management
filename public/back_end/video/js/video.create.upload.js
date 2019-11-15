@@ -34,12 +34,11 @@ $(document).ready(function () {
     });
 
 
-    //upload info video
+    // upload info video
     $('#formInfoVideo').submit(function(event) {
         event.preventDefault();
         let formData = new FormData($(this)[0]);
-        let token = $('meta[name="csrf-token"]').attr('content');
-        formData.append('csrfmiddlewaretoken', '{{ csrf_token }}')
+        formData.append('csrfmiddlewaretoken', '{{ csrf_token }}');
 
         $.ajaxSetup({
             headers: {
@@ -48,13 +47,15 @@ $(document).ready(function () {
         });
 
         $.ajax({
-            url: 'http://wwww.localhost/admin/video/store',
+            url: 'http://video.local/admin/video/store',
             data: formData,
-            type: 'POST',
+            type: 'post',
             contentType: false,
             processData: false,
             success: function (result) {
+                console.log(result);
                 if (result['status']) {
+                    // console.log(result['status']);
                     $('#formInfoVideoSubmit').attr('hidden', 'hidden');
                     $('#upload').attr('hidden', 'hidden');
                     $('#file').attr('hidden', 'hidden');
@@ -62,6 +63,7 @@ $(document).ready(function () {
                     $('#uploadInfoVideoError').attr('hidden', 'hidden');
                     $('#uploadInfoVideoSuccess').removeAttr('hidden');
                 } else {
+                    console.log(result['status']);
                     $('#uploadInfoVideoError').removeAttr('hidden');
                 }
             }
