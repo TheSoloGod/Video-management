@@ -5,7 +5,6 @@
 
 //route admin login logout
 Route::group(['prefix' => 'admin'], function () {
-    Route::get('/', 'Backend\Admin\AdminController@overView');
     Route::get('/login', 'Backend\Admin\AdminController@getLogin')->name('admin');
     Route::post('/login', 'Backend\Admin\AdminController@postLogin')->name('admin.login');
     Route::get('/logout', 'Backend\Admin\AdminController@getLogout')->name('admin.logout');
@@ -13,6 +12,7 @@ Route::group(['prefix' => 'admin'], function () {
 
 //route resource admin with middleware
 Route::group(['prefix' => 'admin', 'middleware' => 'check.admin.login'], function () {
+    Route::get('/', 'Backend\Admin\AdminController@overView');
     Route::get('overview', 'Backend\Admin\AdminController@overView')->name('admin.over-view');
     Route::resource('users', 'Backend\User\UserController')->except(['create', 'store']);
     Route::resource('videos', 'Backend\Video\VideoController')->except(['store']);

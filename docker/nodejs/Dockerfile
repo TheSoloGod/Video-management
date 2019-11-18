@@ -5,4 +5,5 @@ WORKDIR /home/node/app
 COPY ./docker-entrypoint.sh /docker-entrypoint.sh
 RUN chmod +x /docker-entrypoint.sh
 
+#npm install
 #CMD ["npm start"]

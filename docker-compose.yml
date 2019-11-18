@@ -53,6 +53,6 @@ services:
     tty: true
     stdin_open: true
     build: ./docker/nodejs
-    #    command: bash /docker-entrypoint.sh
+#    command: bash /docker-entrypoint.sh
     volumes:
       - .:/home/node/app
