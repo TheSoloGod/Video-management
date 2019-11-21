@@ -54,6 +54,7 @@ Route::get('/category/{category_id}', 'Backend\Video\VideoController@getPaginate
 Route::get('test', function () {
    return view('test-vue');
 })->name('test');
+Route::resource('products', 'Backend\Product\ProductController');
 
 
 

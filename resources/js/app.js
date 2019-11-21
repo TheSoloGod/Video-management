@@ -20,6 +20,17 @@ window.Vue = require('vue');
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default));
 
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
+Vue.component('my-component', require('./components/MyComponent').default);
+Vue.component('conditional-rendering', require('./components/ConditionalRendering').default);
+Vue.component('list-rendering', require('./components/ListRendering').default);
+Vue.component('user-dashboard', require('./components/UserDashboard').default);
+Vue.component('life-circle', require('./components/LifeCircle').default);
+Vue.component('force-update', require('./components/ForceUpdate').default);
+Vue.component('binding-html', require('./components/BindingHTML').default);
+Vue.component('form-input-binding', require('./components/FormInputBinding').default);
+Vue.component('event-handling', require('./components/EventHandling').default);
+Vue.component('parent', require('./components/Parent').default);
+Vue.component('api-calling', require('./components/ApiCalling').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -30,3 +41,5 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
 const app = new Vue({
     el: '#app',
 });
+
+
