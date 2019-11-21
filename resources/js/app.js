@@ -31,6 +31,7 @@ Vue.component('form-input-binding', require('./components/FormInputBinding').def
 Vue.component('event-handling', require('./components/EventHandling').default);
 Vue.component('parent', require('./components/Parent').default);
 Vue.component('api-calling', require('./components/ApiCalling').default);
+Vue.component('app', require('./components/bus/App').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -38,8 +39,12 @@ Vue.component('api-calling', require('./components/ApiCalling').default);
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
+import Bus from './components/bus'
+Vue.use(Bus);
+
 const app = new Vue({
     el: '#app',
 });
+
 
 

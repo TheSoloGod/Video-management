@@ -7,7 +7,7 @@
 </head>
 <body>
 <div id="app">
-    <api-calling></api-calling>
+    <app></app>
 </div>
 <script src="/js/app.js"></script>
 </body>
