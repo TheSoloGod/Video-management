@@ -56,3 +56,9 @@ services:
 #    command: bash /docker-entrypoint.sh
     volumes:
       - .:/home/node/app
+#    networks:
+#      - video_network
+#
+#  networks:
+#    video_network:
+#      driver: bridge
